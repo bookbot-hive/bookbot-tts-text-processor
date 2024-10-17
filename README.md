@@ -33,4 +33,4 @@ If you want to build the package from source, follow these steps:
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License..
