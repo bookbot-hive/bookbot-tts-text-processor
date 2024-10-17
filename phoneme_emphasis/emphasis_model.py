@@ -6,6 +6,7 @@ from typing import List
 from gruut import sentences
 from transformers import PreTrainedTokenizerFast
 from optimum.onnxruntime import ORTModelForQuestionAnswering
+from functools import lru_cache
 from .utils import IPA_LIST
 from .gruut_symbols import phonemes_to_ids
 
@@ -14,9 +15,11 @@ logger = logging.getLogger(__name__)
 
 class EmphasisModel:
     def __init__(self, model_dir: str, db_path: str):
+        # ... existing code ...
         self.device = torch.device("cpu")
         self.model, self.tokenizer = self.load_model_and_tokenizer(model_dir)
         self.load_emphasis_lookup(db_path)
+        self.escaped_symbols = self.prepare_escaped_symbols()
         
     def load_emphasis_lookup(self, db_path: str):
         with open(db_path, 'r') as f:
@@ -40,6 +43,7 @@ class EmphasisModel:
             
         return start_index.item(), end_index.item(), preprocessed_phonemes
     
+    @lru_cache(maxsize=1000)
     def emphasize_phonemes(self, phonemes: str) -> str:
         start_idx, end_idx, preprocessed_phonemes = self.infer(phonemes)
         emphasized = self.postprocess_prediction(preprocessed_phonemes, start_idx, end_idx)
@@ -60,16 +64,18 @@ class EmphasisModel:
 
     @staticmethod
     def postprocess_prediction(phonemes: str, start_idx: int, end_idx: int) -> str:
-        emphasized = phonemes[:start_idx] + ['"'] + phonemes[start_idx:end_idx+1] + ['"'] + phonemes[end_idx+1:]
-        return ''.join(emphasized)
+        return ''.join(phonemes[:start_idx] + ['"'] + phonemes[start_idx:end_idx+1] + ['"'] + phonemes[end_idx+1:])
+    
+    @staticmethod
+    def prepare_escaped_symbols():
+        escaped_symbols = [re.escape(symbol) for symbol in IPA_LIST]
+        escaped_symbols.sort(key=lambda x: -len(x))
+        return '|'.join(escaped_symbols)
 
     @staticmethod
     def split_phonemes(input_string: str) -> List[str]:
         input_string = re.sub(r'\s+([,.;?!])', r'\1', input_string)
-        escaped_symbols = [re.escape(symbol) for symbol in IPA_LIST]
-        escaped_symbols.sort(key=lambda x: -len(x))
-        pattern = '|'.join(escaped_symbols)
-        return re.findall(pattern, input_string)
+        return re.findall(EmphasisModel.escaped_symbols, input_string)
 
     @staticmethod
     def preprocess_text(text: str) -> str:
@@ -80,48 +86,47 @@ class EmphasisModel:
         return text
 
     def phonemize_text(self, text: str, language: str) -> str:
-        text = EmphasisModel.preprocess_text(text)
+        text = self.preprocess_text(text)
         phonemes = []
         words = []
         in_quotes = False
+        
         for sentence in sentences(text, lang=language):
             for word in sentence:
                 if word.text == '"':
-                    # reach second double quote which indicate the end of an emphasized word
-                    if in_quotes and words:
-                        try:
-                            emphasized_phonemes = self.emphasis_lookup[words[-1]]
-                            # if emphasized phoneme exist in database pop the last phoneme and the double quote before it
-                            phonemes.pop()
-                            phonemes.pop()
-                            words.pop()
-                            phonemes.append(emphasized_phonemes)
-                        except KeyError:
-                            # if doesn't exist in database, emphasize with the transformer model
-                            emphasized = self.emphasize_phonemes(phonemes[-1])
-                            phonemes.pop()
-                            phonemes.pop()
-                            words.pop()
-                            phonemes.append(emphasized)
-                        in_quotes = False
-                    # reach first double quote which indicate the start of an emphasized word
-                    else:
-                        # add space before the word if there is no space after the last phoneme
-                        if phonemes and phonemes[-1] != ' ':
-                            phonemes.append(' ')
-                        phonemes.append('"')
-                        in_quotes = True
+                    phonemes, words, in_quotes = self.handle_quote(phonemes, words, in_quotes)
                 elif word.is_major_break or word.is_minor_break:
-                    # if not in_quotes and phonemes and phonemes[-1] != ' ':
-                    #     phonemes.append(' ')
                     phonemes.append(word.text)
                 elif word.phonemes:
-                    # add spaces in between words
-                    if not in_quotes and phonemes and phonemes[-1] != ' ':
-                        phonemes.append(' ')
-                    phonemes.append(''.join(word.phonemes))
-                    if in_quotes:
-                        words.append(word.text)
+                    phonemes, words = self.handle_word(phonemes, words, word, in_quotes)
         
         return ''.join(phonemes)
+
+    def handle_quote(self, phonemes, words, in_quotes):
+        if in_quotes and words:
+            phonemes, words = self.handle_emphasized_word(phonemes, words)
+            in_quotes = False
+        else:
+            if phonemes and phonemes[-1] != ' ':
+                phonemes.append(' ')
+            phonemes.append('"')
+            in_quotes = True
+        return phonemes, words, in_quotes
+
+    def handle_emphasized_word(self, phonemes, words):
+        try:
+            emphasized_phonemes = self.emphasis_lookup[words[-1]]
+        except KeyError:
+            emphasized_phonemes = self.emphasize_phonemes(phonemes[-1])
+        phonemes = phonemes[:-2] + [emphasized_phonemes]
+        words.pop()
+        return phonemes, words
+
+    def handle_word(self, phonemes, words, word, in_quotes):
+        if not in_quotes and phonemes and phonemes[-1] != ' ':
+            phonemes.append(' ')
+        phonemes.append(''.join(word.phonemes))
+        if in_quotes:
+            words.append(word.text)
+        return phonemes, words
     
