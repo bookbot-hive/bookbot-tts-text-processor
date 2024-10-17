@@ -1,20 +1,14 @@
 Metadata-Version: 2.1
 Name: phoneme_emphasis
-Version: 0.1.0
+Version: 0.1.4.dev0+gcddd391.d20241017
 Summary: A package for phoneme emphasis prediction
-Home-page: https://github.com/yourusername/phoneme_emphasis
+Home-page: https://github.com/bookbot-hive/phoneme_emphasis
 Author: David Samuel Setiawan
-Author-email: davidsamuel.7878@gmail.com
-Classifier: Programming Language :: Python :: 3
-Classifier: License :: OSI Approved :: MIT License
-Classifier: Operating System :: OS Independent
+Author-email: David Samuel Setiawan <davidsamuel.7878@gmail.com>
+Project-URL: Homepage, https://github.com/bookbot-hive/phoneme_emphasis
+Keywords: linguistics,emphasis,g2p
 Requires-Python: >=3.10
 Description-Content-Type: text/markdown
-Requires-Dist: torch
-Requires-Dist: gruut
-Requires-Dist: transformers
-Requires-Dist: optimum
-Requires-Dist: onnxruntime
 
 # Phoneme Emphasis
 
@@ -24,6 +18,10 @@ A Python package for predicting emphasis in phoneme sequences.
 ## Installation
 
 To install the package, run:
+`pip install git+https://github.com/bookbot-hive/phoneme_emphasis.git`
+
+To install with a specific version, run:
+`pip install git+https://github.com/bookbot-hive/phoneme_emphasis.git@v0.1.0`
 
 ## Building the Package
 
@@ -31,24 +29,11 @@ If you want to build the package from source, follow these steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/phoneme_emphasis.git
+   git clone https://github.com/bookbot-hive/phoneme_emphasis.git
    cd phoneme_emphasis
    ```
 
-2. Install the required build tools:
-   ```
-   python -m pip install --upgrade pip
-   python -m pip install --upgrade build
-   ```
-
-3. Build the package:
-   ```
-   python -m build
-   ```
-
-   This will create a `dist` directory containing the built package files.
-
-4. (Optional) Install the package locally:
+2. Install the package:
    ```
    pip install .
    ```
