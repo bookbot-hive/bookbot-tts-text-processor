@@ -1,15 +1,19 @@
-   [build-system]
-   requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
-   build-backend = "setuptools.build_meta"
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
 
-   [tool.setuptools_scm]
+[tool.setuptools_scm]
 
-   [project]
-   name = "phoneme_emphasis"
-   description = "A brief description of your package"
-   readme = "README.md"
-   requires-python = ">=3.10"
-   license = {file = "LICENSE"}
-   authors = [
-       {name = "David Samuel Setiawan", email = "davidsamuel.7878@gmail.com"},
-   ]
+[project]
+name = "phoneme_emphasis"
+description = "A brief description of your package"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "David Samuel Setiawan", email = "davidsamuel.7878@gmail.com"},
+]
+dynamic = ["version"]
+
+[tool.setuptools_scm]
+write_to = "src/phoneme_emphasis/_version.py"
