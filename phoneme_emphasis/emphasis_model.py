@@ -55,7 +55,7 @@ class EmphasisModel:
         try:
             input_ids = phonemes_to_ids(phoneme_list)
         except Exception as e:
-            print(f"Invalid phoneme found in: {phonemes}, error: {e}")
+            logger.error(f"Invalid phoneme found in: {phonemes}, error: {e}")
         return input_ids
     
     def split_phonemes(self, input_string: str) -> List[str]:
