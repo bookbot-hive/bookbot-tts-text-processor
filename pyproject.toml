@@ -5,11 +5,11 @@
    [tool.setuptools_scm]
 
    [project]
-   name = "@phoneme_emphasis"
+   name = "phoneme_emphasis"
    description = "A brief description of your package"
    readme = "README.md"
-   requires-python = "==3.10"
+   requires-python = ">=3.10"
    license = {file = "LICENSE"}
    authors = [
-       {name = "Your Name", email = "your.email@example.com"},
+       {name = "David Samuel Setiawan", email = "davidsamuel.7878@gmail.com"},
    ]
