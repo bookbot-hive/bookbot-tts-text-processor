@@ -1,0 +1,3 @@
+transformers==4.45.2 
+optimum[onnxruntime]
+gruut==2.4.0

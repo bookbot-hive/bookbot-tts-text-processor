@@ -1,0 +1,11 @@
+README.md
+setup.py
+phoneme_emphasis/__init__.py
+phoneme_emphasis/emphasis_model.py
+phoneme_emphasis/gruut_symbols.py
+phoneme_emphasis/utils.py
+phoneme_emphasis.egg-info/PKG-INFO
+phoneme_emphasis.egg-info/SOURCES.txt
+phoneme_emphasis.egg-info/dependency_links.txt
+phoneme_emphasis.egg-info/requires.txt
+phoneme_emphasis.egg-info/top_level.txt
