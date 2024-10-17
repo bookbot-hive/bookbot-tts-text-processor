@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+write_to = "phoneme_emphasis/_version.py"
+
+[project]
+name = "phoneme_emphasis"
+description = "A package for phoneme emphasis prediction"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "David Samuel Setiawan", email = "davidsamuel.7878@gmail.com"},
+]
+keywords = ["linguistics", "emphasis", "g2p"]
+dynamic = ["version"]
+
+
+[project.urls]
+Homepage = "https://github.com/bookbot-hive/phoneme_emphasis"

@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: phoneme_emphasis
+Version: 0.1.4.dev0+gcddd391.d20241017
+Summary: A package for phoneme emphasis prediction
+Home-page: https://github.com/bookbot-hive/phoneme_emphasis
+Author: David Samuel Setiawan
+Author-email: David Samuel Setiawan <davidsamuel.7878@gmail.com>
+Project-URL: Homepage, https://github.com/bookbot-hive/phoneme_emphasis
+Keywords: linguistics,emphasis,g2p
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
+# Phoneme Emphasis
+
+A Python package for predicting emphasis in phoneme sequences.
+
+
+## Installation
+
+To install the package, run:
+`pip install git+https://github.com/bookbot-hive/phoneme_emphasis.git`
+
+To install with a specific version, run:
+`pip install git+https://github.com/bookbot-hive/phoneme_emphasis.git@v0.1.0`
+
+## Building the Package
+
+If you want to build the package from source, follow these steps:
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/bookbot-hive/phoneme_emphasis.git
+   cd phoneme_emphasis
+   ```
+
+2. Install the package:
+   ```
+   pip install .
+   ```
+
+   Or, if you want to install it in editable mode for development:
+   ```
+   pip install -e .
+   ```
+
+## License
+
+This project is licensed under the MIT License.
