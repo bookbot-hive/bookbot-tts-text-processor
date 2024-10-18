@@ -1,30 +1,46 @@
-import torch
 import logging
 import re
 import json
+import logging
+import numpy as np
 from typing import List
 from gruut import sentences
 from transformers import PreTrainedTokenizerFast
 from optimum.onnxruntime import ORTModelForQuestionAnswering
 from functools import lru_cache
+from azure.cosmos import CosmosClient
 from .utils import IPA_LIST
 from .gruut_symbols import phonemes_to_ids
+from .normalization import preprocess_text
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class EmphasisModel:
-    def __init__(self, model_dir: str, db_path: str):
-        # ... existing code ...
-        self.device = torch.device("cpu")
+    def __init__(self, model_dir: str, db_path: str, cosmos_client: CosmosClient = None, language: str = "en", normalize_text: bool = True):
+        self.language = language
         self.model, self.tokenizer = self.load_model_and_tokenizer(model_dir)
-        self.load_emphasis_lookup(db_path)
+        self.cosmos_client = cosmos_client
+        if cosmos_client:
+            self.load_emphasis_lookup(db_path, True)
+        else:
+            self.load_emphasis_lookup(db_path)
         self.escaped_symbols = self.prepare_escaped_symbols()
+        self.normalize_text = normalize_text
         
-    def load_emphasis_lookup(self, db_path: str):
+    def load_emphasis_lookup(self, db_path: str, cosmos_lookup: bool = False):
         with open(db_path, 'r') as f:
             self.emphasis_lookup = json.load(f)
-
+            
+        if cosmos_lookup:
+            all_records = self.cosmos_client.get_all_records()
+            wu_emphasis_dict = {
+                record["word"]: record["emphasisIPA"] 
+                for record in all_records 
+                if "emphasisIPA" in record and record["emphasisIPA"].strip()
+            }
+            self.emphasis_lookup.update(wu_emphasis_dict)
+            
     @staticmethod
     def load_model_and_tokenizer(model_dir):
         model = ORTModelForQuestionAnswering.from_pretrained(model_dir)
@@ -33,13 +49,12 @@ class EmphasisModel:
         return model, tokenizer
 
     def infer(self, input_phonemes: str) -> tuple:
-        with torch.no_grad():
-            splitted_phonemes = self.split_phonemes(input_phonemes)
-            inputs = self.tokenizer(" ".join(splitted_phonemes), return_tensors="pt")
-            outputs = self.model(input_ids=inputs.input_ids, attention_mask=inputs.attention_mask)
-            
-            start_index = torch.argmax(outputs.start_logits)
-            end_index = torch.argmax(outputs.end_logits)
+        splitted_phonemes = self.split_phonemes(input_phonemes)
+        inputs = self.tokenizer(" ".join(splitted_phonemes), return_tensors="pt")
+        outputs = self.model(input_ids=inputs.input_ids, attention_mask=inputs.attention_mask)
+        
+        start_index = np.argmax(outputs.start_logits)
+        end_index = np.argmax(outputs.end_logits)
             
         return start_index.item(), end_index.item(), splitted_phonemes
     
@@ -49,15 +64,42 @@ class EmphasisModel:
         emphasized = self.postprocess_prediction(splitted_phonemes, start_idx, end_idx)
         return emphasized
     
-    def get_input_ids(self, text: str, language: str = "en") -> List[int]:
-        phonemes = self.phonemize_text(text, language)
-        phoneme_list = self.split_phonemes(phonemes)
+    def get_input_ids(self, input_str: str, language: str = "en", phonemes: bool = False, return_phonemes: bool = False, add_blank_token: bool = False) -> dict:
+        """
+        Given a string of text or phonemes, return the input ids.
+
+        Args:
+            input_str (str): The text or phonemes to be converted to input ids.
+            language (str, optional): The language of the text. Defaults to "en".
+            phonemes (bool, optional): If True, input_str is treated as phonemes. Defaults to False.
+            return_phonemes (bool, optional): If True, the phonemes will be returned. Defaults to False.
+            add_blank_token (bool, optional): If True, a blank token will be added to the end of the phoneme list. Defaults to False.
+
+        Returns:
+            dict: A dictionary containing the input ids and optionally the phonemes.
+        """
+        result = {}
+        
+        if not phonemes:
+            phonemes_str = self.phonemize_text(input_str, language)
+        else:
+            phonemes_str = input_str
+        
+        phoneme_list = self.split_phonemes(phonemes_str)
+        if add_blank_token:
+            phoneme_list.append(' ')
+        
+        if return_phonemes:
+            result["phonemes"] = phonemes_str
+        
         try:
             input_ids = phonemes_to_ids(phoneme_list)
+            result["input_ids"] = input_ids
         except Exception as e:
-            logger.error(f"Invalid phoneme found in: {phonemes}, error: {e}")
-        return input_ids
-    
+            logger.error(f"Invalid phoneme found in: {phonemes_str}, error: {e}")
+        
+        return result
+        
     def split_phonemes(self, input_string: str) -> List[str]:
         input_string = re.sub(r'\s+([,.;?!])', r'\1', input_string)
         return re.findall(self.escaped_symbols, input_string)
@@ -72,16 +114,8 @@ class EmphasisModel:
         escaped_symbols.sort(key=lambda x: -len(x))
         return '|'.join(escaped_symbols)
 
-    @staticmethod
-    def preprocess_text(text: str) -> str:
-        # remove multiple spaces
-        text = re.sub(r"\s+", " ", text)
-        # remove spaces before punctuation
-        text = re.sub(r'\s([?.!,"](?:\s|$))', r'\1', text)
-        return text
-
-    def phonemize_text(self, text: str, language: str) -> str:
-        text = self.preprocess_text(text)
+    def phonemize_text(self, text: str, language: str) -> str:   
+        text = preprocess_text(text, normalize=self.normalize_text)
         phonemes = []
         words = []
         in_quotes = False
@@ -124,4 +158,5 @@ class EmphasisModel:
         if in_quotes:
             words.append(word.text)
         return phonemes, words
+    
     
