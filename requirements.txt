@@ -3,3 +3,5 @@ optimum[onnxruntime]
 numpy==1.26.4
 g2p_id_py
 gruut
+azure-cosmos
+gruut[sw]

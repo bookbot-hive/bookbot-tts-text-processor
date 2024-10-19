@@ -8,7 +8,7 @@ To install the package, run:
 `pip install git+https://github.com/bookbot-hive/bookbot-tts-text-processor.git`
 
 To install with a specific version, run:
-`pip install git+https://github.com/bookbot-hive/bookbot-tts-text-processor.git@v0.0.0`
+`cv0.0.0`
 
 ## Building the Package
 

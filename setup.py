@@ -9,7 +9,7 @@ setup(
     packages=find_packages(),
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
-    install_requires=requirements + ['gruut[sw]'],
+    install_requires=requirements,
     author="David Samuel Setiawan",
     author_email="davidsamuel.7878@gmail.com",
     description="A package processing input text for Bookbot Optispeech TTS",
