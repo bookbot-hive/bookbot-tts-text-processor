@@ -3,28 +3,29 @@ from typing import List, Tuple, Dict
 from gruut import sentences
 from g2p_id import G2p
 from nltk.tokenize import sent_tokenize, TweetTokenizer
-
+from functools import lru_cache
+from optimum.onnxruntime import ORTModelForQuestionAnswering
+from transformers import PreTrainedTokenizerFast
 
 from . import gruut_symbols
 from . import gruut_sw_symbols
 from . import g2p_id_symbols
-
 from .normalization import preprocess_text
 
-import json
 import numpy as np
 import re
-from functools import lru_cache
-from optimum.onnxruntime import ORTModelForQuestionAnswering
-from transformers import PreTrainedTokenizerFast
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class BaseTokenizer(ABC):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], symbols: List[str]):
         if emphasis_model_path:
             self.model, self.tokenizer = self.load_model_and_tokenizer(emphasis_model_path)
-        self.escaped_symbols = self.prepare_escaped_symbols()
-        self.symbols = symbols
-        self.emphasis_lookup = emphasis_lookup
+        if emphasis_lookup:
+            self.emphasis_lookup = emphasis_lookup
+        self.escaped_symbols = self.prepare_escaped_symbols(symbols)
         
     @abstractmethod
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
@@ -61,6 +62,7 @@ class BaseTokenizer(ABC):
         return emphasized
 
     def split_phonemes(self, input_string: str) -> List[str]:
+        # remove spaces before end of punctuations
         input_string = re.sub(r'\s+([,.;?!])', r'\1', input_string)
         return re.findall(self.escaped_symbols, input_string)
 
@@ -68,8 +70,8 @@ class BaseTokenizer(ABC):
     def postprocess_prediction(phonemes: str, start_idx: int, end_idx: int) -> str:
         return ''.join(phonemes[:start_idx] + ['"'] + phonemes[start_idx:end_idx+1] + ['"'] + phonemes[end_idx+1:])
 
-    def prepare_escaped_symbols(self):
-        escaped_symbols = [re.escape(symbol) for symbol in self.symbols]
+    def prepare_escaped_symbols(self, symbols: List[str]):
+        escaped_symbols = [re.escape(symbol) for symbol in symbols]
         escaped_symbols.sort(key=lambda x: -len(x))
         return '|'.join(escaped_symbols)
     
@@ -94,13 +96,13 @@ class GruutTokenizer(BaseTokenizer):
                 elif word.phonemes:
                     phonemes, words = self.handle_word(phonemes, words, word, in_quotes)
         
-        return phonemes, text
+        return ''.join(phonemes), text
 
     def phonemes_to_ids(self, phonemes: List[str]) -> List[int]:
-        return gruut_symbols.gruut_phonemes_to_ids(phonemes)
+        return gruut_symbols.phonemes_to_ids(phonemes)
     
     def ids_to_phonemes(self, ids: List[int]) -> List[str]:
-        return gruut_symbols.gruut_ids_to_phonemes(ids)
+        return gruut_symbols.ids_to_phonemes(ids)
     
     def handle_quote(self, phonemes, words, in_quotes):
         if in_quotes and words:
@@ -130,34 +132,34 @@ class GruutTokenizer(BaseTokenizer):
             words.append(word.text)
         return phonemes, words
 
-    
 
 class GruutSwahiliTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str]):
         super().__init__(emphasis_model_path, emphasis_lookup, gruut_sw_symbols.SYMBOLS)
         
-    def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
+    def phonemize_text(self, text: str, normalize: bool = False) -> str:
         text = preprocess_text(text, normalize)
         phonemes = []
-        words = []
-        in_quotes = False
-        
         for sentence in sentences(text, lang="sw"):
-            for word in sentence:
-                if word.text == '"':
-                    phonemes, words, in_quotes = self.handle_quote(phonemes, words, in_quotes)
-                elif word.is_major_break or word.is_minor_break:
-                    phonemes.append(word.text)
+            sent_ph = []
+            for idx, word in enumerate(sentence):
+                if word.is_major_break or word.is_minor_break:
+                    sent_ph.append(word.text)
+                elif word.text == '"':
+                    sent_ph.append('"')
                 elif word.phonemes:
-                    phonemes, words = self.handle_word(phonemes, words, word, in_quotes)
-        
-        return phonemes, text
+                    sent_ph += word.phonemes
+
+                if word.trailing_ws:
+                    sent_ph.append(" ")
+            phonemes += sent_ph
+        return ''.join(phonemes), text
 
     def phonemes_to_ids(self, phonemes: List[str]) -> List[int]:
-        return gruut_sw_symbols.gruut_sw_phonemes_to_ids(phonemes)
+        return gruut_sw_symbols.phonemes_to_ids(phonemes)
 
     def ids_to_phonemes(self, ids: List[int]) -> List[str]:
-        return gruut_sw_symbols.gruut_sw_ids_to_phonemes(ids)
+        return gruut_sw_symbols.ids_to_phonemes(ids)
 
 class G2pIdTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str]):
@@ -169,7 +171,8 @@ class G2pIdTokenizer(BaseTokenizer):
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
         text = preprocess_text(text, normalize)
         phonemes = []
-        for sentence in sent_tokenize(text):
+        sentences = sent_tokenize(text)
+        for i, sentence in enumerate(sentences):
             start_quote = False
             words = self.tokenizer.tokenize(sentence)
             sent_ph = self.g2p(sentence)
@@ -190,22 +193,29 @@ class G2pIdTokenizer(BaseTokenizer):
 
                 if idx < len(sent_ph) - 1 and all(p not in self.puncts for p in sent_ph[idx + 1]) and not start_quote:
                     phonemes += [" "]
+                    
+            # Add space after the sentence if it's not the last sentence
+            if i < len(sentences) - 1:
+                phonemes += [" "]
 
-        return phonemes, text
+        return ''.join(phonemes), text
 
     def phonemes_to_ids(self, phonemes: List[str]) -> List[int]:
-        return g2p_id_symbols.g2p_id_phonemes_to_ids(phonemes)
+        return g2p_id_symbols.phonemes_to_ids(phonemes)
     
     def ids_to_phonemes(self, ids: List[int]) -> List[str]:
-        return g2p_id_symbols.g2p_id_ids_to_phonemes(ids)
+        return g2p_id_symbols.ids_to_phonemes(ids)
 
 class Tokenizer:
-    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str]):
+    def __init__(self, model_dirs: Dict[str, str], emphasis_lookup: Dict[str, str]):
         self.tokenizers = {
-            "en": GruutTokenizer(emphasis_model_path, emphasis_lookup),
-            "sw": GruutSwahiliTokenizer(emphasis_model_path, emphasis_lookup),
-            "id": G2pIdTokenizer(emphasis_model_path, emphasis_lookup),
+            "en": GruutTokenizer(model_dirs["en"], emphasis_lookup),
+            "sw": GruutSwahiliTokenizer(model_dirs["sw"], emphasis_lookup),
+            "id": G2pIdTokenizer(model_dirs["id"], emphasis_lookup),
         }
 
     def get_tokenizer(self, language: str) -> BaseTokenizer:
-        return self.tokenizers.get(language, self.tokenizers["en"])
+        try:
+            return self.tokenizers[language]
+        except KeyError:
+            raise ValueError(f"Unsupported language: {language}")

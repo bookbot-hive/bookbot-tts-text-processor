@@ -9,4 +9,4 @@ def preprocess_text(text: str, normalize: bool = False) -> str:
     text = re.sub(r"\s+", " ", text)
     # remove spaces before punctuation
     text = re.sub(r'\s([?.!,"](?:\s|$))', r'\1', text)
-    return text
+    return text.strip()

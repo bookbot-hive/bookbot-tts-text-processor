@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="phoneme_emphasis",
+    name="bookbot-tts-text-processor",
     packages=find_packages(),
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
@@ -13,10 +13,10 @@ setup(
     ],
     author="David Samuel Setiawan",
     author_email="davidsamuel.7878@gmail.com",
-    description="A package for phoneme emphasis prediction",
+    description="A package processing input text for Bookbot Optispeech TTS",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/bookbot-hive/phoneme_emphasis",
+    url="https://github.com/bookbot-hive/bookbot-tts-text-processor",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

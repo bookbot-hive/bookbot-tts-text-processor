@@ -1,27 +1,46 @@
 import os
-from phoneme_emphasis import EmphasisModel, Cosmos
-
-URL = os.getenv("COSMOS_DB_URL")
-KEY = os.getenv("COSMOS_DB_KEY")
+from text_processor import TextProcessor
 
 def main():
-    language = "en"
     DATABASE_NAME = "Bookbot"
-    model_path = "/home/s44504/3b01c699-3670-469b-801f-13880b9cac56/google-cloud-functions/phoneme-emphasis/app/roberta-base-emphasis-onnx-quantized"
-    db_path = "/home/s44504/3b01c699-3670-469b-801f-13880b9cac56/google-cloud-functions/phoneme-emphasis/app/db/words_emphasis_lookup_mixed.json"
     
-    # move cosmos model initialization inside Emphasis Model
-    cosmos = Cosmos(URL, KEY, DATABASE_NAME, language)
-    # normalize_text = True will handle unicode normalziation, check out normalize.py
-    model = EmphasisModel(model_path, db_path, language="en", cosmos_client=None, normalize_text=False)
+    model_dirs = {
+        "en": "bookbot/roberta-base-emphasis-onnx-quantized",
+        "sw": "",
+        "id": ""
+    }
+    db_paths = {
+        "en": "/home/s44504/3b01c699-3670-469b-801f-13880b9cac56/Emphasizer/data/words_emphasis_lookup_mixed.json",
+        "sw": "",
+        "id": ""
+    }
     
+    cosmos_config = {
+        "url": os.getenv("COSMOS_DB_URL"),
+        "key": os.getenv("COSMOS_DB_KEY"),
+        "database_name": DATABASE_NAME
+    }
+    
+    model = TextProcessor(model_dirs, db_paths, language="en", use_cosmos=False, cosmos_config=cosmos_config)
+    
+    # English Word input
     input_ids = model.get_input_ids("Hello! my name is \"bulubulu\"....!", phonemes=False, return_phonemes=True, add_blank_token=True)
     print(input_ids)
+    
+    # English Phoneme input
     phoneme = "hɛlˈoʊ mˈaɪ nˈeɪm ˈɪz"
     input_ids = model.get_input_ids(phoneme, phonemes=True, return_phonemes=True, add_blank_token=True)
     print(input_ids)
     
-    model = EmphasisModel(model_path, db_path, cosmos_client=None, language="sw", normalize_text=False)
-    input_ids = model.get_input_ids("Hujambo! Jina langu ni \"Bulubulu\"....!", phonemes=False, return_phonemes=True, add_blank_token=True)
+    # Swahili Word input
+    model = TextProcessor(model_dirs, db_paths, language="sw", use_cosmos=False, cosmos_config=cosmos_config)
+    input_ids = model.get_input_ids("Jana nilitembelea mji wa \"Nairobi\". Niliona majengo \"marefu\" na magari mengi.", phonemes=False, return_phonemes=True, add_blank_token=True)
+    print(input_ids)
+    
+    # Indonesian Word input
+    model = TextProcessor(model_dirs, db_paths, language="id", use_cosmos=False, cosmos_config=cosmos_config)
+    input_ids = model.get_input_ids("Halo nama saya Budi. Siapa \"nama\" kamu?", phonemes=False, return_phonemes=True, add_blank_token=True)
+    print(input_ids)
+
 if __name__ == "__main__":
     main()
