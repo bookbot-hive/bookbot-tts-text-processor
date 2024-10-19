@@ -1,4 +1,4 @@
-# Multi-Language Text Processor
+# Optispeech Text Processor
 
 This project implements a multi-language text processor for Bookbot Optispeech TTS, it can handle English, Swahili, and Indonesian inputs. It uses the `TextProcessor` class to process text and generate input IDs for various language models.
 
