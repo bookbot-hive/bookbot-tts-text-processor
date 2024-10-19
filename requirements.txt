@@ -1,7 +1,7 @@
 transformers==4.45.2 
 optimum[onnxruntime]
 numpy==1.26.4
-g2p_id_py==0.3.7
+g2p_id_py
 gruut
 --find-links https://synesthesiam.github.io/prebuilt-apps/
 gruut[sw]

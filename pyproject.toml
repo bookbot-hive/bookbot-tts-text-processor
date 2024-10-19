@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 write_to = "text_processor/_version.py"
 
 [project]
-name = "bookbot-tts-text-processor"
+name = "bookbot_tts_text_processor"
 description = "A package processing input text for Bookbot Optispeech TTS"
 readme = "README.md"
 requires-python = ">=3.10"

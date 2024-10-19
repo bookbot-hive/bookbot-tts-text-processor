@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="bookbot-tts-text-processor",
+    name="bookbot_tts_text_processor",
     packages=find_packages(),
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
