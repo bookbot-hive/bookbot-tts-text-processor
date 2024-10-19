@@ -1,5 +1,5 @@
 import os
-from bookbot_tts_text_processor import TextProcessor
+from text_processor import TextProcessor
 
 def main():
     DATABASE_NAME = "Bookbot"

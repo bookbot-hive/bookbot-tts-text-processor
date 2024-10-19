@@ -1,16 +1,15 @@
 from setuptools import setup, find_packages
 
+# Read the contents of requirements.txt
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
 setup(
-    name="bookbot_tts_text_processor",
+    name="text_processor",
     packages=find_packages(),
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
-    install_requires=[
-        "torch",
-        "gruut==2.4.0",
-        "transformers==4.45.2",
-        "optimum[onnxruntime]",
-    ],
+    install_requires=requirements,
     author="David Samuel Setiawan",
     author_email="davidsamuel.7878@gmail.com",
     description="A package processing input text for Bookbot Optispeech TTS",
