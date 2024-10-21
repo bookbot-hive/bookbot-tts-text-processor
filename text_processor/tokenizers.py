@@ -24,10 +24,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class BaseTokenizer(ABC):
-    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, symbols: List[str], cosmos_client: Cosmos):
+    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, symbols: List[str]):
         self.language = language
-        if cosmos_client:
-            self.cosmos_client = cosmos_client
         if emphasis_model_path:
             self.model, self.tokenizer = self.load_model_and_tokenizer(emphasis_model_path)
         if emphasis_lookup:
@@ -85,7 +83,7 @@ class BaseTokenizer(ABC):
     
     def _save_to_word_universal(self, word: str, emphasized_phonemes: str):
         word_item = self._create_word_item(word, emphasized_phonemes)
-        print(f"New word record: {word_item}")
+        logger.info(f"New word record: {word_item}")
         self.cosmos_client.word_universal_container.upsert_item(word_item)
         logger.info(f"Saved new word record for '{word}' with emphasis '{emphasized_phonemes}'")
         
@@ -110,11 +108,9 @@ class BaseTokenizer(ABC):
             "partition": "default",
         }
     
-
 class GruutTokenizer(BaseTokenizer):
-    
-    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, cosmos_client: Cosmos):
-        super().__init__(emphasis_model_path, emphasis_lookup, language, gruut_symbols.SYMBOLS, cosmos_client)
+    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
+        super().__init__(emphasis_model_path, emphasis_lookup, language, gruut_symbols.SYMBOLS)
     
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
         text = preprocess_text(text, normalize)
@@ -184,8 +180,8 @@ class GruutTokenizer(BaseTokenizer):
     
 
 class GruutSwahiliTokenizer(BaseTokenizer):
-    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, cosmos_client: Cosmos):
-        super().__init__(emphasis_model_path, emphasis_lookup, language, gruut_sw_symbols.SYMBOLS, cosmos_client)
+    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
+        super().__init__(emphasis_model_path, emphasis_lookup, language, gruut_sw_symbols.SYMBOLS)
         
     def phonemize_text(self, text: str, normalize: bool = False) -> str:
         text = preprocess_text(text, normalize)
@@ -212,8 +208,8 @@ class GruutSwahiliTokenizer(BaseTokenizer):
         return gruut_sw_symbols.ids_to_phonemes(ids)
 
 class G2pIdTokenizer(BaseTokenizer):
-    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, cosmos_client: Cosmos):
-        super().__init__(emphasis_model_path, emphasis_lookup, language, g2p_id_symbols.SYMBOLS, cosmos_client)
+    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
+        super().__init__(emphasis_model_path, emphasis_lookup, language, g2p_id_symbols.SYMBOLS)
         self.g2p = G2p()
         self.tokenizer = TweetTokenizer()
         self.puncts = ".,!?:"
@@ -257,11 +253,11 @@ class G2pIdTokenizer(BaseTokenizer):
         return g2p_id_symbols.ids_to_phonemes(ids)
 
 class Tokenizer:
-    def __init__(self, model_dirs: Dict[str, str], emphasis_lookup: Dict[str, str], language: str, cosmos_client: Cosmos = None):
+    def __init__(self, model_dirs: Dict[str, str], emphasis_lookup: Dict[str, str], language: str):
         self.tokenizers = {
-            "en": GruutTokenizer(model_dirs["en"], emphasis_lookup, language, cosmos_client),
-            "sw": GruutSwahiliTokenizer(model_dirs["sw"], emphasis_lookup, language, cosmos_client),
-            "id": G2pIdTokenizer(model_dirs["id"], emphasis_lookup, language, cosmos_client),
+            "en": GruutTokenizer(model_dirs["en"], emphasis_lookup, language),
+            "sw": GruutSwahiliTokenizer(model_dirs["sw"], emphasis_lookup, language),
+            "id": G2pIdTokenizer(model_dirs["id"], emphasis_lookup, language),
         }
 
     def get_tokenizer(self, language: str) -> BaseTokenizer:

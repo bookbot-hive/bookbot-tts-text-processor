@@ -33,8 +33,10 @@ class TextProcessor:
             self.emphasis_lookup = self.load_emphasis_lookup_from_file(db_paths[language])
             
         self.emphasis_lookup.update(self.cosmos_lookup)
-        self.tokenizer_manager = Tokenizer(emmphasis_model_paths, self.emphasis_lookup, self.language, cosmos_client = self.cosmos_client)
+        self.tokenizer_manager = Tokenizer(emmphasis_model_paths, self.emphasis_lookup, self.language)
         self.tokenizer = self.tokenizer_manager.get_tokenizer(self.language)
+        if use_cosmos:
+            self.tokenizer.cosmos_client = self.cosmos_client
         
     def load_emphasis_lookup_from_file(self, db_path: str):
         with open(db_path, 'r') as f:
