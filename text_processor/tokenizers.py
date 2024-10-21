@@ -159,9 +159,11 @@ class GruutTokenizer(BaseTokenizer):
             emphasized_phonemes = self.emphasis_lookup[words[-1]]
         except KeyError:
             emphasized_phonemes = self.emphasize_phonemes(phonemes[-1])
-            future = self.executor.submit(self._save_to_word_universal, words[-1], emphasized_phonemes)
-            # Optionally, add a callback to handle any exceptions
-            future.add_done_callback(self._handle_save_result)
+            if hasattr(self, 'cosmos_client'):
+                self.cosmos_client.save_word(words[-1], emphasized_phonemes)
+                future = self.executor.submit(self._save_to_word_universal, words[-1], emphasized_phonemes)
+                # Optionally, add a callback to handle any exceptions
+                future.add_done_callback(self._handle_save_result)
             
         phonemes = phonemes[:-2] + [emphasized_phonemes]
         words.pop()
