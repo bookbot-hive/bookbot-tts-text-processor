@@ -254,15 +254,18 @@ class G2pIdTokenizer(BaseTokenizer):
         return g2p_id_symbols.ids_to_phonemes(ids)
 
 class Tokenizer:
-    def __init__(self, model_dirs: Dict[str, str], emphasis_lookup: Dict[str, str], language: str):
-        self.tokenizers = {
-            "en": GruutTokenizer(model_dirs["en"], emphasis_lookup, language),
-            "sw": GruutSwahiliTokenizer(model_dirs["sw"], emphasis_lookup, language),
-            "id": G2pIdTokenizer(model_dirs["id"], emphasis_lookup, language),
-        }
+    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
+        self.tokenizer = self._create_tokenizer(emphasis_model_path, emphasis_lookup, language)
 
-    def get_tokenizer(self, language: str) -> BaseTokenizer:
-        try:
-            return self.tokenizers[language]
-        except KeyError:
+    def _create_tokenizer(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str) -> BaseTokenizer:
+        if language == "en":
+            return GruutTokenizer(emphasis_model_path, emphasis_lookup, language)
+        elif language == "sw":
+            return GruutSwahiliTokenizer(emphasis_model_path, emphasis_lookup, language)
+        elif language == "id":
+            return G2pIdTokenizer(emphasis_model_path, emphasis_lookup, language)
+        else:
             raise ValueError(f"Unsupported language: {language}")
+
+    def get_tokenizer(self) -> BaseTokenizer:
+        return self.tokenizer

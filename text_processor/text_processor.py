@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class TextProcessor:
-    def __init__(self, emmphasis_model_paths: Dict[str, str], db_paths: Dict[str, str], language: str = "en", use_cosmos: bool = False, cosmos_config: Dict[str, Any] = None):
+    def __init__(self, emphasis_model_path: str, db_path: str, language: str = "en", use_cosmos: bool = False, cosmos_config: Dict[str, Any] = None):
         self.language=language
         self.emphasis_lookup = dict()
         self.cosmos_lookup = dict()
@@ -28,13 +28,13 @@ class TextProcessor:
             self.cosmos_lookup = self.load_emphasis_lookup_from_cosmos()
             logger.info(f"Loaded emphasis lookup from Cosmos DB for {self.language}")
 
-        if db_paths[language]:
-            logger.info(f"Loading emphasis lookup from file: {db_paths[language]}")
-            self.emphasis_lookup = self.load_emphasis_lookup_from_file(db_paths[language])
+        if db_path:
+            logger.info(f"Loading emphasis lookup from file: {db_path}")
+            self.emphasis_lookup = self.load_emphasis_lookup_from_file(db_path)
             
         self.emphasis_lookup.update(self.cosmos_lookup)
-        self.tokenizer_manager = Tokenizer(emmphasis_model_paths, self.emphasis_lookup, self.language)
-        self.tokenizer = self.tokenizer_manager.get_tokenizer(self.language)
+        self.tokenizer_manager = Tokenizer(emphasis_model_path, self.emphasis_lookup, self.language)
+        self.tokenizer = self.tokenizer_manager.get_tokenizer()
         if use_cosmos:
             self.tokenizer.cosmos_client = self.cosmos_client
         
