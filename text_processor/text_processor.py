@@ -36,7 +36,7 @@ class TextProcessor:
         self.tokenizer_manager = Tokenizer(emphasis_model_path, self.emphasis_lookup, self.language)
         self.tokenizer = self.tokenizer_manager.get_tokenizer()
         if use_cosmos:
-            self.tokenizer.cosmos_client = self.cosmos_client
+            self.tokenizer.set_cosmos_client(self.cosmos_client)
         
     def load_emphasis_lookup_from_file(self, db_path: str):
         with open(db_path, 'r') as f:
@@ -53,7 +53,7 @@ class TextProcessor:
         return wu_emphasis_dict
         
     
-    def get_input_ids(self, input_str: str, phonemes: bool = False, return_phonemes: bool = False, add_blank_token: bool = False, normalize: bool = False) -> dict:
+    def get_input_ids(self, input_str: str, phonemes: bool = False, return_phonemes: bool = False, push_oov_to_cosmos: bool = False, add_blank_token: bool = False, normalize: bool = False) -> dict:
         """
         Given a string of text or phonemes, return the input ids.
 
@@ -68,6 +68,11 @@ class TextProcessor:
             dict: A dictionary containing the input ids and optionally the phonemes.
         """
         result = {}
+        
+        if self.tokenizer.cosmos_client and push_oov_to_cosmos:
+            self.tokenizer.set_push_oov_to_cosmos(True)
+        else:
+            self.tokenizer.set_push_oov_to_cosmos(False)
 
         if not phonemes:
             phonemes_str, normalized_text = self.tokenizer.phonemize_text(input_str, normalize=normalize)

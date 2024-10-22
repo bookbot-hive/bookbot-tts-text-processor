@@ -32,6 +32,8 @@ class BaseTokenizer(ABC):
             self.emphasis_lookup = emphasis_lookup
         self.escaped_symbols = self.prepare_escaped_symbols(symbols)
         self.executor = ThreadPoolExecutor(max_workers=2)
+        self.cosmos_client = None
+        self.push_oov_to_cosmos = False
         
     @abstractmethod
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
@@ -50,6 +52,12 @@ class BaseTokenizer(ABC):
         model = ORTModelForQuestionAnswering.from_pretrained(model_dir)
         tokenizer = PreTrainedTokenizerFast.from_pretrained(model_dir)
         return model, tokenizer
+
+    def set_cosmos_client(self, cosmos_client):
+        self.cosmos_client = cosmos_client
+    
+    def set_push_oov_to_cosmos(self, push_oov_to_cosmos: bool):
+        self.push_oov_to_cosmos = push_oov_to_cosmos
 
     def infer(self, input_phonemes: str) -> tuple:
         splitted_phonemes = self.split_phonemes(input_phonemes)
@@ -159,7 +167,7 @@ class GruutTokenizer(BaseTokenizer):
             emphasized_phonemes = self.emphasis_lookup[words[-1]]
         except KeyError:
             emphasized_phonemes = self.emphasize_phonemes(phonemes[-1])
-            if hasattr(self, 'cosmos_client'):
+            if self.push_oov_to_cosmos:
                 future = self.executor.submit(self._save_to_word_universal, words[-1], emphasized_phonemes)
                 # Optionally, add a callback to handle any exceptions
                 future.add_done_callback(self._handle_save_result)
