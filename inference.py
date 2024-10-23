@@ -1,4 +1,5 @@
 import os
+import time
 from text_processor import TextProcessor
 
 def main():    
@@ -19,11 +20,17 @@ def main():
         "database_name": "Bookbot"
     }
 
+    start_time = time.time()
     # English
-    model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=True, cosmos_config=cosmos_config)
+    model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config)
+    end_time = time.time()
+    print(f"Time taken to load model: {end_time - start_time} seconds")
     
     # English Word input
+    start_time = time.time()
     result = model.get_input_ids("Hello! my name is \"ladida\"....!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
+    end_time = time.time()
+    print(f"Time taken to process word input: {end_time - start_time} seconds")
     print(result)
     
     # English Phoneme input
