@@ -15,7 +15,7 @@ authors = [
     {name = "David Samuel Setiawan", email = "davidsamuel.7878@gmail.com"},
 ]
 keywords = ["linguistics", "emphasis", "g2p"]
-dynamic = ["version"]
+dynamic = ["version", "dependencies", "classifiers"]  # Added both dependencies and classifiers
 
 
 [project.urls]
