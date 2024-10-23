@@ -14,7 +14,7 @@ setup(
     packages=find_packages(),
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
-    nstall_requires=read_requirements(),
+    install_requires=read_requirements(),
     author="David Samuel Setiawan",
     author_email="davidsamuel.7878@gmail.com",
     description="A package processing input text for Bookbot Optispeech TTS",
