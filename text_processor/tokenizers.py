@@ -57,7 +57,13 @@ class BaseTokenizer(ABC):
             
     @staticmethod
     def load_model_and_tokenizer(model_dir):
-        model = ORTModelForQuestionAnswering.from_pretrained(model_dir)
+        model = ORTModelForQuestionAnswering.from_pretrained(
+            model_dir,
+            providers=['CPUExecutionProvider'],
+            provider_options=[{
+                'intra_op_num_threads': 0,  # Adjust based on your CPU cores
+                'execution_mode': 'sequential',
+            }])
         tokenizer = PreTrainedTokenizerFast.from_pretrained(model_dir)
         return model, tokenizer
 
