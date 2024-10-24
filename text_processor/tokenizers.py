@@ -61,9 +61,11 @@ class BaseTokenizer(ABC):
             model_dir,
             providers=['CPUExecutionProvider'],
             provider_options=[{
-                'intra_op_num_threads': 0,  # Adjust based on your CPU cores
+            'CPUExecutionProvider': {
+                'intra_op_num_threads': 0,
                 'execution_mode': 'sequential',
-            }])
+                }
+            }]
         tokenizer = PreTrainedTokenizerFast.from_pretrained(model_dir)
         return model, tokenizer
 
