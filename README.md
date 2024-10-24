@@ -127,6 +127,7 @@ The following environment variables are used:
 
 - [ ] Add Swahili and Indonesian emphasis models to the project
 - [ ] Add Swahili and Indonesian word to phoneme emphasis lookup.
+- [ ] Support body language tags handling for Swahili and Indonesian
 
 ## License
 
