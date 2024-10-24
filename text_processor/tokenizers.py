@@ -66,6 +66,7 @@ class BaseTokenizer(ABC):
                 'execution_mode': 'sequential',
                 }
             }]
+        )
         tokenizer = PreTrainedTokenizerFast.from_pretrained(model_dir)
         return model, tokenizer
 
