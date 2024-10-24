@@ -6,4 +6,17 @@ IPA_LIST = ['aɪ', 'aʊ', 'b', 'd', 'd͡ʒ', 'eɪ', 'f', 'h', 'i', 'j', 'k', 'l'
 
 UNICODE_NORM_FORM = "NFKC"
 
-# Add any other utility functions here if needed
+CUSTOM_TAGS = {
+    "handOverHeart": -1,
+    "handRaiseMid": -2,
+    "handRaiseHigh": -3,
+    "handsBehindBack1": -4,
+    "handsBehindBack2": -5,
+    "headLean": -6,
+    "raiseRightHand": -7,
+    "raiseLeftHand": -8,
+    "poked": -9,
+    "idle": -10,
+    "wave": -11,
+    "listen": -12
+}

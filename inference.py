@@ -26,9 +26,13 @@ def main():
     end_time = time.time()
     print(f"Time taken to load model: {end_time - start_time} seconds")
     
+    result = model.get_input_ids("Hello <wave> world <listen> how are you? <headLean>", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
+    print(result)
+    
+    
     # English Word input
     start_time = time.time()
-    result = model.get_input_ids("Hello! my name is \"ladida\"....!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
+    result = model.get_input_ids("Hello! my name is \"ladidadid\"....!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
     end_time = time.time()
     print(f"Time taken to process word input: {end_time - start_time} seconds")
     print(result)

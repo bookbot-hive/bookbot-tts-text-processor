@@ -20,6 +20,8 @@ import logging
 import uuid
 import time
 
+from .utils import CUSTOM_TAGS
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -34,6 +36,12 @@ class BaseTokenizer(ABC):
         self.executor = ThreadPoolExecutor(max_workers=2)
         self.cosmos_client = None
         self.push_oov_to_cosmos = False
+        self.tag_pattern = re.compile(r'<(' + '|'.join(CUSTOM_TAGS.keys()) + r')>')
+        self.escaped_symbols_pattern = re.compile(self.escaped_symbols)
+        
+    def extract_tags(self, text: str) -> List[Tuple[str, int]]:
+        """Extract tags and their positions from text"""
+        return [(m.group(0), m.start()) for m in self.tag_pattern.finditer(text)]
         
     @abstractmethod
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
@@ -75,10 +83,25 @@ class BaseTokenizer(ABC):
         emphasized = self.postprocess_prediction(splitted_phonemes, start_idx, end_idx)
         return emphasized
 
+    # def split_phonemes(self, input_string: str) -> List[str]:
+    #     # remove spaces before end of punctuations
+    #     input_string = re.sub(r'\s+([,.;?!])', r'\1', input_string)
+    #     return re.findall(self.escaped_symbols, input_string)
+    
     def split_phonemes(self, input_string: str) -> List[str]:
-        # remove spaces before end of punctuations
-        input_string = re.sub(r'\s+([,.;?!])', r'\1', input_string)
-        return re.findall(self.escaped_symbols, input_string)
+        result = []
+        last_end = 0
+        
+        for match in self.tag_pattern.finditer(input_string):
+            if last_end < match.start():
+                result.extend(self.escaped_symbols_pattern.findall(input_string[last_end:match.start()]))
+            result.append(match.group(0))
+            last_end = match.end()
+        
+        if last_end < len(input_string):
+            result.extend(self.escaped_symbols_pattern.findall(input_string[last_end:]))
+        
+        return result
 
     @staticmethod
     def postprocess_prediction(phonemes: str, start_idx: int, end_idx: int) -> str:
@@ -125,9 +148,27 @@ class GruutTokenizer(BaseTokenizer):
         phonemes = []
         words = []
         in_quotes = False
+        in_tag = False
+        current_tag = []
         
         for sentence in sentences(text, lang="en"):
             for word in sentence:
+                if word.text.startswith('<'):
+                    in_tag = True
+                    current_tag.append(word.text)
+                    continue
+                elif word.text.endswith('>') and in_tag:
+                    current_tag.append(word.text)
+                    # if phonemes and phonemes[-1] != ' ':
+                    #     phonemes.append(' ')
+                    phonemes.append(''.join(current_tag))
+                    current_tag = []
+                    in_tag = False
+                    continue
+                elif in_tag:
+                    current_tag.append(word.text)
+                    continue
+                    
                 if word.text == '"':
                     phonemes, words, in_quotes = self.handle_quote(phonemes, words, in_quotes)
                 elif word.is_major_break or word.is_minor_break:

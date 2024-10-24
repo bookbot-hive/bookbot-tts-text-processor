@@ -1,3 +1,6 @@
+import re
+from .utils import CUSTOM_TAGS
+
 SYMBOLS = [
     "_",
     "^",
@@ -104,19 +107,28 @@ SYMBOL_TO_ID = {s: i for i, s in enumerate(SYMBOLS)}
 ID_TO_SYMBOL = {i: s for i, s in enumerate(SYMBOLS)}  # pylint: disable=unnecessary-comprehension
 
 
-def phonemes_to_ids(text):
-    """Converts a string of text to a sequence of IDs corresponding to the symbols in the text.
-    Args:
-      text: string to convert to a sequence
-    Returns:
-      List of integers corresponding to the symbols in the text
-    """
+def phonemes_to_ids(phonemes):
+    """Converts a list of phonemes and tags to a sequence of IDs."""
     sequence = []
-    for symbol in text:
-        symbol_id = SYMBOL_TO_ID[symbol]
-        sequence.append(symbol_id)
+    tag_pattern = re.compile(r'<(\w+)>')
+    
+    for phoneme in phonemes:
+        # Check if it's a tag
+        match = tag_pattern.match(phoneme)
+        if match:
+            tag = match.group(1)  # Get the tag name without <>
+            if tag in CUSTOM_TAGS:
+                sequence.append(CUSTOM_TAGS[tag])
+            else:
+                raise ValueError(f"Unknown tag: {tag}")
+        else:
+            # Regular phoneme
+            if phoneme in SYMBOL_TO_ID:
+                sequence.append(SYMBOL_TO_ID[phoneme])
+            else:
+                raise ValueError(f"Unknown phoneme: {phoneme}")
+    
     return sequence
-
 
 def ids_to_phonemes(sequence):
     """Converts a sequence of IDs back to a string"""
