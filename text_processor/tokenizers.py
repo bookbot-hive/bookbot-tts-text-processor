@@ -59,13 +59,7 @@ class BaseTokenizer(ABC):
     def load_model_and_tokenizer(model_dir):
         model = ORTModelForQuestionAnswering.from_pretrained(
             model_dir,
-            providers=['CPUExecutionProvider'],
-            provider_options=[{
-            'CPUExecutionProvider': {
-                'intra_op_num_threads': 0,
-                'execution_mode': 'sequential',
-                }
-            }]
+            providers=['CPUExecutionProvider']
         )
         tokenizer = PreTrainedTokenizerFast.from_pretrained(model_dir)
         return model, tokenizer
