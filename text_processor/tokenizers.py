@@ -32,11 +32,11 @@ class BaseTokenizer(ABC):
         if emphasis_lookup:
             self.emphasis_lookup = emphasis_lookup
         self.escaped_symbols = self.prepare_escaped_symbols(symbols)
+        self.escaped_symbols_pattern = re.compile(self.escaped_symbols)
+        # logger.info(f"escaped_symbols: {self.escaped_symbols}")
         self.executor = ThreadPoolExecutor(max_workers=2)
         self.cosmos_client = None
         self.push_oov_to_cosmos = False
-        self.tag_pattern = re.compile(r'<(' + '|'.join(CUSTOM_TAGS.keys()) + r')>')
-        self.escaped_symbols_pattern = re.compile(self.escaped_symbols)
         
     @abstractmethod
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
@@ -91,12 +91,7 @@ class BaseTokenizer(ABC):
         
         result = []
         for i, word_ipa in enumerate(word_phonemes):
-            if '<' in word_ipa and '>' in word_ipa:
-                if result and result[-1] == ' ':
-                    result.pop()
-                result.append(word_ipa)
-            else:
-                result.extend(self.escaped_symbols_pattern.findall(word_ipa))
+            result.extend(self.escaped_symbols_pattern.findall(word_ipa))
             if i < len(word_phonemes) - 1:
                 result.append(' ')
         
@@ -108,9 +103,18 @@ class BaseTokenizer(ABC):
         return ''.join(phonemes[:start_idx] + ['"'] + phonemes[start_idx:end_idx+1] + ['"'] + phonemes[end_idx+1:])
 
     def prepare_escaped_symbols(self, symbols: List[str]):
-        escaped_symbols = [re.escape(symbol) for symbol in symbols]
-        escaped_symbols.sort(key=lambda x: -len(x))
-        return '|'.join(escaped_symbols)
+        # Sort symbols by length (longest first) to ensure correct matching
+        sorted_symbols = sorted(symbols, key=len, reverse=True)
+        
+        # Add custom tags to the pattern
+        tag_patterns = [f'<{tag}>' for tag in CUSTOM_TAGS.keys()]
+        
+        # Combine symbols and tags, escape special regex characters
+        all_patterns = sorted_symbols + tag_patterns
+        escaped_patterns = [re.escape(s) for s in all_patterns]
+        
+        # Join all patterns with | for alternation
+        return '|'.join(escaped_patterns)
     
     def _save_to_word_universal(self, word: str, emphasized_phonemes: str):
         word_item = self._create_word_item(word, emphasized_phonemes)
@@ -159,8 +163,8 @@ class GruutTokenizer(BaseTokenizer):
                     continue
                 elif word.text.endswith('>') and in_tag:
                     current_tag.append(word.text)
-                    if phonemes and phonemes[-1] != ' ':
-                        phonemes.append(' ')
+                    # if phonemes and phonemes[-1] != ' ':
+                    #     phonemes.append(' ')
                     phonemes.append(''.join(current_tag))
                     current_tag = []
                     in_tag = False
