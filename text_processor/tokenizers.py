@@ -22,7 +22,7 @@ import time
 
 from .utils import CUSTOM_TAGS
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 class BaseTokenizer(ABC):
@@ -38,10 +38,6 @@ class BaseTokenizer(ABC):
         self.push_oov_to_cosmos = False
         self.tag_pattern = re.compile(r'<(' + '|'.join(CUSTOM_TAGS.keys()) + r')>')
         self.escaped_symbols_pattern = re.compile(self.escaped_symbols)
-        
-    def extract_tags(self, text: str) -> List[Tuple[str, int]]:
-        """Extract tags and their positions from text"""
-        return [(m.group(0), m.start()) for m in self.tag_pattern.finditer(text)]
         
     @abstractmethod
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
@@ -88,22 +84,24 @@ class BaseTokenizer(ABC):
 
     # def split_phonemes(self, input_string: str) -> List[str]:
     #     # remove spaces before end of punctuations
-    #     input_string = re.sub(r'\s+([,.;?!])', r'\1', input_string)
     #     return re.findall(self.escaped_symbols, input_string)
     
     def split_phonemes(self, input_string: str) -> List[str]:
+        logger.debug(f"input_string: {input_string}")
+        word_phonemes = input_string.split(" ")
+        
         result = []
-        last_end = 0
+        for i, word_ipa in enumerate(word_phonemes):
+            if '<' in word_ipa and '>' in word_ipa:
+                if result and result[-1] == ' ':
+                    result.pop()
+                result.append(word_ipa)
+            else:
+                result.extend(self.escaped_symbols_pattern.findall(word_ipa))
+            if i < len(word_phonemes) - 1:
+                result.append(' ')
         
-        for match in self.tag_pattern.finditer(input_string):
-            if last_end < match.start():
-                result.extend(self.escaped_symbols_pattern.findall(input_string[last_end:match.start()]))
-            result.append(match.group(0))
-            last_end = match.end()
-        
-        if last_end < len(input_string):
-            result.extend(self.escaped_symbols_pattern.findall(input_string[last_end:]))
-        
+        logger.debug(f"split_phonemes result: {result}")
         return result
 
     @staticmethod
@@ -162,8 +160,8 @@ class GruutTokenizer(BaseTokenizer):
                     continue
                 elif word.text.endswith('>') and in_tag:
                     current_tag.append(word.text)
-                    # if phonemes and phonemes[-1] != ' ':
-                    #     phonemes.append(' ')
+                    if phonemes and phonemes[-1] != ' ':
+                        phonemes.append(' ')
                     phonemes.append(''.join(current_tag))
                     current_tag = []
                     in_tag = False
