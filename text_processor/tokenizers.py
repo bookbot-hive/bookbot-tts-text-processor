@@ -12,7 +12,6 @@ from . import gruut_symbols
 from . import gruut_sw_symbols
 from . import g2p_id_symbols
 from .normalization import preprocess_text
-from .cosmos import Cosmos
 
 import numpy as np
 import re
@@ -22,7 +21,7 @@ import time
 
 from .utils import CUSTOM_TAGS
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class BaseTokenizer(ABC):
@@ -101,7 +100,7 @@ class BaseTokenizer(ABC):
             if i < len(word_phonemes) - 1:
                 result.append(' ')
         
-        logger.debug(f"split_phonemes result: {result}")
+        logger.info(f"split_phonemes result: {result}")
         return result
 
     @staticmethod
