@@ -95,7 +95,7 @@ class BaseTokenizer(ABC):
             if i < len(word_phonemes) - 1:
                 result.append(' ')
         
-        logger.info(f"split_phonemes result: {result}")
+        logger.debug(f"split_phonemes result: {result}")
         return result
 
     @staticmethod
