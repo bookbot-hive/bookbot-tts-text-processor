@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-
+notebooks
 experiments.ipynb
 __pycache__/
 *.py[cod]
@@ -11,6 +11,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+
 develop-eggs/
 dist/
 downloads/
