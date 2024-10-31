@@ -39,6 +39,8 @@ _t## Usage
 Here's a basic example of how to use the `TextProcessor`:
 
 ```python
+from text_processor import TextProcessor
+
 model_dirs = {
    "en": "bookbot/roberta-base-emphasis-onnx-quantized",
    "sw": "",
