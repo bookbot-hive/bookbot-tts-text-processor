@@ -151,9 +151,10 @@ class GruutTokenizer(BaseTokenizer):
         text = preprocess_text(text, normalize)
         phonemes = []
         words = []
-        in_quotes = False
+        in_emphasis = False
         in_tag = False
         current_tag = []
+        emphasized_words = []
         
         for sentence in sentences(text, lang="en"):
             for word in sentence:
@@ -173,12 +174,19 @@ class GruutTokenizer(BaseTokenizer):
                     current_tag.append(word.text)
                     continue
                     
-                if word.text == '"':
-                    phonemes, words, in_quotes = self.handle_quote(phonemes, words, in_quotes)
+                if word.text == '[':
+                    in_emphasis = True
+                    emphasized_words = []
+                elif word.text == ']' and in_emphasis:
+                    for emphasized_word in emphasized_words:
+                        phonemes, words = self.handle_emphasized_word(phonemes, words, emphasized_word)
+                    in_emphasis = False
+                elif in_emphasis:
+                    emphasized_words.append(word) 
                 elif word.is_major_break or word.is_minor_break:
                     phonemes.append(word.text)
                 elif word.phonemes:
-                    phonemes, words = self.handle_word(phonemes, words, word, in_quotes)
+                    phonemes, words = self.handle_word(phonemes, words, word, in_emphasis)
         
         return ''.join(phonemes), text
 
@@ -188,37 +196,30 @@ class GruutTokenizer(BaseTokenizer):
     def ids_to_phonemes(self, ids: List[int]) -> List[str]:
         return gruut_symbols.ids_to_phonemes(ids)
     
-    def handle_quote(self, phonemes, words, in_quotes):
-        if in_quotes and words:
-            phonemes, words = self.handle_emphasized_word(phonemes, words)
-            in_quotes = False
-        else:
-            if phonemes and phonemes[-1] != ' ':
-                phonemes.append(' ')
-            phonemes.append('"')
-            in_quotes = True
-        return phonemes, words, in_quotes
-    
-    def handle_word(self, phonemes, words, word, in_quotes):
-        if not in_quotes and phonemes and phonemes[-1] != ' ':
+    def handle_word(self, phonemes, words, word, in_emphasis):
+        if not in_emphasis and phonemes and phonemes[-1] != ' ':
             phonemes.append(' ')
         phonemes.append(''.join(word.phonemes))
-        if in_quotes:
+        if in_emphasis:
             words.append(word.text)
         return phonemes, words
-
-    def handle_emphasized_word(self, phonemes, words):
-        try:
-            emphasized_phonemes = self.emphasis_lookup[words[-1]]
-        except KeyError:
-            emphasized_phonemes = self.emphasize_phonemes(phonemes[-1])
-            if self.push_oov_to_cosmos:
-                future = self.executor.submit(self._save_to_word_universal, words[-1], emphasized_phonemes)
-                # Optionally, add a callback to handle any exceptions
-                future.add_done_callback(self._handle_save_result)
-            
-        phonemes = phonemes[:-2] + [emphasized_phonemes]
-        words.pop()
+    
+    def handle_emphasized_word(self, phonemes, words, word):
+        if phonemes and phonemes[-1] != ' ':
+            phonemes.append(' ')
+        
+        emphasized_phonemes = self.emphasis_lookup.get(word.text)
+        if emphasized_phonemes is None:
+            if hasattr(word, 'phonemes') and word.phonemes:
+                emphasized_phonemes = self.emphasize_phonemes(word.phonemes)
+                if self.push_oov_to_cosmos:
+                    future = self.executor.submit(self._save_to_word_universal, word.text, emphasized_phonemes)
+                    future.add_done_callback(self._handle_save_result)
+            else:
+                emphasized_phonemes = word.text
+                
+        phonemes.append(emphasized_phonemes)
+        
         return phonemes, words
     
     def _handle_save_result(self, future):
@@ -230,8 +231,6 @@ class GruutTokenizer(BaseTokenizer):
     def __del__(self):
         # Ensure the executor is shut down when the object is destroyed
         self.executor.shutdown(wait=False)
-
-    
 
 class GruutSwahiliTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
