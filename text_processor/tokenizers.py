@@ -178,8 +178,14 @@ class GruutTokenizer(BaseTokenizer):
                     in_emphasis = True
                     emphasized_words = []
                 elif word.text == ']' and in_emphasis:
+                    trailing_punct = ""
                     for emphasized_word in emphasized_words:
-                        phonemes, words = self.handle_emphasized_word(phonemes, words, emphasized_word)
+                        if emphasized_word.text in [".", "!", "?", ",", ":", ";"]:
+                            trailing_punct += emphasized_word.text
+                        else:
+                            phonemes, words = self.handle_emphasized_word(phonemes, words, emphasized_word)
+                    if trailing_punct:
+                        phonemes.append(trailing_punct)
                     in_emphasis = False
                 elif in_emphasis:
                     emphasized_words.append(word) 
@@ -207,7 +213,6 @@ class GruutTokenizer(BaseTokenizer):
     def handle_emphasized_word(self, phonemes, words, word):
         if phonemes and phonemes[-1] != ' ':
             phonemes.append(' ')
-        
         emphasized_phonemes = self.emphasis_lookup.get(word.text)
         if emphasized_phonemes is None:
             if hasattr(word, 'phonemes') and word.phonemes:

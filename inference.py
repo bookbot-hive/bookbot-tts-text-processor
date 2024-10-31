@@ -28,7 +28,7 @@ def main():
     result = model.get_input_ids("<handOverHeart> Together, they built a [magical boy] fort in the living room.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
     print(f"Result: {result}")
     
-    result = model.get_input_ids("<handOverHeart> Together, they built a [459] fort in the living room.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
+    result = model.get_input_ids("<handOverHeart> Together, they built a [459] fort in the living [room.]", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
     print(f"Result: {result}")
     
     # # English Word input
