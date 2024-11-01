@@ -166,9 +166,14 @@ class GruutTokenizer(BaseTokenizer):
                     continue
                 elif word.text.endswith('>') and in_tag:
                     current_tag.append(word.text)
-                    # if phonemes and phonemes[-1] != ' ':
-                    #     phonemes.append(' ')
-                    phonemes.append(''.join(current_tag))
+                    
+                    full_tag = ''.join(current_tag)
+                    tag_name = full_tag.strip('<>')
+                    
+                    # Only append if it's a valid tag from CUSTOM_TAGS
+                    if tag_name in CUSTOM_TAGS:
+                        phonemes.append(full_tag)
+                
                     current_tag = []
                     in_tag = False
                     continue
