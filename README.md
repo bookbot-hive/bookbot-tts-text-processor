@@ -97,6 +97,8 @@ Output:
 {'phonemes': 'halo nama saja budi. siapa "nama" kamu?', 'input_ids': [23, 16, 27, 30, 3, 29, 16, 28, 16, 3, 33, 16, 38, 16, 3, 17, 35, 19, 24, 12, 3, 33, 24, 16, 31, 16, 3, 5, 29, 16, 28, 16, 5, 3, 26, 16, 28, 35, 15, 3]}
 ```
 
+Be aware that turning on use_cosmos=True will use cosmos DB as your lookup table, if your turn it off it will only use the local json file.
+
 ## Parameters
 
 ### TextProcessor Initialization
