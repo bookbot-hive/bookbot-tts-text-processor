@@ -7,6 +7,10 @@ def preprocess_text(text: str, normalize: bool = False) -> str:
         text = unicodedata.normalize(UNICODE_NORM_FORM, text)
     # remove multiple spaces
     text = re.sub(r"\s+", " ", text)
+    
     # remove spaces before punctuation
     text = re.sub(r'\s([?.!,"](?:\s|$))', r'\1', text)
+    
+    # ensure space after comma, colon, semicolon (but not if followed by whitespace or end of string)
+    text = re.sub(r'([,;:])(?!\s|$)', r'\1 ', text)
     return text.strip()

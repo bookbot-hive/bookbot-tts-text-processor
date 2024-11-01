@@ -216,7 +216,6 @@ class GruutTokenizer(BaseTokenizer):
         emphasized_phonemes = self.emphasis_lookup.get(word.text)
         if emphasized_phonemes is None:
             if hasattr(word, 'phonemes') and word.phonemes:
-                
                 emphasized_phonemes = self.emphasize_phonemes(''.join(word.phonemes))
                 if self.push_oov_to_cosmos:
                     future = self.executor.submit(self._save_to_word_universal, word.text, emphasized_phonemes)
