@@ -25,14 +25,12 @@ class TextProcessor:
                 cosmos_config['database_name'],
                 self.language
             )
-            self.cosmos_lookup = self.load_emphasis_lookup_from_cosmos()
+            self.emphasis_lookup = self.load_emphasis_lookup_from_cosmos()
             logger.info(f"Loaded emphasis lookup from Cosmos DB for {self.language}")
-
-        if db_path:
+        elif db_path:
             logger.info(f"Loading emphasis lookup from file: {db_path}")
             self.emphasis_lookup = self.load_emphasis_lookup_from_file(db_path)
             
-        self.emphasis_lookup.update(self.cosmos_lookup)
         self.tokenizer_manager = Tokenizer(emphasis_model_path, self.emphasis_lookup, self.language)
         self.tokenizer = self.tokenizer_manager.get_tokenizer()
         if use_cosmos:

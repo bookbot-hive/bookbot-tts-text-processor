@@ -9,7 +9,7 @@ def main():
         "id": ""
     }
     db_paths = {
-        "en": "/home/s44504/3b01c699-3670-469b-801f-13880b9cac56/Emphasizer/data/words_emphasis_lookup_mixed.json",
+        "en": "/home/s44504/3b01c699-3670-469b-801f-13880b9cac56/Emphasizer/data/en_word_emphasis_lookup_mix_homographs.json",
         "sw": "",
         "id": ""
     }
@@ -23,16 +23,13 @@ def main():
     # English
     model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config)
     
-    # result = model.get_input_ids("Hello <wave> world <listen> how are you? <headLean>", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
-    # print(f"Result: {result}")
-    
-    # result = model.get_input_ids("<handOverHeart> Together, they built a [magical boy] fort in the living room.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
-    # print(f"Result: {result}")
-    
-    # result = model.get_input_ids("<handOverHeart> Together, they built a [459] fort in the living [room].", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
-    # print(f"Result: {result}")
-    
     # English Word input
+    result = model.get_input_ids("Hello <wave> world <listen> how are you? <headLean>", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
+    print(f"Result: {result}")
+    
+    result = model.get_input_ids("Can you [lead] the conversation?", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
+    print(f"Result: {result}")
+    
     result = model.get_input_ids("Hello! my name is [ladidadid]....!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
     print(f"Result: {result}")
     

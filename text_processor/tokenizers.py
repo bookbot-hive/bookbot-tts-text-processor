@@ -215,7 +215,20 @@ class GruutTokenizer(BaseTokenizer):
     def handle_emphasized_word(self, phonemes, words, word):
         if phonemes and phonemes[-1] != ' ':
             phonemes.append(' ')
-        emphasized_phonemes = self.emphasis_lookup.get(word.text)
+        lookup_result = self.emphasis_lookup.get(word.text)
+        emphasized_phonemes = None
+        
+        if isinstance(lookup_result, dict):
+            # Handle homograph case
+            if hasattr(word, 'pos') and word.pos in lookup_result:
+                emphasized_phonemes = lookup_result[word.pos]
+            else:
+                # Default to first value if tag not found or no tag available
+                emphasized_phonemes = next(iter(lookup_result.values()))
+        else:
+            # Handle normal case
+            emphasized_phonemes = lookup_result
+            
         if emphasized_phonemes is None:
             if hasattr(word, 'phonemes') and word.phonemes:
                 emphasized_phonemes = self.emphasize_phonemes(''.join(word.phonemes))
