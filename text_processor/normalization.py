@@ -14,3 +14,6 @@ def preprocess_text(text: str, normalize: bool = False) -> str:
     # ensure space after comma, colon, semicolon (but not if followed by whitespace or end of string)
     text = re.sub(r'([,;:])(?!\s|$)', r'\1 ', text)
     return text.strip()
+
+if __name__ == "__main__":
+    print(preprocess_text("Hello,world!This is a test."))

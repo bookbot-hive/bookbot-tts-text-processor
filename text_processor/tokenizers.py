@@ -31,6 +31,8 @@ class BaseTokenizer(ABC):
             self.model, self.tokenizer = self.load_model_and_tokenizer(emphasis_model_path)
         if emphasis_lookup:
             self.emphasis_lookup = emphasis_lookup
+        else:
+            self.emphasis_lookup = {}
         self.escaped_symbols = self.prepare_escaped_symbols(symbols)
         self.escaped_symbols_pattern = re.compile(self.escaped_symbols)
         # logger.info(f"escaped_symbols: {self.escaped_symbols}")
