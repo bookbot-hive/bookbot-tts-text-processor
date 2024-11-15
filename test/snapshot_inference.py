@@ -1,5 +1,6 @@
 import os
 from text_processor import TextProcessor
+from pkg_resources import resource_filename
 
 
 model_dirs = {
@@ -7,8 +8,9 @@ model_dirs = {
 "sw": "",
 "id": ""
 }
+
 db_paths = {
-"en": "./data/en_word_emphasis_lookup_mix_homographs.json",
+"en": resource_filename('text_processor', 'data/en_word_emphasis_lookup_mix_homographs.json'),
 "sw": "",
 "id": ""
 }
