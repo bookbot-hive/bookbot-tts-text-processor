@@ -2,3 +2,4 @@ include LICENSE
 include README.md
 include requirements.txt
 include pyproject.toml
+include text_processor/data/*.json

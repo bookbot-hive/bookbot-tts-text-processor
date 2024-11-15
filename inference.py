@@ -1,6 +1,8 @@
 import os
 import time
 from text_processor import TextProcessor
+from pkg_resources import resource_filename
+
 
 def main():    
     model_dirs = {
@@ -9,7 +11,7 @@ def main():
         "id": ""
     }
     db_paths = {
-        "en": "/home/s44504/3b01c699-3670-469b-801f-13880b9cac56/Emphasizer/data/en_word_emphasis_lookup_mix_homographs.json",
+        "en": resource_filename('text_processor', 'data/en_word_emphasis_lookup_mix_homographs.json'),
         "sw": "",
         "id": ""
     }

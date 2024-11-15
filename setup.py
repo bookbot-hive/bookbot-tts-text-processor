@@ -12,6 +12,10 @@ def read_requirements():
 setup(
     name="text_processor",
     packages=find_packages(),
+    include_package_data=True,
+    package_data={
+        'text_processor': ['data/*.json'],
+    },
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
     install_requires=read_requirements(),
