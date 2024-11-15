@@ -83,10 +83,6 @@ class BaseTokenizer(ABC):
         emphasized = self.postprocess_prediction(splitted_phonemes, start_idx, end_idx)
         return emphasized
 
-    # def split_phonemes(self, input_string: str) -> List[str]:
-    #     # remove spaces before end of punctuations
-    #     return re.findall(self.escaped_symbols, input_string)
-    
     def split_phonemes(self, input_string: str) -> List[str]:
         logger.debug(f"input_string: {input_string}")
         word_phonemes = input_string.split(" ")

@@ -23,11 +23,11 @@ def main():
     # English
     model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config)
     
-    # # English Word input
-    # result = model.get_input_ids("Hello <wave> world <listen> how are you? <headLean>", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
-    # print(f"Result: {result}")
+    # English Word input
+    result = model.get_input_ids("Hello <wave> world <listen> how are you? <headLean>", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
+    print(f"Result: {result}")
     
-    result = model.get_input_ids("Can you [lead] the conversation <smile>?", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
+    result = model.get_input_ids("Can you [lead] the <nod> conversation <smile>?", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
     print(f"Result: {result}")
     
     # result = model.get_input_ids("Hello! my name is [ladidadid]....!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
