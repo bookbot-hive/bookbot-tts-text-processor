@@ -18,6 +18,7 @@ import re
 import logging
 import uuid
 import time
+from multiprocessing import cpu_count
 
 from .utils import CUSTOM_TAGS
 
@@ -36,7 +37,7 @@ class BaseTokenizer(ABC):
         self.escaped_symbols = self.prepare_escaped_symbols(symbols)
         self.escaped_symbols_pattern = re.compile(self.escaped_symbols)
         # logger.info(f"escaped_symbols: {self.escaped_symbols}")
-        self.executor = ThreadPoolExecutor(max_workers=2)
+        self.executor = ThreadPoolExecutor(max_workers=min(32, cpu_count() + 4))
         self.cosmos_client = None
         self.push_oov_to_cosmos = False
         
@@ -148,7 +149,6 @@ class GruutTokenizer(BaseTokenizer):
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
         text = preprocess_text(text, normalize)
         phonemes = []
-        words = []
         in_emphasis = False
         in_tag = False
         current_tag = []
@@ -186,7 +186,7 @@ class GruutTokenizer(BaseTokenizer):
                         if emphasized_word.text in [".", "!", "?", ",", ":", ";"]:
                             trailing_punct += emphasized_word.text
                         else:
-                            phonemes, words = self.handle_emphasized_word(phonemes, words, emphasized_word)
+                            phonemes = self.handle_emphasized_word(phonemes, emphasized_word)
                     if trailing_punct:
                         phonemes.append(trailing_punct)
                     in_emphasis = False
@@ -195,7 +195,7 @@ class GruutTokenizer(BaseTokenizer):
                 elif word.is_major_break or word.is_minor_break:
                     phonemes.append(word.text)
                 elif word.phonemes:
-                    phonemes, words = self.handle_word(phonemes, words, word, in_emphasis)
+                    phonemes = self.handle_word(phonemes, word, in_emphasis)
         
         return ''.join(phonemes), text
 
@@ -205,15 +205,13 @@ class GruutTokenizer(BaseTokenizer):
     def ids_to_phonemes(self, ids: List[int]) -> List[str]:
         return gruut_symbols.ids_to_phonemes(ids)
     
-    def handle_word(self, phonemes, words, word, in_emphasis):
+    def handle_word(self, phonemes, word, in_emphasis):
         if not in_emphasis and phonemes and phonemes[-1] != ' ':
             phonemes.append(' ')
         phonemes.append(''.join(word.phonemes))
-        if in_emphasis:
-            words.append(word.text)
-        return phonemes, words
+        return phonemes
     
-    def handle_emphasized_word(self, phonemes, words, word):
+    def handle_emphasized_word(self, phonemes, word):
         if phonemes and phonemes[-1] != ' ':
             phonemes.append(' ')
         lookup_result = self.emphasis_lookup.get(word.text)
@@ -241,7 +239,7 @@ class GruutTokenizer(BaseTokenizer):
                 
         phonemes.append(emphasized_phonemes)
         
-        return phonemes, words
+        return phonemes
     
     def _handle_save_result(self, future):
         try:
@@ -257,27 +255,103 @@ class GruutSwahiliTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
         super().__init__(emphasis_model_path, emphasis_lookup, language, gruut_sw_symbols.SYMBOLS)
         
+    # def phonemize_text(self, text: str, normalize: bool = False) -> str:
+    #     text = preprocess_text(text, normalize)
+    #     phonemes = []
+    #     for sentence in sentences(text, lang="sw"):
+    #         sent_ph = []
+    #         for idx, word in enumerate(sentence):
+    #             if word.is_major_break or word.is_minor_break:
+    #                 sent_ph.append(word.text)
+    #             elif word.text == '"':
+    #                 sent_ph.append('"')
+    #             elif word.phonemes:
+    #                 sent_ph += word.phonemes
+
+    #             if word.trailing_ws:
+    #                 sent_ph.append(" ")
+    #         phonemes += sent_ph
+    #     return ''.join(phonemes), text
+
     def phonemize_text(self, text: str, normalize: bool = False) -> str:
         text = preprocess_text(text, normalize)
         phonemes = []
+        in_emphasis = False
+        in_tag = False
+        current_tag = []
+        emphasized_words = []
+        
         for sentence in sentences(text, lang="sw"):
-            sent_ph = []
-            for idx, word in enumerate(sentence):
-                if word.is_major_break or word.is_minor_break:
-                    sent_ph.append(word.text)
-                elif word.text == '"':
-                    sent_ph.append('"')
+            for word in sentence:
+                if word.text.startswith('<'):
+                    in_tag = True
+                    current_tag.append(word.text)
+                    continue
+                elif word.text.endswith('>') and in_tag:
+                    current_tag.append(word.text)
+                    
+                    full_tag = ''.join(current_tag)
+                    tag_name = full_tag.strip('<>')
+                    
+                    # Only append if it's a valid tag from CUSTOM_TAGS
+                    if tag_name in CUSTOM_TAGS:
+                        phonemes.append(full_tag)
+                
+                    current_tag = []
+                    in_tag = False
+                    continue
+                elif in_tag:
+                    current_tag.append(word.text)
+                    continue
+                    
+                if word.text == '[':
+                    in_emphasis = True
+                    emphasized_words = []
+                elif word.text == ']' and in_emphasis:
+                    trailing_punct = ""
+                    for emphasized_word in emphasized_words:
+                        if emphasized_word.text in [".", "!", "?", ",", ":", ";"]:
+                            trailing_punct += emphasized_word.text
+                        else:
+                            phonemes = self.handle_emphasized_word(phonemes, emphasized_word)
+                    if trailing_punct:
+                        phonemes.append(trailing_punct)
+                    in_emphasis = False
+                elif in_emphasis:
+                    emphasized_words.append(word) 
+                elif word.is_major_break or word.is_minor_break:
+                    phonemes.append(word.text)
                 elif word.phonemes:
-                    sent_ph += word.phonemes
-
-                if word.trailing_ws:
-                    sent_ph.append(" ")
-            phonemes += sent_ph
+                    phonemes = self.handle_word(phonemes, word, in_emphasis)
+        
         return ''.join(phonemes), text
 
+    def handle_word(self, phonemes, word, in_emphasis):
+        if not in_emphasis and phonemes and phonemes[-1] != ' ':
+            phonemes.append(' ')
+        phonemes.append(''.join(word.phonemes))
+        return phonemes
+    
+    def handle_emphasized_word(self, phonemes, word):
+        # [TODO] Add emphasis lookup and model for Swahili
+        if phonemes and phonemes[-1] != ' ':
+            phonemes.append(' ')
+        phonemes.append(''.join(word.phonemes))
+        return phonemes
+    
+    def _handle_save_result(self, future):
+        try:
+            future.result()  # This will raise any exception that occurred during execution
+        except Exception as e:
+            logging.error(f"Error saving word to database: {e}")
+            
+    def __del__(self):
+        # Ensure the executor is shut down when the object is destroyed
+        self.executor.shutdown(wait=False)
+        
     def phonemes_to_ids(self, phonemes: List[str]) -> List[int]:
-        return gruut_sw_symbols.phonemes_to_ids(phonemes)
-
+        return gruut_symbols.phonemes_to_ids(phonemes)
+    
     def ids_to_phonemes(self, ids: List[int]) -> List[str]:
         return gruut_sw_symbols.ids_to_phonemes(ids)
 
@@ -293,34 +367,34 @@ class G2pIdTokenizer(BaseTokenizer):
         phonemes = []
         sentences = sent_tokenize(text)
         for i, sentence in enumerate(sentences):
-            start_quote = False
+            in_emphasis = False
             words = self.tokenizer.tokenize(sentence)
             sent_ph = self.g2p(sentence)
-
+            
             for idx, word in enumerate(words):
-                if word == '[':
+                if '<' in word and '>' in word:
+                    del sent_ph[idx]
+                    sent_ph.insert(idx, word)
+                elif word == '[':
                     sent_ph.insert(idx, '[')
                 elif word == ']':
                     sent_ph.insert(idx, ']')
                     
-            assert len(words) == len(sent_ph)
-
+            # assert len(words) == len(sent_ph)
             for idx, word in enumerate(sent_ph):
-                phonemes += word
-                if word == '"':
-                    if start_quote:
-                        start_quote = False
-                    else:
-                        start_quote = True
-                        continue
+                phonemes.append("".join(word))
+                if word == '[':
+                    in_emphasis = True
+                elif word == ']':
+                    in_emphasis=False
 
-                if idx < len(sent_ph) - 1 and all(p not in self.puncts for p in sent_ph[idx + 1]) and not start_quote:
-                    phonemes += [" "]
-                    
+                if '<' in word and '>' in word and idx > 0: 
+                    del phonemes[-2]
+                if idx < len(sent_ph) - 1 and all(p not in self.puncts for p in sent_ph[idx + 1]) and not in_emphasis:
+                    phonemes.append(" ")
             # Add space after the sentence if it's not the last sentence
             if i < len(sentences) - 1:
-                phonemes += [" "]
-
+                phonemes.append(" ")
         return ''.join(phonemes), text
 
     def phonemes_to_ids(self, phonemes: List[str]) -> List[int]:

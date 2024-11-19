@@ -131,9 +131,16 @@ def phonemes_to_ids(phonemes):
     return sequence
 
 def ids_to_phonemes(sequence):
-    """Converts a sequence of IDs back to a string"""
+    """Converts a sequence of IDs back to a string, including special tags"""
     result = ""
     for symbol_id in sequence:
-        s = ID_TO_SYMBOL[symbol_id]
-        result += s
+        # Handle special tag IDs (negative numbers)
+        if symbol_id < 0:
+            # Find the tag name by value in CUSTOM_TAGS
+            tag_name = next(tag for tag, id in CUSTOM_TAGS.items() if id == symbol_id)
+            result += f"<{tag_name}>"
+        else:
+            # Regular phoneme ID
+            s = ID_TO_SYMBOL[symbol_id]
+            result += s
     return result
