@@ -8,7 +8,7 @@ To install the package, run:
 `pip install git+https://github.com/bookbot-hive/bookbot-tts-text-processor.git`
 
 To install with a specific version, run:
-`                 `
+`pip install git+https://github.com/bookbot-hive/bookbot-tts-text-processor.git@<version>`
 
 after running the above command, make sure that gruut[sw] is installed if it's not, install it manually by running:
 `pip install -f 'https://synesthesiam.github.io/prebuilt-apps/' gruut[sw]`

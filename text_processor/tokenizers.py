@@ -254,24 +254,6 @@ class GruutTokenizer(BaseTokenizer):
 class GruutSwahiliTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
         super().__init__(emphasis_model_path, emphasis_lookup, language, gruut_sw_symbols.SYMBOLS)
-        
-    # def phonemize_text(self, text: str, normalize: bool = False) -> str:
-    #     text = preprocess_text(text, normalize)
-    #     phonemes = []
-    #     for sentence in sentences(text, lang="sw"):
-    #         sent_ph = []
-    #         for idx, word in enumerate(sentence):
-    #             if word.is_major_break or word.is_minor_break:
-    #                 sent_ph.append(word.text)
-    #             elif word.text == '"':
-    #                 sent_ph.append('"')
-    #             elif word.phonemes:
-    #                 sent_ph += word.phonemes
-
-    #             if word.trailing_ws:
-    #                 sent_ph.append(" ")
-    #         phonemes += sent_ph
-    #     return ''.join(phonemes), text
 
     def phonemize_text(self, text: str, normalize: bool = False) -> str:
         text = preprocess_text(text, normalize)
@@ -350,7 +332,7 @@ class GruutSwahiliTokenizer(BaseTokenizer):
         self.executor.shutdown(wait=False)
         
     def phonemes_to_ids(self, phonemes: List[str]) -> List[int]:
-        return gruut_symbols.phonemes_to_ids(phonemes)
+        return gruut_sw_symbols.phonemes_to_ids(phonemes)
     
     def ids_to_phonemes(self, ids: List[int]) -> List[str]:
         return gruut_sw_symbols.ids_to_phonemes(ids)
