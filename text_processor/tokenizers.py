@@ -8,9 +8,8 @@ from optimum.onnxruntime import ORTModelForQuestionAnswering
 from transformers import PreTrainedTokenizerFast
 from concurrent.futures import ThreadPoolExecutor
 
-from . import gruut_symbols
-from . import gruut_sw_symbols
-from . import g2p_id_symbols
+from .symbols import SymbolSet
+from .symbols import get_symbol_set
 from .normalization import preprocess_text
 
 import numpy as np
@@ -20,13 +19,14 @@ import uuid
 import time
 from multiprocessing import cpu_count
 
-from .utils import CUSTOM_TAGS
+from .utils import TextUtils
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class BaseTokenizer(ABC):
-    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, symbols: List[str]):
+    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, symbol_set: SymbolSet):
+        self.symbol_set = symbol_set
         self.language = language
         if emphasis_model_path:
             self.model, self.tokenizer = self.load_model_and_tokenizer(emphasis_model_path)
@@ -34,7 +34,7 @@ class BaseTokenizer(ABC):
             self.emphasis_lookup = emphasis_lookup
         else:
             self.emphasis_lookup = {}
-        self.escaped_symbols = self.prepare_escaped_symbols(symbols)
+        self.escaped_symbols = self.prepare_escaped_symbols(symbol_set.SYMBOLS)
         self.escaped_symbols_pattern = re.compile(self.escaped_symbols)
         # logger.info(f"escaped_symbols: {self.escaped_symbols}")
         self.executor = ThreadPoolExecutor(max_workers=min(32, cpu_count() + 4))
@@ -44,15 +44,13 @@ class BaseTokenizer(ABC):
     @abstractmethod
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
         pass
-
-    @abstractmethod
-    def phonemes_to_ids(self, phonemes: List[str]) -> List[int]:
-        pass
     
-    @abstractmethod
+    def phonemes_to_ids(self, phonemes: List[str]) -> List[int]:
+        return self.symbol_set.phonemes_to_ids(phonemes)
+    
     def ids_to_phonemes(self, ids: List[int]) -> List[str]:
-        pass
-            
+        return self.symbol_set.ids_to_phonemes(ids)
+
     @staticmethod
     def load_model_and_tokenizer(model_dir):
         model = ORTModelForQuestionAnswering.from_pretrained(
@@ -106,7 +104,7 @@ class BaseTokenizer(ABC):
         sorted_symbols = sorted(symbols, key=len, reverse=True)
         
         # Add custom tags to the pattern
-        tag_patterns = [f'<{tag}>' for tag in CUSTOM_TAGS.keys()]
+        tag_patterns = [f'<{tag}>' for tag in TextUtils.get_custom_tags().keys()]
         
         # Combine symbols and tags, escape special regex characters
         all_patterns = sorted_symbols + tag_patterns
@@ -144,66 +142,93 @@ class BaseTokenizer(ABC):
     
 class GruutTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
-        super().__init__(emphasis_model_path, emphasis_lookup, language, gruut_symbols.SYMBOLS)
+        super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("en"))
     
-    def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
+    def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[str, str, List[Tuple[int, int]]]:
         text = preprocess_text(text, normalize)
         phonemes = []
+        word_boundaries = []
+        current_pos = 0
         in_emphasis = False
-        in_tag = False
-        current_tag = []
         emphasized_words = []
         
-        for sentence in sentences(text, lang="en"):
+        # Pre-process special tags with placeholders
+        special_tags = []
+        pattern = r'<[^>]+>'
+        placeholder_template = 'TAGPLACEHOLDER{}'
+        
+        # Replace tags with placeholders and store original tags
+        def replace_tag(match):
+            tag = match.group(0)
+            tag_name = tag.strip('<>')
+            if tag_name in TextUtils.get_custom_tags():
+                placeholder = placeholder_template.format(len(special_tags))
+                special_tags.append(f'<{tag_name}>')
+                return placeholder
+            return tag
+
+        processed_text = re.sub(pattern, replace_tag, text)
+        
+        for sentence in sentences(processed_text, lang="en"):
             for word in sentence:
-                if word.text.startswith('<'):
-                    in_tag = True
-                    current_tag.append(word.text)
-                    continue
-                elif word.text.endswith('>') and in_tag:
-                    current_tag.append(word.text)
-                    
-                    full_tag = ''.join(current_tag)
-                    tag_name = full_tag.strip('<>')
-                    
-                    # Only append if it's a valid tag from CUSTOM_TAGS
-                    if tag_name in CUSTOM_TAGS:
-                        phonemes.append(full_tag)
-                
-                    current_tag = []
-                    in_tag = False
-                    continue
-                elif in_tag:
-                    current_tag.append(word.text)
-                    continue
-                    
-                if word.text == '[':
+                if word.text.startswith('TAGPLACEHOLDER'):
+                    # Handle special tags
+                    try:
+                        idx = int(word.text.replace('TAGPLACEHOLDER', ''))
+                        tag = special_tags[idx]
+                        phonemes.append(tag)
+                        word_boundaries.append((current_pos, current_pos + len(tag)))
+                        current_pos += len(tag)
+                    except (IndexError, ValueError):
+                        continue
+                        
+                elif word.text == '[':
                     in_emphasis = True
                     emphasized_words = []
                 elif word.text == ']' and in_emphasis:
+                    # Process all emphasized words as a single unit
+                    start_pos = current_pos
                     trailing_punct = ""
+                    
+                    # Add a single space before the emphasized word if it's not the first word
+                    if phonemes and phonemes[-1] != " ":
+                        phonemes.append(" ")
+                        current_pos += 1
+                    
                     for emphasized_word in emphasized_words:
                         if emphasized_word.text in [".", "!", "?", ",", ":", ";"]:
                             trailing_punct += emphasized_word.text
                         else:
-                            phonemes = self.handle_emphasized_word(phonemes, emphasized_word)
+                            emphasized_phonemes = self.handle_emphasized_word([], emphasized_word)
+                            phonemes.extend(emphasized_phonemes)
+                            current_pos += sum(len(p) for p in emphasized_phonemes)
+                    
                     if trailing_punct:
                         phonemes.append(trailing_punct)
+                        current_pos += len(trailing_punct)
+                    
+                    # Add word boundary for the entire emphasized phrase
+                    word_boundaries.append((start_pos, current_pos))
                     in_emphasis = False
+                    
                 elif in_emphasis:
-                    emphasized_words.append(word) 
+                    emphasized_words.append(word)
                 elif word.is_major_break or word.is_minor_break:
                     phonemes.append(word.text)
+                    word_boundaries.append((current_pos, current_pos + len(word.text)))
+                    current_pos += len(word.text)
                 elif word.phonemes:
-                    phonemes = self.handle_word(phonemes, word, in_emphasis)
+                    start_pos = current_pos
+                    # Add a single space before non-emphasized words if needed
+                    if phonemes and phonemes[-1] != " ":
+                        phonemes.append(" ")
+                        current_pos += 1
+                    word_phonemes = self.handle_word([], word, in_emphasis)
+                    phonemes.extend(word_phonemes)
+                    current_pos += sum(len(p) for p in word_phonemes)
+                    word_boundaries.append((start_pos, current_pos))
         
-        return ''.join(phonemes), text
-
-    def phonemes_to_ids(self, phonemes: List[str]) -> List[int]:
-        return gruut_symbols.phonemes_to_ids(phonemes)
-    
-    def ids_to_phonemes(self, ids: List[int]) -> List[str]:
-        return gruut_symbols.ids_to_phonemes(ids)
+        return ''.join(phonemes), text, word_boundaries
     
     def handle_word(self, phonemes, word, in_emphasis):
         if not in_emphasis and phonemes and phonemes[-1] != ' ':
@@ -253,60 +278,93 @@ class GruutTokenizer(BaseTokenizer):
 
 class GruutSwahiliTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
-        super().__init__(emphasis_model_path, emphasis_lookup, language, gruut_sw_symbols.SYMBOLS)
+        super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("sw"))
 
-    def phonemize_text(self, text: str, normalize: bool = False) -> str:
+    def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[str, str, List[Tuple[int, int]]]:
         text = preprocess_text(text, normalize)
         phonemes = []
+        word_boundaries = []
+        current_pos = 0
         in_emphasis = False
-        in_tag = False
-        current_tag = []
         emphasized_words = []
         
-        for sentence in sentences(text, lang="sw"):
+        # Pre-process special tags with placeholders
+        special_tags = []
+        pattern = r'<[^>]+>'
+        placeholder_template = 'TAGPLACEHOLDER{}'
+        
+        # Replace tags with placeholders and store original tags
+        def replace_tag(match):
+            tag = match.group(0)
+            tag_name = tag.strip('<>')
+            if tag_name in TextUtils.get_custom_tags():
+                placeholder = placeholder_template.format(len(special_tags))
+                special_tags.append(f'<{tag_name}>')
+                return placeholder
+            return tag
+
+        processed_text = re.sub(pattern, replace_tag, text)
+        
+        for sentence in sentences(processed_text, lang="sw"):
             for word in sentence:
-                if word.text.startswith('<'):
-                    in_tag = True
-                    current_tag.append(word.text)
-                    continue
-                elif word.text.endswith('>') and in_tag:
-                    current_tag.append(word.text)
-                    
-                    full_tag = ''.join(current_tag)
-                    tag_name = full_tag.strip('<>')
-                    
-                    # Only append if it's a valid tag from CUSTOM_TAGS
-                    if tag_name in CUSTOM_TAGS:
-                        phonemes.append(full_tag)
-                
-                    current_tag = []
-                    in_tag = False
-                    continue
-                elif in_tag:
-                    current_tag.append(word.text)
-                    continue
-                    
-                if word.text == '[':
+                if word.text.startswith('TAGPLACEHOLDER'):
+                    # Handle special tags
+                    try:
+                        idx = int(word.text.replace('TAGPLACEHOLDER', ''))
+                        tag = special_tags[idx]
+                        phonemes.append(tag)
+                        word_boundaries.append((current_pos, current_pos + len(tag)))
+                        current_pos += len(tag)
+                    except (IndexError, ValueError):
+                        continue
+                        
+                elif word.text == '[':
                     in_emphasis = True
                     emphasized_words = []
                 elif word.text == ']' and in_emphasis:
+                    # Process all emphasized words as a single unit
+                    start_pos = current_pos
                     trailing_punct = ""
+                    
+                    # Add a single space before the emphasized word if it's not the first word
+                    if phonemes and phonemes[-1] != " ":
+                        phonemes.append(" ")
+                        current_pos += 1
+                    
                     for emphasized_word in emphasized_words:
                         if emphasized_word.text in [".", "!", "?", ",", ":", ";"]:
                             trailing_punct += emphasized_word.text
                         else:
-                            phonemes = self.handle_emphasized_word(phonemes, emphasized_word)
+                            emphasized_phonemes = self.handle_emphasized_word([], emphasized_word)
+                            phonemes.extend(emphasized_phonemes)
+                            current_pos += sum(len(p) for p in emphasized_phonemes)
+                    
                     if trailing_punct:
                         phonemes.append(trailing_punct)
+                        current_pos += len(trailing_punct)
+                    
+                    # Add word boundary for the entire emphasized phrase
+                    word_boundaries.append((start_pos, current_pos))
                     in_emphasis = False
+                    
                 elif in_emphasis:
-                    emphasized_words.append(word) 
+                    emphasized_words.append(word)
                 elif word.is_major_break or word.is_minor_break:
                     phonemes.append(word.text)
+                    word_boundaries.append((current_pos, current_pos + len(word.text)))
+                    current_pos += len(word.text)
                 elif word.phonemes:
-                    phonemes = self.handle_word(phonemes, word, in_emphasis)
+                    start_pos = current_pos
+                    # Add a single space before non-emphasized words if needed
+                    if phonemes and phonemes[-1] != " ":
+                        phonemes.append(" ")
+                        current_pos += 1
+                    word_phonemes = self.handle_word([], word, in_emphasis)
+                    phonemes.extend(word_phonemes)
+                    current_pos += sum(len(p) for p in word_phonemes)
+                    word_boundaries.append((start_pos, current_pos))
         
-        return ''.join(phonemes), text
+        return ''.join(phonemes), text, word_boundaries
 
     def handle_word(self, phonemes, word, in_emphasis):
         if not in_emphasis and phonemes and phonemes[-1] != ' ':
@@ -330,60 +388,97 @@ class GruutSwahiliTokenizer(BaseTokenizer):
     def __del__(self):
         # Ensure the executor is shut down when the object is destroyed
         self.executor.shutdown(wait=False)
-        
-    def phonemes_to_ids(self, phonemes: List[str]) -> List[int]:
-        return gruut_sw_symbols.phonemes_to_ids(phonemes)
-    
-    def ids_to_phonemes(self, ids: List[int]) -> List[str]:
-        return gruut_sw_symbols.ids_to_phonemes(ids)
 
 class G2pIdTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
-        super().__init__(emphasis_model_path, emphasis_lookup, language, g2p_id_symbols.SYMBOLS)
+        super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("id"))
         self.g2p = G2p()
         self.tokenizer = TweetTokenizer()
         self.puncts = ".,!?:"
 
-    def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
-        text = preprocess_text(text, normalize)
-        phonemes = []
-        sentences = sent_tokenize(text)
-        for i, sentence in enumerate(sentences):
-            in_emphasis = False
-            words = self.tokenizer.tokenize(sentence)
-            sent_ph = self.g2p(sentence)
+    def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[str, str, List[Tuple[int, int]]]:
+            text = preprocess_text(text, normalize)
+            phonemes = []
+            word_boundaries = []
+            current_pos = 0 
             
-            for idx, word in enumerate(words):
-                if '<' in word and '>' in word:
-                    del sent_ph[idx]
-                    sent_ph.insert(idx, word)
-                elif word == '[':
-                    sent_ph.insert(idx, '[')
-                elif word == ']':
-                    sent_ph.insert(idx, ']')
-                    
-            # assert len(words) == len(sent_ph)
-            for idx, word in enumerate(sent_ph):
-                phonemes.append("".join(word))
-                if word == '[':
-                    in_emphasis = True
-                elif word == ']':
-                    in_emphasis=False
+            # Pre-process special tags with placeholders
+            special_tags = []
+            pattern = r'<[^>]+>'
+            placeholder_template = 'TAGPLACEHOLDER{}'
+            
+            # Replace tags with placeholders and store original tags
+            def replace_tag(match):
+                tag = match.group(0)
+                tag_name = tag.strip('<>')
+                if tag_name in TextUtils.get_custom_tags():
+                    placeholder = placeholder_template.format(len(special_tags))
+                    special_tags.append(f'<{tag_name}>')
+                    return placeholder
+                return tag
 
-                if '<' in word and '>' in word and idx > 0: 
-                    del phonemes[-2]
-                if idx < len(sent_ph) - 1 and all(p not in self.puncts for p in sent_ph[idx + 1]) and not in_emphasis:
-                    phonemes.append(" ")
-            # Add space after the sentence if it's not the last sentence
-            if i < len(sentences) - 1:
-                phonemes.append(" ")
-        return ''.join(phonemes), text
-
-    def phonemes_to_ids(self, phonemes: List[str]) -> List[int]:
-        return g2p_id_symbols.phonemes_to_ids(phonemes)
-    
-    def ids_to_phonemes(self, ids: List[int]) -> List[str]:
-        return g2p_id_symbols.ids_to_phonemes(ids)
+            processed_text = re.sub(pattern, replace_tag, text)
+            sentences = sent_tokenize(processed_text)
+            
+            logger.debug(f"Sentences: {sentences}")
+            
+            for i, sentence in enumerate(sentences):
+                words = []
+                for word in sentence.split():
+                    # Check if word ends with punctuation
+                    if word and word[-1] in self.puncts:
+                        words.append(word[:-1])  # Add word without punctuation
+                        words.append(word[-1])   # Add punctuation as separate token
+                    else:
+                        words.append(word)
+                logger.debug(f"Words: {words}")
+                # Create a list of words to be processed by G2p
+                g2p_words = []
+                word_mapping = []  # Maps G2p results back to original word positions
+                
+                for idx, word in enumerate(words):
+                    logger.debug(f"Word: {word}")
+                    if not word.startswith('TAGPLACEHOLDER') and word not in self.puncts:
+                        g2p_words.append(word)
+                        word_mapping.append(idx)
+                
+                # Process regular words with G2p
+                logger.debug(f"G2p words: {g2p_words}")
+                sent_ph = self.g2p(' '.join(g2p_words)) if g2p_words else []
+                logger.debug(f"Sent ph: {sent_ph}")
+                # Process each word in original order
+                ph_idx = 0
+                
+                for idx, word in enumerate(words):
+                    if word.startswith('TAGPLACEHOLDER'):
+                        try:
+                            tag_idx = int(word.replace('TAGPLACEHOLDER', ''))
+                            tag = special_tags[tag_idx]
+                            start_pos = current_pos
+                            phonemes.append(tag)
+                            current_pos += len(tag)
+                            word_boundaries.append((start_pos, current_pos))
+                        except (IndexError, ValueError):
+                            continue
+                    elif word in self.puncts:
+                        start_pos = current_pos
+                        phonemes.append(word)
+                        current_pos += len(word)
+                        word_boundaries.append((start_pos, current_pos))
+                    else:
+                        if phonemes and phonemes[-1] != " ":
+                            phonemes.append(" ")
+                            current_pos += 1
+                        start_pos = current_pos
+                        phoneme = ''.join(sent_ph[ph_idx])
+                        phonemes.append(phoneme)
+                        current_pos += len(phoneme)
+                        word_boundaries.append((start_pos, current_pos))
+                        ph_idx += 1
+                        
+            logger.debug(f"Phonemes: {phonemes}")
+            logger.debug(f"Word boundaries: {word_boundaries}")
+            return ''.join(phonemes), text, word_boundaries
 
 class Tokenizer:
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):

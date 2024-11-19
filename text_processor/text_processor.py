@@ -6,15 +6,20 @@ from typing import Dict, Any
 
 from .cosmos import Cosmos
 from .tokenizers import Tokenizer
+from .utils import TextUtils
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class TextProcessor:
-    def __init__(self, emphasis_model_path: str, db_path: str, language: str = "en", use_cosmos: bool = False, cosmos_config: Dict[str, Any] = None):
-        self.language=language
+    def __init__(self, emphasis_model_path: str, db_path: str, language: str = "en", use_cosmos: bool = False, cosmos_config: Dict[str, Any] = None, animation_tags_path: str = None):
+        self.language = language
         self.emphasis_lookup = dict()
         self.cosmos_lookup = dict()
+        
+        # Initialize custom tags
+        TextUtils.initialize_custom_tags(animation_tags_path)
+        logger.info(f"Loaded custom animation tags from: {animation_tags_path}")
         
         if use_cosmos:
             if not cosmos_config:
@@ -73,11 +78,11 @@ class TextProcessor:
             self.tokenizer.set_push_oov_to_cosmos(False)
 
         if not phonemes:
-            phonemes_str, normalized_text = self.tokenizer.phonemize_text(input_str, normalize=normalize)
+            phonemes_str, normalized_text, word_boundaries = self.tokenizer.phonemize_text(input_str, normalize=normalize)
         else:
             phonemes_str = input_str
+            word_boundaries = [(0, len(input_str))]  # Treat entire phoneme string as one word
         
-        # Important that you split this do not return list of phonemes from self.tokenizer.phonemize_text, or there will be incorrect splitting.
         phoneme_list = self.tokenizer.split_phonemes(phonemes_str)
                 
         if add_blank_token:
@@ -89,6 +94,21 @@ class TextProcessor:
         try:
             input_ids = self.tokenizer.phonemes_to_ids(phoneme_list)
             result["input_ids"] = input_ids
+            
+            # Generate word_idx based on word boundaries
+            word_idx = []
+            current_pos = 0
+            current_word = 0
+            
+            for phoneme in phoneme_list:
+                # Find which word boundary this phoneme belongs to
+                while current_word < len(word_boundaries) and current_pos >= word_boundaries[current_word][1]:
+                    current_word += 1
+                word_idx.append(current_word)
+                current_pos += len(phoneme)
+            
+            result["word_idx"] = word_idx
+            
         except Exception as e:
             logger.error(f"Invalid phoneme found in: {phoneme_list}, error: {e}")
         

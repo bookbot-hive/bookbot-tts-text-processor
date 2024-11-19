@@ -1,10 +1,10 @@
-from .utils import UNICODE_NORM_FORM
+from .utils import TextUtils
 import re
 import unicodedata
 
 def preprocess_text(text: str, normalize: bool = False) -> str:
     if normalize:
-        text = unicodedata.normalize(UNICODE_NORM_FORM, text)
+        text = unicodedata.normalize(TextUtils.UNICODE_NORM_FORM, text)
     # remove multiple spaces
     text = re.sub(r"\s+", " ", text)
     
