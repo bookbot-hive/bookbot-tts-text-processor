@@ -30,8 +30,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.10",
-    dependency_links=[
-        "https://synesthesiam.github.io/prebuilt-apps/"
-    ],
+    python_requires=">=3.10"
 )

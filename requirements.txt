@@ -1,6 +1,7 @@
+--find-links https://synesthesiam.github.io/prebuilt-apps/
+gruut[sw]
 transformers==4.45.2 
 optimum[onnxruntime]
 numpy==1.26.4
 g2p_id_py
 azure-cosmos
-gruut[sw]
