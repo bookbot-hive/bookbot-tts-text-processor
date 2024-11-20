@@ -104,7 +104,13 @@ class TextProcessor:
                 # Find which word boundary this phoneme belongs to
                 while current_word < len(word_boundaries) and current_pos >= word_boundaries[current_word][1]:
                     current_word += 1
-                word_idx.append(current_word)
+                    
+                # If this is a space, use previous word's index
+                if phoneme == ' ':
+                    word_idx.append(max(0, current_word - 1))
+                else:
+                    word_idx.append(current_word)
+                    
                 current_pos += len(phoneme)
             
             result["word_idx"] = word_idx

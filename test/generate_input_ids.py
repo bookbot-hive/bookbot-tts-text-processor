@@ -4,6 +4,7 @@ from pkg_resources import resource_filename
 import argparse
 import json
 import re
+from datetime import datetime
 
 model_dirs = {
 "en": "bookbot/roberta-base-emphasis-onnx-quantized",
@@ -37,10 +38,18 @@ if __name__ == "__main__":
     parser.add_argument("--input_json_path", "-i", type=str, help="Path to the input JSON file")
     parser.add_argument("--output_json_path", "-o", type=str, help="Path to the output JSON file")
     parser.add_argument("--anim_path", "-a", type=str, help="Path to animation CSV file")
+    parser.add_argument("--log_path", "-l", type=str, help="Path to store error logs", default=None)
     args = parser.parse_args()
 
-    # Create error log file path in same directory as output file
-    error_log_path = os.path.join(os.path.dirname(args.output_json_path), "error_log.txt")
+    # Create error log file path with timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    if args.log_path:
+        log_dir = args.log_path
+    else:
+        log_dir = os.path.dirname(args.output_json_path)
+    os.makedirs(log_dir, exist_ok=True)
+    
+    error_log_path = os.path.join(log_dir, f"error_log_{timestamp}.txt")
 
     output_data = []
     if os.path.exists(args.output_json_path):

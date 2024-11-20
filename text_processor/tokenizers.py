@@ -217,7 +217,10 @@ class GruutTokenizer(BaseTokenizer):
                     emphasized_words.append(word)
                 elif word.is_major_break or word.is_minor_break:
                     phonemes.append(word.text)
-                    word_boundaries.append((current_pos, current_pos + len(word.text)))
+                    if word_boundaries:
+                        word_boundaries[-1] = (word_boundaries[-1][0], current_pos + len(word.text))
+                    else:
+                        word_boundaries.append((current_pos, current_pos + len(word.text)))
                     current_pos += len(word.text)
                 elif word.phonemes:
                     start_pos = current_pos
@@ -353,7 +356,10 @@ class GruutSwahiliTokenizer(BaseTokenizer):
                     emphasized_words.append(word)
                 elif word.is_major_break or word.is_minor_break:
                     phonemes.append(word.text)
-                    word_boundaries.append((current_pos, current_pos + len(word.text)))
+                    if word_boundaries:
+                        word_boundaries[-1] = (word_boundaries[-1][0], current_pos + len(word.text))
+                    else:
+                        word_boundaries.append((current_pos, current_pos + len(word.text)))
                     current_pos += len(word.text)
                 elif word.phonemes:
                     start_pos = current_pos
@@ -466,7 +472,10 @@ class G2pIdTokenizer(BaseTokenizer):
                         start_pos = current_pos
                         phonemes.append(word)
                         current_pos += len(word)
-                        word_boundaries.append((start_pos, current_pos))
+                        if word_boundaries:
+                            word_boundaries[-1] = (word_boundaries[-1][0], current_pos)
+                        else:
+                            word_boundaries.append((start_pos, current_pos))
                     elif word in string.punctuation:
                         continue
                     else:
