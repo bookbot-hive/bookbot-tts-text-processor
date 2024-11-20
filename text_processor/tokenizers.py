@@ -21,6 +21,8 @@ from multiprocessing import cpu_count
 
 from .utils import TextUtils
 
+import string 
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -465,6 +467,8 @@ class G2pIdTokenizer(BaseTokenizer):
                         phonemes.append(word)
                         current_pos += len(word)
                         word_boundaries.append((start_pos, current_pos))
+                    elif word in string.punctuation:
+                        continue
                     else:
                         if phonemes and phonemes[-1] != " ":
                             phonemes.append(" ")

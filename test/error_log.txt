@@ -1,0 +1,1299 @@
+The following errors occurred during processing:
+
+Item '3f3d8db93d190d4b24841192236c18bc', language 'id', text 'Masuk / Daftar', errordetails: list index out of range
+
+Item '98bc3b89293ebfdc05bc71c25ad57da8', language 'id', text '"Ah, coba aku gambar mobil saja," kata Toto.', errordetails: list index out of range
+
+Item '3a1cc7eefdde233ac11cf425b08a1488', language 'id', text '"Kali ini lembek sekali, terlalu banyak air," kata Dita.', errordetails: list index out of range
+
+Item '32d0c2bfe8ec3abbe85cd5700abd453f', language 'id', text '"Ayo, tekan lebih kuat lagi," kata Dita.', errordetails: list index out of range
+
+Item '3d201b8852f01e0a9a3a202223438848', language 'id', text '"Huh, aku capek! Terus saja membajak sawah. Kapan liburnya? Aku tidak sanggup lagi," keluh kerbau sambil masih membajak sawah.', errordetails: list index out of range
+
+Item '82897099f57c9f3e11bb2f7803bca57c', language 'id', text '"Benar. Kami semua setuju ingin mengajakmu jalan jalan," kata sapi itu lagi.', errordetails: list index out of range
+
+Item 'd2402b7932900e651745a5aef32b95a0', language 'id', text '"Ini, pakai saja bajuku," kata sapi abu abu.', errordetails: list index out of range
+
+Item '6f088bc02e7a548016ad57638633334a', language 'id', text '"Aku kerbau beruntung. Ayo, kita bersenang senang," ucap kerbau menyanyikan lagunya.', errordetails: list index out of range
+
+Item '850006c5f7784c7c21768790052e08cf', language 'id', text '"Lukanya harus segera dicuci. Setelah itu, diberi cairan obat," saran Lana.', errordetails: list index out of range
+
+Item 'ae23a426f114568b0a28b7f7c6b3d282', language 'id', text '"Karena ada banyak saraf di kulitmu," jelas Lana.', errordetails: list index out of range
+
+Item 'c5bb4baf8490b616bae43e541d0fa3bc', language 'id', text '"Selesai! Besok pasti lukamu kering," kata Lana.', errordetails: list index out of range
+
+Item '67fca935c7e2f18787b684058cc23e6f', language 'id', text '"Wah, kita harus ke Bukittinggi. Di Kota Padang ini bendi sudah jarang sekali ditemui," jawab Kakek.', errordetails: list index out of range
+
+Item '4b0961bf6294b002af3c345af6bc1524', language 'id', text '"Babendi bendi di Bukiktinggi," Rio meniru lagu yang dinyanyikan Kakek.', errordetails: list index out of range
+
+Item 'a06954f6596c8a39b232d938e8cace37', language 'id', text '"Aku juga ingin membaca," seru Jodi.', errordetails: list index out of range
+
+Item 'f9af60802a3459cd0000dd44498e79c4', language 'id', text '"Ini perpustakaan. Di perpustakaan tidak boleh ada suara keras," kata Moli.', errordetails: list index out of range
+
+Item '78aa823c0e9bbea5bc2978589d97645a', language 'id', text '"Oh, jadi tempat ini yang namanya perpustakaan," kata Jodi.', errordetails: list index out of range
+
+Item 'c46bc21c447c257a8553d72323074fdf', language 'id', text '"Jalannya pelan pelan," bisik Moli.', errordetails: list index out of range
+
+Item 'ad6ce9b3522ae9f0f4ed57063de56b5f', language 'id', text '"Hati hati, Ned," kata Buku itu.', errordetails: list index out of range
+
+Item '843143c54f576ffbfcaf510fe21233d5', language 'id', text '"Ayo, bakar ikan," kata Buku.', errordetails: list index out of range
+
+Item '861c67803a54ba304c4681547f3dd780', language 'id', text '"Saya ingin tahu apa yang ada di balik bukit ini," kata Ned.', errordetails: list index out of range
+
+Item '8bc11e27aedd10de4d0fcebd5ab18505', language 'id', text '"Orang orang di sana juga tampak tentram dan ramah," kata Ned.', errordetails: list index out of range
+
+Item 'f60a11d063ed7556391a0f03c6014285', language 'id', text '"Ayo kita lihat lihat lagi," kata Buku.', errordetails: list index out of range
+
+Item '51032d7705c1947847f5ad203f2db9f4', language 'id', text '"Hmm," kata petani itu.', errordetails: list index out of range
+
+Item 'ec03f94caeb29d0eb4e0baec5408d4ad', language 'id', text '"Aku rasa Ia ingin membeli gandum kita," kata Buku.', errordetails: list index out of range
+
+Item 'd7146e9583a0858a4ff9a24de936b642', language 'id', text '"Prediksi saja, lihat, ada pria berbaju besi di sana." "Hmm," kata pria berbaju besi itu.', errordetails: list index out of range
+
+Item '8b8174ddd2d0b62801e5886d766dd1a5', language 'id', text '"Ia akan membeli batu bara kita," kata Buku itu.', errordetails: list index out of range
+
+Item '3dd4fcce254532992dc14dd6277803bd', language 'id', text '"Oke, kalau kamu yakin," kata Ned.', errordetails: list index out of range
+
+Item '32a724bbe15502cf1f9d1dcec3b69e29', language 'id', text '"Aku punya banyak gandum dan batu bara di sini," kata Ned.', errordetails: list index out of range
+
+Item 'ff808e79e132c47eb57374dc9c75cfaa', language 'id', text '"Aku ingin tahu apa yang akan mereka tawarkan?" "Mungkin barang yang bagus," kata Buku itu.', errordetails: list index out of range
+
+Item '0ea541729ecb6feddbe1c9bb69350100', language 'id', text '"Hmm," kata pria itu.', errordetails: list index out of range
+
+Item 'b8e3a7b595ba11be3232dc5e5640870d', language 'id', text '"Aku punya biji bijian kalau kamu mau," kata pria di belakang Ned.', errordetails: list index out of range
+
+Item 'e2c60fd1082310b858b693113581a6cb', language 'id', text '"Berikan saya batu zamrud dan saya kasih Anda biji bijian ini," kata pria tersebut.', errordetails: list index out of range
+
+Item '9c1bb0a050100ee4e406d6a68197a955', language 'id', text '"Wah, saya belum pernah melihat biji biji ini sebelumnya," kata Ned.', errordetails: list index out of range
+
+Item 'bb9a911c493b3124fca513457cdf36a6', language 'id', text '"Tahu tidak, aku selalu ingin menjadi tukang sihir," kata Ned.', errordetails: list index out of range
+
+Item '8d8716201d8286336f1e95f28bf42f99', language 'id', text '"Kamu bisa tingkatkan pisau pisaumu, Ned," kata Buku itu.', errordetails: list index out of range
+
+Item '2c071ba74a83f9517ee6fa14e0c0aaa5', language 'id', text '"Dengan ini, kamu bisa memotong atau bikin apa pun," kata Buku itu.', errordetails: list index out of range
+
+Item 'ac77b0c34b101d32f5c356e0b86f545e', language 'id', text '"Dengan ini, kamu bisa mengambil berlian," kata Buku itu.', errordetails: list index out of range
+
+Item 'cdaaa5eb4c8b161d998e5ab9ea41b0c7', language 'id', text '"Wah Keren," Ned merasa terpukau.', errordetails: list index out of range
+
+Item '34171c79f48319680988c97ed6b07cd0', language 'id', text '"Syukurlah saya membawa ini," kata Ned.', errordetails: list index out of range
+
+Item '0023278a07721be2a08151a4b3709b5d', language 'id', text '"Sekarang cari air," kata Buku itu.', errordetails: list index out of range
+
+Item '8c42a2b530c85d2b146307ba97ff9939', language 'id', text '"Benda paling keras di bumi disebut batu vulkanik," kata Buku itu.', errordetails: list index out of range
+
+Item 'a07925bfcfbf032374ef43fa06cc75c9', language 'id', text '"Batu vulkanik benar benar keras, tapi pisau ini berfungsi," kata Ned.', errordetails: list index out of range
+
+Item 'b8fd24ffb43b55d6c809bade5b873e09', language 'id', text '"Untung saya bawa kapak juga." "Kolam ini besar, jadi mungkin akan memakan waktu," kata Buku itu.', errordetails: list index out of range
+
+Item 'f82b894601677e0796cc47f599663a7a', language 'id', text '"Sekarang, gabungkan batu vulkanik dengan berlian," kata Buku itu.', errordetails: list index out of range
+
+Item 'eb2766969eb672871ab66515e01e5c31', language 'id', text '"Kamu bisa bikin baju besi dan senjata ajaib dengan itu," kata Buku itu.', errordetails: list index out of range
+
+Item '016917b8c02175de4c03d0ac2dca8790', language 'id', text '"Buku, kamu sudah ajari aku banyak hal hari ini," ujar Ned.', errordetails: list index out of range
+
+Item '9f77dd10ae6e998dad45a4176f7b25d4', language 'id', text '"Ada lebih banyak lagi saat tanaman di ladang tumbuh," balas Buku.', errordetails: list index out of range
+
+Item '00d977038799e2a464524e128d1ece3c', language 'id', text '"Tak ada salahnya memulai lagi," kata Buku.', errordetails: list index out of range
+
+Item '206b8bca55972d879b71bab01f4d048e', language 'id', text '"Hanya kamu yang bisa masuk," kata Buku.', errordetails: list index out of range
+
+Item 'bbfc42db9dbb1b646a12d05260f4c0eb', language 'id', text '"Aku ingin belajar lebih banyak mantra," Kata Ned kepada Buku.', errordetails: list index out of range
+
+Item '215e415160f82359ec5e8674d44980e8', language 'id', text '"Kamu akan butuh banyak kertas," kata Buku sambil jelaskan prosedur selanjutnya.', errordetails: list index out of range
+
+Item '74dce3c8bfb95f97593ccf45f6345770', language 'id', text '"Kamu akan butuh tebu, dan dalam jumlah banyak," kata Buku itu.', errordetails: list index out of range
+
+Item '9f8b5567dd7bf9a1cc2431bf4568a13f', language 'id', text '"Harus sempurna atau tebu tidak akan tumbuh," kata Buku itu.', errordetails: list index out of range
+
+Item 'f7770d2603c15fa47fd1b51798bd0fdc', language 'id', text '"Tebu ini bisa menghasilkan banyak kertas," kata Buku itu.', errordetails: list index out of range
+
+Item '009db1a8e790f90ef5ecc3678f09aba5', language 'id', text '"Mungkin dalam satu malam," kata Buku itu.', errordetails: list index out of range
+
+Item '41c11752b477aae4ff5519a8093ed708', language 'id', text '"Pedang itu memotong para monster seperti mentega," kata Ned.', errordetails: list index out of range
+
+Item 'a8b27546dc3f7793cdd00cf33cba4fdf', language 'id', text '"Nah, sekarang kamu bisa memotong tebu," kata Buku, tersenyum sambil kasih instruksi.', errordetails: list index out of range
+
+Item '37c80486ef2acc7e431ba928a3792f8e', language 'id', text '"Untuk membuat buku, kamu harus menjilid kertas dengan kulit," kata Buku itu.', errordetails: list index out of range
+
+Item '9d6c5517cc8eaac4fa493b9789d2ecb1', language 'id', text '"Sekarang dengarkan dan berhati hatilah dalam membuat ini," kata Buku itu.', errordetails: list index out of range
+
+Item 'be5e75ba101734358b65cdd5610c917a', language 'id', text '"Selanjutnya aku akan mengajarkanmu mantra untuk membuat benda benda ajaib," kata Buku itu.', errordetails: list index out of range
+
+Item 'eee53de953b8b0715b917e45ec16e3ca', language 'id', text '"Ayo, kita bikin alat baru," kata Buku.', errordetails: list index out of range
+
+Item '90a7466786a4122bced5bc97c614d3d1', language 'id', text '"Aku sudah bekerja cukup lama," jawab Ned.', errordetails: list index out of range
+
+Item '8ce3ba67fbe07204ed4a80862ce4d2e2', language 'id', text '"Oh tidak," kata Ned.', errordetails: list index out of range
+
+Item '995ec4366ab8392656ba3b82c858a223', language 'id', text '"Kita coba lagi dari awal," jawab Buku.', errordetails: list index out of range
+
+Item 'd37a64e4f533d9f74b405cc2b343ea46', language 'id', text '"Musuh tidak bisa masuk," kata Buku.', errordetails: list index out of range
+
+Item '482f90abb8e00c816781de0d8b248495', language 'id', text '"Hati hati," kata Buku itu.', errordetails: list index out of range
+
+Item '461d6ee07ebfc008765c45a7b7f3e401', language 'id', text '"Apa serigala bisa menurut sama kita?" "Coba kasih tulang," Jawab Buku itu.', errordetails: list index out of range
+
+Item '5994d10d5cb5c2009bb0bc5af89da2cf', language 'id', text '"Aku akan kasih kamu nama," kata Ned.', errordetails: list index out of range
+
+Item 'da8adb7cbbf0f7e736b917921df74dde', language 'id', text '"Aku akan kasih kamu makan," kata ned.', errordetails: list index out of range
+
+Item '608f633eaf0953e9375adf8baae1fe7a', language 'id', text '"Maksud aku kalian juga ikut," kata Ned.', errordetails: list index out of range
+
+Item '44eb356eb54b0d1f66e7d9669eb542cf', language 'id', text '"Asap bisa bikin lebah tidur," kata Kitab.', errordetails: list index out of range
+
+Item 'c968c129fe213f1189558ea8ad0758f1', language 'id', text '"Aku butuh lebah," kata Ned.', errordetails: list index out of range
+
+Item '1ec319c3d931920273d0146f02f82e46', language 'id', text '"Kamu cuma butuh bunga," jawab Buku itu.', errordetails: list index out of range
+
+Item '9c41b00e47facfeb2992b4456ac55064', language 'id', text '"Ikuti saya, lebah," kata Ned.', errordetails: list index out of range
+
+Item '01be68007fe5fdda4b25da618dab912b', language 'id', text '"Aduh," kata Ned.', errordetails: list index out of range
+
+Item '61a9ff3fc065f947965ca369961d65bb', language 'id', text '"Saya tidak sabar menangkap sesuatu hari ini," katanya.', errordetails: list index out of range
+
+Item 'ed36c8a4dcb5f505a84d6708adf158b1', language 'id', text '"Pastikan saja kamu tidak salah sasaran," kata Buku itu.', errordetails: list index out of range
+
+Item '59928d71d08d07946432ec7dc0f4e056', language 'id', text '"Aku belum pernah makan kelinci sebelumnya," kata Ned.', errordetails: list index out of range
+
+Item '5fe78e54b16c39193438cfc742cdec41', language 'id', text '"Kamu terlalu ekstrim, Ned." "Mereka terlihat sangat lucu," kata Buku itu.', errordetails: list index out of range
+
+Item '70bfa58634137e2562a763b48fba7866', language 'id', text '"Sayang sekali, aku sangat lapar," kata Ned.', errordetails: list index out of range
+
+Item '29e5dd7d58cc309336c717dc612e801b', language 'id', text '"Sebaiknya tangkap hewan yang lain saja," kata Buku itu.', errordetails: list index out of range
+
+Item '33d5f9aeb6960eae4b2c5fedc882f33c', language 'id', text '"Mereka hanya kelinci kecil," kata Ned.', errordetails: list index out of range
+
+Item '81f5ae2def35f831c95d54259fc82823', language 'id', text '"Hanya satu? Baiklah," kata Ned.', errordetails: list index out of range
+
+Item '4dfff2bf027b638aa4b05f778219cb9e', language 'id', text '"Aku akan cari kelinci kelinci yang lain," katanya.', errordetails: list index out of range
+
+Item '467b426fc8fe2bd5802a6202da4203ed', language 'id', text '"Ayo Ned, kita pulang saja," kata Buku itu.', errordetails: list index out of range
+
+Item 'b64f4dfb0c2c346ff513638caeebe863', language 'id', text '"Jangan konyol, saya hanya akan mengambil satu lagi," kata Ned.', errordetails: list index out of range
+
+Item '294c808c70d5ae6379b438e6c442ee25', language 'id', text '"Aku akan ambil kelinci saat butuh saja," kata Ned.', errordetails: list index out of range
+
+Item 'da12686e2a9b80aa4c83f43e42fcda7e', language 'id', text '"Mereka akan senang berada di situ sampai waktunya." "Aku berharap begitu," kata Buku.', errordetails: list index out of range
+
+Item 'da2c189d8dab53616b611d3272d114a5', language 'id', text '"Sekarang, aku rasa kelinci jahat itu tidak akan mengejar aku lagi," katanya.', errordetails: list index out of range
+
+Item '4c4f6cdef25db86456285bddf903c078', language 'id', text '"Aku pernah bermimpi jadi penyihir," katanya.', errordetails: list index out of range
+
+Item '9edb1e02c78c137b481b94f7d9495d5c', language 'id', text '"Sudah saatnya kamu tingkatkan kualitas alatmu, Ned," kata Buku.', errordetails: list index out of range
+
+Item 'bf0a189b6cef20cdf711f9e91bf080ff', language 'id', text '"Sekarang kamu bisa menggali lebih dalam," kata Buku.', errordetails: list index out of range
+
+Item '10a495945dd5d8a7e1ce1c3f884c4f78', language 'id', text '"Untung saya bawa ini," katanya.', errordetails: list index out of range
+
+Item 'beb2ae21fde2b54367f84965e788867f', language 'id', text '"Cari air sekarang," kata Buku.', errordetails: list index out of range
+
+Item 'e0966409b71981f45092a0ec8be538fc', language 'id', text '"Dengarkan suara air jatuh," instruksi Buku.', errordetails: list index out of range
+
+Item 'f6c1d141a72799f0a9d354626121aaf3', language 'id', text '"Batu vulkanik adalah batu paling keras," kata Buku.', errordetails: list index out of range
+
+Item '42d4347177a19a5e4f0850ad6872fd0e', language 'id', text '"Kolam ini besar, butuh waktu," kata Buku.', errordetails: list index out of range
+
+Item '9cb3842c284b19072152aad764b8a6b8', language 'id', text '"Ini hanya tahap awal jadi penyihir," kata Buku.', errordetails: list index out of range
+
+Item '8cac8a24f9244ed56a739c5bfda362f7', language 'id', text '"Ya, dan kamu bahkan bisa melawan mereka dari menara ini," kata Buku tersebut.', errordetails: list index out of range
+
+Item 'c7c8be4f367cd878d7a48c908b03f98b', language 'id', text '"Saatnya mencobanya di puncak menara," kata Buku itu.', errordetails: list index out of range
+
+Item 'c753210597e7ccd3929223d0fbc09ab1', language 'id', text '"Ketika para monster muncul, coba pukul satu," kata Buku itu.', errordetails: list index out of range
+
+Item 'f247ba1cdd07a6d945bc1edc74f8080e', language 'id', text '"Saya tidak tahu apakah saya akan bisa memukulnya," kata Ned.', errordetails: list index out of range
+
+Item 'd95dc2b42ea6ca1d790fd5ea46999d40', language 'id', text '"Coba saja," kata Buku itu.', errordetails: list index out of range
+
+Item '6dadd86edd3065c02cda687c3249156b', language 'id', text '"Mereka terlihat sangat kecil dari sini," kata Ned.', errordetails: list index out of range
+
+Item '406130373bae8911199bbaa3e4f3f93a', language 'id', text '"Saya tidak berhasil mengenai satu pun zombi," katanya.', errordetails: list index out of range
+
+Item 'f37ea7514a5dee203c52e1f9fbced8af', language 'id', text '"Tidak apa apa, Ned," kata Buku itu.', errordetails: list index out of range
+
+Item '425b7399bf64bcc6e8d5c19dcec1a59a', language 'id', text '"Gali sampai kamu menemukan sesuatu yang berwarna merah dan berkilau," kata Buku itu.', errordetails: list index out of range
+
+Item 'd3bd9e3c69552caa3c2f7dd4d31e370d', language 'id', text '"Saya akan mencoba dan mencoba sampai saya menjadi lebih baik," kata Ned.', errordetails: list index out of range
+
+Item '46a89fc93114c8912b05cdb2d4b8a3a5', language 'id', text '"Seorang pahlawan," kata Buku itu.', errordetails: list index out of range
+
+Item '979df1390d8b024662b6c51b494e74ec', language 'id', text '"Saya harap saya akan ketemu sesuatu yang baik hari ini," katanya.', errordetails: list index out of range
+
+Item 'b76ae179d5a0d2447661b9b3b5357018', language 'id', text '"Terus gali," kata Buku itu.', errordetails: list index out of range
+
+Item '5e3e2a1ee1f1508eebb0ac0e15c089bb', language 'id', text '"Itu bukan sekadar lembar kulit," kata Buku.', errordetails: list index out of range
+
+Item '0e923ac71be06c4ace7efd11881e5fdb', language 'id', text '"Itu adalah pelana untuk kuda," jawab Buku.', errordetails: list index out of range
+
+Item '0a87fd2a2a30a91c8c6306aa75f58f98', language 'id', text '"Beri dia gandum itu, tapi hati hati," anjur Buku.', errordetails: list index out of range
+
+Item 'cff47324894e0a128bbc13319994975b', language 'id', text '"Sekarang, naiklah ke punggungnya," kata Buku.', errordetails: list index out of range
+
+Item 'f7b2495058065b9f132ff70aa9512302', language 'id', text '"Tenang, aku bukan predatornya," ujar Ned.', errordetails: list index out of range
+
+Item 'cb0c6063af15f6d1c0d6b40fba857011', language 'id', text '"Waduh," keluh Ned.', errordetails: list index out of range
+
+Item '082db774d4907c7371d9ff4e70e9e6eb', language 'id', text '"Coba lagi," anjur Buku.', errordetails: list index out of range
+
+Item '0aa451e55013a1f7db3a7799e6c2b470', language 'id', text '"Saatnya memasang pelana yang kamu temukan tadi," kata Buku.', errordetails: list index out of range
+
+Item 'a5089ffb8cdb52008bd7223c560b2bab', language 'id', text '"Akan kamu beri nama apa? Ini adalah kuda jantan," tanya Buku.', errordetails: list index out of range
+
+Item '1ba2425ffa09a2f0c4dccc3e962d29b4', language 'id', text '"Kunang kunang, tunggu malam tiba," kata Sungai.', errordetails: list index out of range
+
+Item 'ac8fd159e9ad7580b8502dad52eb0c75', language 'id', text '"Aku takut Sata akan terus ganggu aku," kataku pelan.', errordetails: list index out of range
+
+Item 'a9c53c962bd6cb29310d2d4e36199ed2', language 'id', text '"Kamu harus minta maaf pada Paraka," kata ayah Sata.', errordetails: list index out of range
+
+Item 'c940acd08b5bb24e1eab02161aa700ea', language 'id', text '"Itu adalah pelana kuda," kata Buku.', errordetails: list index out of range
+
+Item '88aac9f70c95f051a86af10cde663447', language 'id', text '"Coba lagi," kata Buku itu.', errordetails: list index out of range
+
+Item 'ded92e0214db44530b7086a2e93f17f5', language 'id', text '"Hati hati," kata Buku.', errordetails: list index out of range
+
+Item '26f01a161962b2882d3f25aa8cbd2fdc', language 'id', text '"Taruh api di bawah rumah lebah!" "Lebah akan tidur," kata Buku.', errordetails: list index out of range
+
+Item '1dfcc41fd642540f4e1111116144eaf5', language 'id', text '"Ada banyak Madu," katanya dengan riang, seperti anak yang girang dengan es krim.', errordetails: list index out of range
+
+Item '34050d626eaea3a74c5d3a87b3103f2b', language 'id', text '"Asap bisa bikin lebah menjadi mengantuk," kata Buku itu.', errordetails: list index out of range
+
+Item '69c4f70c9d70ed272c870be65bad975c', language 'id', text '"Dengan sarang ini, kamu bisa punya banyak madu," kata Buku itu.', errordetails: list index out of range
+
+Item '4b32a96a190a8f1f05a439e314656d11', language 'id', text '"Sekarang yang saya butuhkan hanyalah lima ekor lebah," kata Ned.', errordetails: list index out of range
+
+Item '0f39755ca0081a3f0a973c7ef9af3617', language 'id', text '"Justru yang kamu butuhkan hanyalah bunga bunga," kata Buku itu.', errordetails: list index out of range
+
+Item '2c903d4fbb59120ed1be5804bd455aa1', language 'id', text '"Ikut dengan saya, lebah lebah," katanya, sambil memegang bunga mawar.', errordetails: list index out of range
+
+Item '4ebbdc37a289add2e4ae5b53733e1f97', language 'id', text '"Mungkin ini adalah kesalahan," kata Buku itu.', errordetails: list index out of range
+
+Item '500f82f2c54dde99e34cf5f7eb3fd258', language 'id', text '"Sepertinya itu bangunan kuno yang penuh dengan jebakan," kata Buku itu.', errordetails: list index out of range
+
+Item '01d2a87befd4e46b61ff56062d34cece', language 'id', text '"Aduh, sakit," katanya.', errordetails: list index out of range
+
+Item '4fa10246c9cc7076e6ee8622c2966258', language 'id', text '"Makanan tetap makanan," kata Ned, sebelum nekat menaruh daging busuk ke dalam mulutnya.', errordetails: list index out of range
+
+Item '1c6d8d7ce0550179dcdf3ebfe2316864', language 'id', text '"Oke, itu memang bukan ide yang bagus," ujarnya dengan pasrah.', errordetails: list index out of range
+
+Item 'd936d836d9de41452685cd7ebc2ae78a', language 'id', text '"Apa kamu membawa alat pancing," kata Buku itu.', errordetails: list index out of range
+
+Item 'a851fa67c105bfec1ada1de84864aab3', language 'id', text '"Aku tidak butuh harta karun jika punya makanan di sini," katanya.', errordetails: list index out of range
+
+Item '4723dc8dbfb0b777e1a79b5e500927e0', language 'id', text '"Aku juga senang kita dapat ikan," kata Buku itu.', errordetails: list index out of range
+
+Item 'ea573e63815474f4b73db117cffe315a', language 'id', text '"Kamu tanam tebu saja," kata Buku Sihir.', errordetails: list index out of range
+
+Item '0d78afb8393d8e5e248c06931aee01c9', language 'id', text '"Aku rindu cucuku, ayo kita pulang saja," katanya.', errordetails: list index out of range
+
+Item 'b1f9a52273c510a41ba890a6ca029921', language 'id', text '"Apa yang harus kita lakukan kalau bahan bakar kita habis? Kita tidak mungkin bisa mengisi bahan bakar di bulan," pikirnya.', errordetails: list index out of range
+
+Item 'd9dd5aa04af680a97f12b17d1830968f', language 'id', text '"Adi, ayo bangun, sayang. Kamu bisa terlambat, loh," sapa Jam Antik dengan lembut.', errordetails: list index out of range
+
+Item 'bf8b382c3b29d06bc468f9db18ae5f70', language 'id', text '"Terima kasih, Jam Antik," kata Adi merasa plong.', errordetails: list index out of range
+
+Item '3b4860df784952447f47608f92f5e4a4', language 'id', text '"Mulai besok kamu tidak usah membangunkan aku!" "Aduh. Jangan marah, Adi. Aku sudah usang. Jadi, jarumku bergerak lambat," keluh Jam Antik.', errordetails: list index out of range
+
+Item '5a318ea8206d7355b61b0430d0bb86b6', language 'id', text '"Cari apa kamu? Di sini sudah tidak ada tempat," kata salah satu kucing di situ.', errordetails: list index out of range
+
+Item '3be3f460282413db8f775713b0306fbd', language 'id', text '"Kamu sih, Aldo," teriak Dudi sebal.', errordetails: list index out of range
+
+Item '16bdcafa9692fb4d3de084d396b127b2', language 'id', text '"Aku sakit. Aku hanya bisa berjalan pelan," keluh jangkrik.', errordetails: list index out of range
+
+Item '3cbe3d8093536f50dcea9c3a5469f4a6', language 'id', text '"Mungkin aku harus ikut juga," kata katak.', errordetails: list index out of range
+
+Item 'b7fcb7f3bda2240be30bb30c41c615da', language 'id', text '"Igna jadi tangkasi? Tangkasi tidak makan panada," kata Papa.', errordetails: list index out of range
+
+Item '5d907267351d09775ce6e6e7103d46bb', language 'id', text '"Oh, mungkin ayam itu yang mematuknya," Kinan menduga.', errordetails: list index out of range
+
+Item '7a5ce3d526b7e3ccc7c4bdf330e3e00f', language 'id', text '"Terima kasih Bok Kambing," kata Pak Kuda.', errordetails: list index out of range
+
+Item 'a4132f2969d3e046f960c0115e460695', language 'id', text '"Ayo, Nek Rusa," kata Mehung.', errordetails: list index out of range
+
+Item '6ad3beb962065b1f767c3e9aab4a544a', language 'id', text '"Aku ambilkan, Bu," seru Mehung sambil bergegas naik pohon.', errordetails: list index out of range
+
+Item '530622b40e44f8da718f9f968604103a', language 'id', text '"Mehung! Aku memang ingin menjemur topiku," ujar Bu Sapi.', errordetails: list index out of range
+
+Item '89d01543b7ad94ecec0e531846b785f4', language 'id', text '"Ini rumahku," ucap Burung Kenari.', errordetails: list index out of range
+
+Item 'dc8a71c4580a5a49eef8c4bba581c95a', language 'id', text '"Selamat datang di rumahku," ucap Burung Pipit.', errordetails: list index out of range
+
+Item '5af0d362f4a2957700389abb94253acc', language 'id', text '"Ayahku pernah bilang, suatu hari aku harus bisa membuat rumah. Rumah itu akan melindungi keluargaku dari terik matahari dan hujan. Aku kira, kata kata ayahku benar," lanjut Burung Pipit.', errordetails: list index out of range
+
+Item 'af8c3290931882051ab74c0f4d101c43', language 'id', text '"Inilah rumahku," sambut Burung Merpati.', errordetails: list index out of range
+
+Item '98a637ce4711466baaae1bd80044dba3', language 'id', text '"Banyak sekali ketupat buatan Kristian," kata ibu.', errordetails: list index out of range
+
+Item '9cfa5856158f80ec44d7e30835513a56', language 'id', text '"Selamat, Kristian. Akhirnya, kamu berhasil membuat ketupat," kata Rida.', errordetails: list index out of range
+
+Item '3af42a0c3f741dafc31a29ca0338c6d2', language 'id', text '"Aku yang akan mengurus makanan," kata Ayam.', errordetails: list index out of range
+
+Item '56fd1da7cee0d147e6b29f7c459ed9e0', language 'id', text '"Begini caranya menangkap capung," ujarnya.', errordetails: list index out of range
+
+Item '770a5ec0a9436e238546600378accf8a', language 'id', text '"Sepertinya terlalu banyak air," kata Dita.', errordetails: list index out of range
+
+Item 'b5b50311342382825a35be65135c8623', language 'id', text '"Kamu menekannya kurang kuat," kata Dita.', errordetails: list index out of range
+
+Item '01d8a2aa8dabecd9c7d78b4b34afc19e', language 'id', text '"Ini saja," katanya dengan percaya diri.', errordetails: list index out of range
+
+Item '8df0b9f82ca50d7e5e28104a54039ae0', language 'id', text '"Aneh," pikir Nari.', errordetails: list index out of range
+
+Item 'c35fa8cf5f282583719c92d3f8042e09', language 'id', text '"Ayo, coba dengan buku ini dulu," ujar Soka.', errordetails: list index out of range
+
+Item '4d040b788d6ce9334c618c1cca6fc796', language 'id', text '"Soka dan Nari, apakah kalian sudah tahu bagaimana cara kerja benda itu?" "Ketika kami meletakkan mobil mobilan dan kunci di dekat logam itu, rasanya ada tenaga yang menariknya," jawab Nari.', errordetails: list index out of range
+
+Item 'eeb62f4b39fd0d21f6cfcabccf092a2a', language 'id', text '"Tapi, tidak terjadi apa apa dengan buku dan gulungan benang," kata Soka.', errordetails: list index out of range
+
+Item '3a8c8c9912ba1bbf19eba8bc6d0db5c4', language 'id', text '"Betul! Magnet bisa menempel ke jenis logam tertentu, tapi tidak ke benda lainnya," kata Tante San.', errordetails: list index out of range
+
+Item '16529749a2e522eb07e4661525f12cfb', language 'id', text '"Tidak, Sayang. Sekarang langit cerah," jawab Ibu.', errordetails: list index out of range
+
+Item 'ae54710a4fdc0037e5290947b813e06f', language 'id', text '"Ibu rasa, sebentar lagi akan segera turun hujan," kata Ibu.', errordetails: list index out of range
+
+Item '459f88bfd1679bb101eeed7cf8978158', language 'id', text '"Tidak, Sayang. Hari ini tidak akan turun hujan. Awan putih kecil kecil itu terlalu tinggi di langit," kata Ibu.', errordetails: list index out of range
+
+Item '6b3ab95b615ace368bcaefcc3565f6fe', language 'id', text '"Mungkin, Sayang. Ada awan gelap melayang rendah di langit," jawab Ibu.', errordetails: list index out of range
+
+Item '3963c59d0b71cf6470bf52661e8f6d06', language 'id', text '"Hore, hujan juga! Hujan turun, hujan turun!", Manu bernyanyi sambil berlari ke jalan.', errordetails: list index out of range
+
+Item 'cb09b0c9ea1b0de6abebe2214d7e3b0b', language 'id', text '"Jika jatuh, kepala kamu bisa cedera," kata Bima.', errordetails: list index out of range
+
+Item 'c74c1fe6ed1e7ce3d8172a8f95c9691f', language 'id', text '"Lukamu harus segera dicuci. Setelah itu, diolesi cairan antiseptik," saran Lana.', errordetails: list index out of range
+
+Item '513ae2b1474ed017d2f48e1eb4b2b9bf', language 'id', text '"Ada banyak saraf di kulitmu. Saraf itu berguna untuk memberikan rasa sakit dan perih," jelas Lana.', errordetails: list index out of range
+
+Item '7b97a067b693302b8b68356ca6317fec', language 'id', text '"Nah, selesai! Besok pasti lukamu sudah kering," kata Lana.', errordetails: list index out of range
+
+Item '9d269329f0ad4c58b9d73e93768305bd', language 'id', text '"Ma, sinyalnya hilang lagi," keluh Caca.', errordetails: list index out of range
+
+Item '34a1f522144448c192c4fe61cd1db334', language 'id', text '"Di hutan ada inyiak," kata pengawal saling berpandangan.', errordetails: list index out of range
+
+Item '6763f52ca4d6334f4ad34c1ff0da0193', language 'id', text '"Aku cari sendiri," ujar Pangeran kesal.', errordetails: list index out of range
+
+Item '4f866a3ee6b3cbbd28431e3c0c0a3f65', language 'id', text '"Itu bukan kremes," kata Ibu.', errordetails: list index out of range
+
+Item 'aea83e7157bfde3dbb7eec6e2aa8a533', language 'id', text '"Oh, beda, ini ikan pantau," kata Ibu.', errordetails: list index out of range
+
+Item '59a43a41a278b79536a4628b3b635fbc', language 'id', text '"Baru saja," jawab Alvin.', errordetails: list index out of range
+
+Item '8e4fa64b32411d5b2943ec3c94ebff26', language 'id', text '"Sini, aku kupas," kata Alvin.', errordetails: list index out of range
+
+Item '2a2a0d75d717262c40457634d45de215', language 'id', text '"Nah, sekarang mangga sudah dikupas," kata Lana.', errordetails: list index out of range
+
+Item 'dcb3ea5e6c1f3690d72200355e27a597', language 'id', text '"Boleh, tapi sekarang kita makan mangga yang muda itu dulu pakai {7c98c463-a55b-4c1e-bb14-b2afd6badd1f}kecap," kata Alvin.', errordetails: list index out of range
+
+Item '97284ba5992723471ab67274643d724f', language 'id', text '"Ya, sudah. Kalau begitu, aku ambil kecapnya dulu, ya," Lana mengalah.', errordetails: list index out of range
+
+Item 'ff57bcb34dcc041fd40d25f0de05d0cc', language 'id', text '"Sudah, dong," jawab Alvin.', errordetails: list index out of range
+
+Item 'beb92f8d8e94dfcd174cee440ef2125f', language 'id', text '"Pernah. Aku juga pernah benjol gara gara terbentur meja belajar ketika aku mencari pulpen," sahut Lana.', errordetails: list index out of range
+
+Item 'd206fa11aa0be446e293aabe46a3ae73', language 'id', text '"Sepertinya benjol sudah mengempis, Alvin," kata Lana setelah setengah jam mengompres kepala Alvin.', errordetails: list index out of range
+
+Item '0c8c74b8d4f8e9308e6d67f1aa9372e2', language 'id', text '"Iya, sudah mengempis. Sakitnya juga sudah berkurang. Terima kasih, ya, Lana," jawab Alvin.', errordetails: list index out of range
+
+Item 'd2d52a435ca1878c3f5121db58a9f02a', language 'id', text '"Iya, Eva," jawabnya.', errordetails: list index out of range
+
+Item '913ece33bba6c2fa2a856c873e61cba1', language 'id', text '"Sebenarnya, aku tidak punya teman di sana," jawab Bintang.', errordetails: list index out of range
+
+Item '69fe4818a89892dd4dd641bfc744ca8b', language 'id', text '"Jangan sedih. Sekarang, aku jadi temanmu," kata Eva.', errordetails: list index out of range
+
+Item 'cb3ba2a805e69768354fdd0fd11ac826', language 'id', text '"Aku malu. Sinarku tidak indah," katanya.', errordetails: list index out of range
+
+Item 'd3c7a679f24118588add67a2a04ba19a', language 'id', text '"Sinarmu indah, kok," kata Eva.', errordetails: list index out of range
+
+Item 'ca60861d3e6a3846a2c123aeff2e63bb', language 'id', text '"Bintang, adikku sakit," kata Eva.', errordetails: list index out of range
+
+Item '624eaa3baa6d36e9e041dc9ee18443a2', language 'id', text '"Aku bisa bantu pakai sinarku," kata Bintang.', errordetails: list index out of range
+
+Item 'b36f75fc052d06f02dacc0463883a6e8', language 'id', text '"Terima kasih, Bintang. Sinarmu yang paling indah," kata Eva dan adiknya.', errordetails: list index out of range
+
+Item '723b55d96dc1075b7c9a2aae7acd67b1', language 'id', text '"Benar. Kami ingin mengajakmu jalan jalan," kata sapi itu lagi.', errordetails: list index out of range
+
+Item 'd7cb44e3cfab5166357f39506e6b7125', language 'id', text '"Ini, pakai saja bajuku," kata sapi itu.', errordetails: list index out of range
+
+Item '54f2bd3d8f03580479cb1cfe11de8967', language 'id', text '"Kamu kerbau beruntung. Ayo, kita bersenang senang," ucap kerbau senang.', errordetails: list index out of range
+
+Item '4b97ca03cf4b7a2b957831bb5ff23430', language 'id', text '"Sabar, ya, Mel. Sebentar lagi upacara selesai," katanya, berusaha menenangkan.', errordetails: list index out of range
+
+Item '27afca114aba1b2b95ec640c555cbc30', language 'id', text '"Kalau sedang mimisan, kita tidak boleh tiduran. Nanti darahnya tertelan dan masuk ke paru paru. Selain itu, posisi duduk begini juga membuat aliran darah jadi lebih lambat," kata Lana ketika Meli ingin tiduran.', errordetails: list index out of range
+
+Item '70bf363793334682d23725af76c3e8ea', language 'id', text '" tanya Kesya bingung. Dia dan Bima berpandangan. "Kesya, tolong ambilkan lap tangan di laci itu,', errordetails: list index out of range
+
+Item '2c8e7459c6b4d2faf9bfd398430c0e63', language 'id', text '"Es mampu mengecilkan pembuluh darah sehingga pendarahan cepat berhenti," jelas Lana.', errordetails: list index out of range
+
+Item '7e28bf67f0aea670a4b4b3c58e119401', language 'id', text '"Sebenarnya, ada cara lain untuk menghentikan mimisan, yakni dengan menggunakan daun sirih. Setelah dicuci bersih, daun sirih digulung, lalu dimasukkan ke hidung yang pendarahan. Daun sirih dikenal ampuh mengobati mimisan karena mengandung zat astringent," Lana menjelaskan.', errordetails: list index out of range
+
+Item '3b11e300230776bfd5634b7f67135771', language 'id', text '"Zat astringent adalah zat yang bisa menciutkan luka. Pendarahan pun akan berhenti," jawab Lana.', errordetails: list index out of range
+
+Item '409228992e8db972397e2a9ba28fae57', language 'id', text '"Terima kasih, Bu," kata Meli.', errordetails: list index out of range
+
+Item '4bc81f5d2a2271e3fa1f20f44f0df427', language 'id', text '"Kamu duduk saja, Mel. Hidungmu masih harus dikompres sampai darahnya benar benar tidak keluar lagi," ujar Lana.', errordetails: list index out of range
+
+Item '7e4b512e4c0b5cf739f611dddee118d6', language 'id', text '"Hanya pelajaran pertama, kok. Nanti aku catat pelajarannya untuk kamu, ya," janji Lana.', errordetails: list index out of range
+
+Item '087e35590197f2eec5e867a2645fddb2', language 'id', text '"Kalau Hani ingin tahu, datanglah ke tempat kami," kata Om Rizal.', errordetails: list index out of range
+
+Item '10ce18d9bc13496be8f8f3ec6c536ef0', language 'id', text '"Jangan lupa bawa kulit buah buahan," kata Bima.', errordetails: list index out of range
+
+Item '18c09021e890f18961fc885d1ee2ad8d', language 'id', text '"Ini namanya batik liek," kata Bima.', errordetails: list index out of range
+
+Item 'ea09c7d6552597007bb9f66517c2b28d', language 'id', text '"Ini batik tanah liek yang sedang kubuat," kata Bima.', errordetails: list index out of range
+
+Item '1feddc21c2cde65aa3e5b377aedba37b', language 'id', text '"Sekarang saatnya mewarnai," kata Bima sambil mengajak Hani pindah ke ruang sebelah.', errordetails: list index out of range
+
+Item 'a0f3811fefefb5acc8c3e45863be622b', language 'id', text '"Tenanglah, sebentar lagi kau akan terbebas," ujar Nilam.', errordetails: list index out of range
+
+Item '97afb347589a53facdd5bcf667f9070f', language 'id', text '"Aku akan memangkas sulur tanaman ini agar tidak menjerat hewan hewan di sini," pikir Nilam.', errordetails: list index out of range
+
+Item '43e5caf8c5d120f39f7c62f9ad410f8d', language 'id', text '"Kenapa kau kembali," tanya Siamang.', errordetails: list index out of range
+
+Item '56610c742f74d9121223526012936ac9', language 'id', text '"Aku butuh daun untuk mengobati kulitku," jawab Nilam.', errordetails: list index out of range
+
+Item '6c9d87e93fe150841f329c03caf01dda', language 'id', text '"Sakit apa? Aku tidak melihatnya," ujar Kuau.', errordetails: list index out of range
+
+Item 'ee64d3cd512bf38cbcb8af8ccf68a559', language 'id', text '"Iya juga, ya," sahut Nilam.', errordetails: list index out of range
+
+Item 'aa172f73ef92a958cdb8a1a5ad2bd465', language 'id', text '"Mungkin karena menolong kami, kamu sembuh," kata Siamang.', errordetails: list index out of range
+
+Item 'bbc9922bad7d2bb8c191953f57c2d2d7', language 'id', text '"Atau, mungkin aku hanya perlu bergerak dan udara segar," kata Nilam tertawa.', errordetails: list index out of range
+
+Item 'ad7a00cd827e73f3d03cfa93ecc0a523', language 'id', text '"Aku akan membantu," kata Siamang.', errordetails: list index out of range
+
+Item 'bba79c8c214d6204db3b30b03c0cc218', language 'id', text '"Hari ini Bu Lupita tidak bisa mengajar karena sakit," kata Bapak Kepala Sekolah.', errordetails: list index out of range
+
+Item 'ff8d55cf20715c22f0317eb5d5377d96', language 'id', text '"Perut kenyang, hati pun senang. Sekarang, kita tidur siang," kata Pak Pino.', errordetails: list index out of range
+
+Item 'e01daf169cc02ea461295d151fe076dd', language 'id', text '"Nah, ini sanggar, tempat berlatih randai," kata Linduang.', errordetails: list index out of range
+
+Item 'aa7a69869fb585384980c9494cc9afe4', language 'id', text '"Iya, kami juga tahu, kok," sahut Sabai.', errordetails: list index out of range
+
+Item '5b3cf44cfd2093dbf47f4c5413426bcc', language 'id', text '"Nah, ini baju randai. Itu namanya deta. Celananya disebut sarawa galembong. Kalau kalian ada pertanyaan, tanyakan saja. Aku tahu semua," ujarnya.', errordetails: list index out of range
+
+Item '819a0009116adcf53577b613b3c55467', language 'id', text '"Iya, tahuuu," Sabai dan teman temannya menjawab serempak.', errordetails: list index out of range
+
+Item 'de0168fe71c8396b8ab74a011b70b1bb', language 'id', text '"Bermain talempong memang agak susah," kata Linduang.', errordetails: list index out of range
+
+Item '1b2ecdea710df88d2feaf82f9c8855e9', language 'id', text '"Berdendang itu perlu latihan. Aku sudah lama tidak latihan," Linduang berdalih.', errordetails: list index out of range
+
+Item '929e555e0341236e26a4c9c97b78784b', language 'id', text '"Nah, ini teks pantun. Aku juga bisa," katanya.', errordetails: list index out of range
+
+Item '2a43c7798d212b465fe61bed9679d446', language 'id', text '"Mau, mau," sahut Sabai cepat.', errordetails: list index out of range
+
+Item 'c2697e7beb826dcf5a27e94a24355b69', language 'id', text '"Boleh," sahut Uda Malin.', errordetails: list index out of range
+
+Item '4486faf0ebf6dea02e9fc624339a8ba8', language 'id', text '"Babendi bendi di Bukiktinggi," Rio menirukan lagu yang dinyanyikan Kakek.', errordetails: list index out of range
+
+Item 'b463483090976a5fa4540e46370dd1ae', language 'id', text '"Coba dengar! Kicau burung burung itu sangat merdu! Jadi syahdu sekali, ya," kata Kesya girang.', errordetails: list index out of range
+
+Item '8928658a410431702105b446029f6812', language 'id', text '"Maaf ya aku, Putra. Aku tidak sengaja," ujar Kesya panik.', errordetails: list index out of range
+
+Item '12d0fc827bd43f6b74ebf30ca9b2c080', language 'id', text '"Olesi dengan pasta gigi saja supaya cepat sembuh," ujar Bima.', errordetails: list index out of range
+
+Item '7ad3562beff61fe42e37bd1cdaa8cd52', language 'id', text '"Jangan! Nanti bisa infeksi," jelas Lana.', errordetails: list index out of range
+
+Item '0cb70c2a5001c15ad2549714426abdae', language 'id', text '"Sudah, aku kira sudah cukup. Sepertinya tanganmu tidak melepuh," kata Lana.', errordetails: list index out of range
+
+Item '978adf81175dc451ee1eda8045f1de83', language 'id', text '"Tidak apa apa. Kamu tidak sengaja, Kesya," kata Putra sambil tersenyum.', errordetails: list index out of range
+
+Item '655c2b6b2bf3006fae0c2506c1e288b7', language 'id', text '"Sekarang kita sudah tahu harus apa jika tubuh kita terkena air panas atau minyak panas," kata Lana.', errordetails: list index out of range
+
+Item '0bb67811c494cc635345fbeb63c38795', language 'id', text '"Tolong bawakan bunga melati," kata Ibu.', errordetails: list index out of range
+
+Item '1116fac2540944ac901252fda6aaf961', language 'id', text '"Teman, ini bunga apa, ya?" "Ini bunga lotus putih," jawab Kumbang.', errordetails: list index out of range
+
+Item 'e69cb48a14b080fdbd83c0a35130098e', language 'id', text '"Yang ini bunga apa?" "Ini bunga lili," kata Lebah.', errordetails: list index out of range
+
+Item '37d3b343225552dae7a58e6de6a76098', language 'id', text '"Nah, yang ini bunga apa?" "Ini bunga kastuba," jawab Laba Laba.', errordetails: list index out of range
+
+Item 'dfd932017b403f0489affd966a72da51', language 'id', text '"Yang ini bunga apa, ya?" "Ini bunga melati," sahut Kunang Kunang.', errordetails: list index out of range
+
+Item '37e6b6fea49aebb81aae049f2fdeba78', language 'id', text '"Bagus, Nak! Sekarang, sarang kita terlihat sangat indah," kata Ibu.', errordetails: list index out of range
+
+Item '89929617bbfb699b4ad9bfa6fa30f6cb', language 'id', text '"Setelah mempelajari tabel perkalian, aku lebih menyukainya," kata Som.', errordetails: list index out of range
+
+Item '7b6e21339904477d8b86570a2105dd49', language 'id', text '"Pelajari saja tabelnya," ujar Nita.', errordetails: list index out of range
+
+Item '007a3ff444bb37bfb7a19a1082874f0c', language 'id', text '"Harga satu kue empat ratus rupiah, Pak." "Aku mau empat," kata Som.', errordetails: list index out of range
+
+Item 'a5a5e37c29332e3fc0af3c435510814a', language 'id', text '"Harganya jadi dua ribu lima ratus rupiah," kata Tey Tey.', errordetails: list index out of range
+
+Item '1604ef6f6d734079b12f97c02ac78163', language 'id', text '"Ibu benar," bisik Tey Tey.', errordetails: list index out of range
+
+Item '23195d35d7c8c7bde230b64e895c0fa2', language 'id', text '"Aku makan bubur ayam yang panas," kata Ani.', errordetails: list index out of range
+
+Item '2f6472fc56e8acf38a6cd78c28a5b472', language 'id', text '"Aku makan agar agar yang dingin," kata Rima.', errordetails: list index out of range
+
+Item '55948d224ed75cab905728b585d2e118', language 'id', text '"Wah, bajuku basah," kata Ani.', errordetails: list index out of range
+
+Item '2b811f9b26baeefe7d82d3baeb2b8b0a', language 'id', text '"Bajuku masih kering," kata Rima.', errordetails: list index out of range
+
+Item '946c35b7bcebb900c47c2be9f795a789', language 'id', text '"Minumku masih banyak," kata Rima.', errordetails: list index out of range
+
+Item 'bcf37c592eadfb49be9e06ae411e2729', language 'id', text '"Minumku sudah habis," kata Ani.', errordetails: list index out of range
+
+Item '2f239ca84a6544812458b85d4af31dc0', language 'id', text '"Ini, aku bagi minuman aku," kata Rima memberi air minum kepada ani "Terima kasih," kata Ani.', errordetails: list index out of range
+
+Item '6e5c9dcc316c79eacab2d0d5fd141810', language 'id', text '"Ketika Idul Fitri, mamaku memasak gulai ayam dan ketupat," jelas Dinda.', errordetails: list index out of range
+
+Item 'a8896bff8379b4a165509bcbe58398d4', language 'id', text '"Saya Hindu. Galungan adalah salah satu hari raya kami," kata Made.', errordetails: list index out of range
+
+Item 'adceecb3631dc9aa80ccfe26c3a35f3c', language 'id', text '"Ibu memasak lawar dan sate babi," jelas Made.', errordetails: list index out of range
+
+Item 'c00a4b644146a7c2195aaf2705555fa1', language 'id', text '"Saya Buddha. Waisak hari raya kami. Itu lahirnya Sang Buddha. Kami ibadah di vihara," cerita Deni.', errordetails: list index out of range
+
+Item '04b8627ff3475b508f7c9f9fa98a3003', language 'id', text '"Mamaku ada kejutan untuk teman teman," tambah Ester.', errordetails: list index out of range
+
+Item '1ecfd0878ca1db311f458d6ea54c69d6', language 'id', text '"Bu, Saliha bawakan tas sayurannya, ya?" "Terima kasih, Saliha. Kamu memang anak baik," kata ibu.', errordetails: list index out of range
+
+Item '6b79a4d512ac204f77f0fab2c8e5a83a', language 'id', text '"Bu, boleh Sali bawakan tasnya juga?" "Boleh, Sali," jawab ibu sambil tersenyum.', errordetails: list index out of range
+
+Item 'ef8338a3bfa7fd14e5f4dfa302b50a52', language 'id', text '"Sakit, ya?" "Iya, Kak," jawab Sali sambil menahan sakit.', errordetails: list index out of range
+
+Item '30ec211de64d796fbc85b03d59b92682', language 'id', text '"Sali tunggu dulu, ya. Kakak ambilkan obat," kata Saliha sambil bergegas mencari obat.', errordetails: list index out of range
+
+Item '020757d9726a227492c3718ab091a6c9', language 'id', text '"Terima kasih, ya, Kak," kata Sali.', errordetails: list index out of range
+
+Item '7cccaab911b2670383b0a7a43cf5099f', language 'id', text '"Cepat sembuh, ya, Sali," doa Saliha.', errordetails: list index out of range
+
+Item '37aac279b0d3b66a3000d2686a944e1a', language 'id', text '"Bonekanya Sali sembunyikan saja," kata Sali pasrah.', errordetails: list index out of range
+
+Item '5cb67284cb2810d2622fe0a7e48391db', language 'id', text '"Boneka Saliha rusak," kata Saliha sedih.', errordetails: list index out of range
+
+Item '41558032fc7d7e98da584d4d00a30cc7', language 'id', text '"Tidak tahu, Kak," jawab Sali sambil menggeleng.', errordetails: list index out of range
+
+Item 'e69ffe6d0078b29e2be867590a73fb5e', language 'id', text '"Kalau Sali jujur, Kakak janji tidak akan marah," Saliha coba ajak Sali mengobrol perlahan.', errordetails: list index out of range
+
+Item 'd70e1ec226e86da74f533d158126f7ca', language 'id', text '"Tadi, Sali tidak sengaja menginjak boneka Kak Saliha. Maaf ya, Kak," kata Sali.', errordetails: list index out of range
+
+Item 'b9b7d45d6f3507ac1db53eb18130c992', language 'id', text '"Kakak senang Sali mau jujur," Saliha memeluk Sali.', errordetails: list index out of range
+
+Item '6912314bfeb1c0f51cfe03f1472cfdcf', language 'id', text '"Gabel masih sangat sedih," kata Mili kepada Nub.', errordetails: list index out of range
+
+Item '3a86dfa48eadd11b419ec621ea7337c0', language 'id', text '"Kira kira, kenapa, ya?" "Kupikir Gabel tidak tahu cara melihat diri sendiri," jawab Nub.', errordetails: list index out of range
+
+Item 'ef57f806445a8498d378a6c356d83ffe', language 'id', text '"Bawa ke luar pakai kertas," kata si ibu.', errordetails: list index out of range
+
+Item '77379713dfc53e0cde80037a5761d3e0', language 'id', text '"Nah, turun di sini, ya," kata si gadis kecil.', errordetails: list index out of range
+
+Item 'f5c0d5aa05d3abb1c15d4210ad5520e6', language 'id', text '"Kalau kita bekerja sama, kamar ini bisa rapi dengan cepat," kata Saliha.', errordetails: list index out of range
+
+Item 'bc585d7dc35f4b0603446c9564947f7d', language 'id', text '"Aku menaruh buku ke dalam rak. Kak Saliha yang menyusun mainanku ke atas rak buku," kata Sali.', errordetails: list index out of range
+
+Item 'e12d486a40f79118138483e3e3fe86bf', language 'id', text '"Aku sakit. Aku cuma bisa berjalan pelan," keluh Jangkrik.', errordetails: list index out of range
+
+Item 'b0a1b698dc25d11e1331ea0aa9e4bc6a', language 'id', text '"Mungkin aku harus ikut juga," kata Katak.', errordetails: list index out of range
+
+Item '3efd9846dba361b71bb8fb1d93999c17', language 'id', text '"Aku cuma bisa berjalan pelan," keluh jangkrik.', errordetails: list index out of range
+
+Item '6d54b9ee85efc36935fffe90420cfcbe', language 'id', text '"Aku harus ikut juga," kata Katak.', errordetails: list index out of range
+
+Item '798cd187a3097997fc086bb0a7dae5e8', language 'id', text '"Aku ambilkan, Bu," seru Mehung.', errordetails: list index out of range
+
+Item 'ab9cb4b9bb4e9756f192096ddd4417e4', language 'id', text '"Mehung! Aku mau menjemur topiku," ujar Bu Sapi.', errordetails: list index out of range
+
+Item 'b037cf5886fa19db557615fde74467ae', language 'id', text '"Mehung! Aku mau taruh topiku di pohon," kata Bu Sapi.', errordetails: list index out of range
+
+Item '8cbfc8067e35933beb310bf49141511c', language 'id', text '"Lembek, terlalu banyak air," kata Dita.', errordetails: list index out of range
+
+Item '30bf24a2c98bc9d4594f779bd51d6371', language 'id', text '"Tekan lebih kuat lagi," kata Dita.', errordetails: list index out of range
+
+Item '6262598bfbd3c1d3611f5b1227a74168', language 'id', text '"Oh, bisa jadi ayam itu yang mematuknya," Kinan menduga.', errordetails: list index out of range
+
+Item '96953b00b65bdd1a78fe1c4c402a9579', language 'id', text '"Terima kasih, Pak Beruang," kata Bu Burung.', errordetails: list index out of range
+
+Item 'f0987fc75dddb0f4b943ef6153da8156', language 'id', text '"Terima kasih, Pak Beruang. Kemarin Bapak sudah mengantarkan anakku yang tersesat," kata Pak Kelinci.', errordetails: list index out of range
+
+Item '19471c9cc3144efffa5399236c482813', language 'id', text '"Kami setuju ajak kamu," kata sapi biru.', errordetails: list index out of range
+
+Item '9ae48d9b92927dad60fdf823240bfcc1', language 'id', text '"Kamu akan jadi bintang terindah di sini," kata Eva gembira.', errordetails: list index out of range
+
+Item '61783ae5c8858cf035fbf167c3642bef', language 'id', text '"Terima kasih, Bintang. Sinarmu indah dan ampuh usir sakit," kata Eva dan adik.', errordetails: list index out of range
+
+Item '71d23a3e1761b8c42289047d26d79325', language 'id', text '"Nenek, mana buku detektif milikku?" "Aduh, nenek lupa," kata nenek.', errordetails: list index out of range
+
+Item 'dc42043d4e41ce78f2d051234b643974', language 'id', text '"Cari buku detektif ya," bujuk rita.', errordetails: list index out of range
+
+Item '7860f66b9fde48bc83c51356fd2d1f94', language 'id', text '"Terima kasih nenek," kata mereka.', errordetails: list index out of range
+
+Item '2e5936e2b7410c7f701f40e072c25cd5', language 'id', text '"Mardu! Kamu sudah ada sayap, ya. Ayo, bertamu ke rumahku," ajak si Kenari.', errordetails: list index out of range
+
+Item 'febb1465e2b427961c69a0e68dc92d95', language 'id', text '"Ini rumahku, Mardu. Ayah ibuku bikin rumah ini lama sekali. Karena itu, aku perlu menjaga rumah ini," cerita Kenari.', errordetails: list index out of range
+
+Item 'a63b890aab9e10fb92303bea09944b0f', language 'id', text '"Ayah ibuku susah payah bikin rumahku ini," kata Ketilang.', errordetails: list index out of range
+
+Item '1904dbe9c57c1c40b9d672542dd3fb6d', language 'id', text '"Ibu ajar aku bikin rumah ini. Rumah ini dari kayu. Kayu disusun satu demi satu," ujar si Pipit.', errordetails: list index out of range
+
+Item '974ba78255729aa4c6351b810e0c61da', language 'id', text '"Mardu, rumahku berbeda. Ini bukan bikinan burung," kata si Merpati.', errordetails: list index out of range
+
+Item 'c44b0143fccfc1f93657467d4ab389ee', language 'id', text '"Aku tidak boleh merusak rumah burung," kata Mardu.', errordetails: list index out of range
+
+Item 'dcea010b03138011af440b5e76af12ff', language 'id', text '"Aku janji pada ayah dan ibu. Aku akan selalu merawat rumah kami," kata Mardu.', errordetails: list index out of range
+
+Item '1ca49efb9975b39be46ca44bc57322fe', language 'id', text '"Mardu! Ayo, ikut aku! Gunakan sayap kamu, ya," ajak Kenari.', errordetails: list index out of range
+
+Item 'd5835811689b52b06c983d7705cc0eb4', language 'id', text '"Ini rumahku," ucap Kenari.', errordetails: list index out of range
+
+Item '1e9a595953f2e05e6dd1f4ef470275fb', language 'id', text '"Ayo, mampir ke rumahku," ucap Pipit.', errordetails: list index out of range
+
+Item '2a0cbf458183ffd05e1199ad2bed8821', language 'id', text '"Berkat rumahku, aku aman dari panas dan hujan. Aku bisa berteduh di malam gelap," kata Pipit kepada Mardu.', errordetails: list index out of range
+
+Item 'e436f4ddeb0a17b33fec1cccdc011278', language 'id', text '"Aku tidak bikin rumah sendiri. Tapi, aku suka rumahku," ucap Merpati.', errordetails: list index out of range
+
+Item 'adc805ba272ba1e195e5dbf72a24c016', language 'id', text '"Berkat sayap ini, aku jadi tahu rumah Kenari, Pipit, dan Merpati," kata Mardu gembira.', errordetails: list index out of range
+
+Item 'e255d6109201673345e0198694717d7e', language 'id', text '"Aku jadi rindu rumahku," kata Mardu.', errordetails: list index out of range
+
+Item '7654080c2b9709691d99dae712c79d36', language 'id', text '"Ini rumahku. Rumahku ini dari ayah dan ibuku," cerita Burung Kenari.', errordetails: list index out of range
+
+Item '17942c14bc5f04d2b60cbbcf5e21f29f', language 'id', text '"Susah sekali membangun rumahku ini. Ayah dan ibuku dulu juga begitu," kata Ketilang.', errordetails: list index out of range
+
+Item '8e9af08ad41988fb98e72bd5102dfdfd', language 'id', text '"Ibu mengajariku membangun rumah ini dari rumput rumput kering yang disusun satu per satu," cerita Pipit.', errordetails: list index out of range
+
+Item '6fbbfaf74f8246c9995df1e151a6ed0f', language 'id', text '"Rumahku melindungi aku dan anak anak aku dari panas dan hujan," kata Burung Pipit.', errordetails: list index out of range
+
+Item '69e8d63994160616625046c74149b6e4', language 'id', text '"Aku baru tahu burung bekerja keras membangun sarang mereka," kata Mardu.', errordetails: list index out of range
+
+Item '86ce2a608ea2cc64808eb8bff2965ebf', language 'id', text '"Aku juga ingin segera pulang. Aku kangen rumahku," kata Mardu.', errordetails: list index out of range
+
+Item '2f41c1cc160e3578c14630df00ded325', language 'id', text '"Aku mau bikin bola yang lebih besar. Carilah bahan ke hutan," kata Pangeran.', errordetails: list index out of range
+
+Item '3930921adab18513d841e0ecbd7526af', language 'id', text '"Tapi, di hutan, ada harimau, Pangeran," kata para pengawal.', errordetails: list index out of range
+
+Item 'e0e603ced3374abe41446547869a64d3', language 'id', text '"Huh, sama harimau saja takut. Kalau aku bertemu harimau, aku pasti berani," kata Pangeran.', errordetails: list index out of range
+
+Item 'edc46e44bf6eb0bb3e99e33627decc1e', language 'id', text '"Oh, aku takut bertemu harimau itu. Aku juga tidak tahu jalan pulang ke rumah," kata Pangeran.', errordetails: list index out of range
+
+Item '7cd577dea9f64d4a142437d69f9a1fe1', language 'id', text '"Jangan, Ayah. Harimau ini tadi menolongku," kata Pangeran.', errordetails: list index out of range
+
+Item '10d1ff6d3e42011728287eaf05416758', language 'id', text '"Sejak hari ini, kita dan harimau akan saling menjaga dan menolong," kata Raja.', errordetails: list index out of range
+
+Item '102ca7b31f16ac3569e9fe9305c2dff1', language 'id', text '"Hore, berhasil! Itu istana," seru Pangeran.', errordetails: list index out of range
+
+Item '49f11e1acca3ef92eb2778a06ed1183d', language 'id', text '"Nanti Bimo libur sekolah, kita keliling kota, ya," kata Kakek.', errordetails: list index out of range
+
+Item 'ffb067280c18979ed16dcba263096fd1', language 'id', text '"Kakek sudah tidak bisa jalan kaki lama. Jadi, kita keliling kota sambil duduk di bendi, ya," ujar Kakek.', errordetails: list index out of range
+
+Item 'e475cbc4939049d93eb1cf8ff96dccc0', language 'id', text '"Bimo, kita jalan jalan ke Pasar Atas, yuk," ajak Kakek.', errordetails: list index out of range
+
+Item '487d74f2d2e8e983f60096713f056807', language 'id', text '"Aku lihat kulitmu, ya," kata Nilam.', errordetails: list index out of range
+
+Item 'b8f37910086f1679e73a1509e7ccebdb', language 'id', text '"Tenang, tidak lama lagi kakimu akan sembuh," ujar Nilam.', errordetails: list index out of range
+
+Item '034280319293fc39be7a6fa8beee69a0', language 'id', text '"Sebentar, ya, aku bantu," kata Nilam.', errordetails: list index out of range
+
+Item 'a517ce78cbb99977c472d04981ade50d', language 'id', text '"Aku potong saja sulur tanaman ini agar tidak menjerat hewan hewan di sini," pikir Nilam.', errordetails: list index out of range
+
+Item '71b8a99e15a4cb3d748accec769e4fe7', language 'id', text '"Kami akan bantu kamu, Nilam," kata hewan hewan hutan.', errordetails: list index out of range
+
+Item '506b26af87a54eb6bfb4b00d2cd07c78', language 'id', text '"Terima kasih, Siamang dan teman teman," kata Nilam.', errordetails: list index out of range
+
+Item 'a59ca0f6733b86bc0fdf4cae1cc02a4a', language 'id', text '"Kami tahu," jawab Sabai.', errordetails: list index out of range
+
+Item '5cbbf1bfd4649f818e1a4126cae0fe31', language 'id', text '"Itu talempong," kata Linduang menunjuk salah satu alat musik.', errordetails: list index out of range
+
+Item 'a98c7f973992b8809a0b2ed83ee7c75e', language 'id', text '"Kami tahu," jawab Sabai lagi.', errordetails: list index out of range
+
+Item '7f6e0463c635bd597962c8a25333367c', language 'id', text '"Saya suka lagu itu," kata Linduang.', errordetails: list index out of range
+
+Item '66bfb81de433cb1122b9a6bfa6b12948', language 'id', text '"Ayo, segera cuci lukamu," kata Lana.', errordetails: list index out of range
+
+Item '3b3adce8aa2718bf69d759d12a7143ba', language 'id', text '"Kamu bohong! Timun Mas masih di sekitar sini," kata Raksasa.', errordetails: list index out of range
+
+Item '95088c22b81feb84b81bc4795844900c', language 'id', text '"Timun Mas bisa jadi ada di sini," kata Raksasa.', errordetails: list index out of range
+
+Item '17b37d29682214307f85a51fcf7bd5c2', language 'id', text '"Bukan cuma es saja, tapi sirih juga bisa untuk bantu ketika kita mimisan," jelas Sulis.', errordetails: list index out of range
+
+Item 'f600034472248869ebf692b1f2b1889d', language 'id', text '"Aku yang akan mengurus seluruh makanan," kata Ayam.', errordetails: list index out of range
+
+Item '99bf4645599bb272638b5497ed6e8406', language 'id', text '"Bu, Saliha bawakan tas sayur itu, ya?" "Terima kasih, Saliha. Kamu pintar sekali sudah bisa bantu Ibu," kata ibu.', errordetails: list index out of range
+
+Item '3ebc5ea81514758d29ecacd14246e1bb', language 'id', text '"Bu, boleh Sali bawakan belanja Ibu juga?" "Boleh, Sali! Kamu bisa bawakan tas berisi telur ini, ya," kata Ibu kepada Sali.', errordetails: list index out of range
+
+Item 'b1a9767a1a6785a497e163b81464eb06', language 'id', text '"Sali di sini dulu, ya. Kakak ambilkan obat," kata Saliha sambil bergegas mencari obat.', errordetails: list index out of range
+
+Item 'fc582916ce4397f1f3f8e4854c257bda', language 'id', text '"Terima kasih, ya, Kak. Lutut Sali tidak terlalu sakit lagi," kata Sali.', errordetails: list index out of range
+
+Item '70ae10fbc52f7b3528a1f702ea0fe6c4', language 'id', text '"Aku bantu membuka tutup termos teh, ya," kata Putra', errordetails: list index out of range
+
+Item '243b7ff78bcad3a02d895f0cce403bb6', language 'id', text '"Maaf ya Putra," ujar Sasa panik.', errordetails: list index out of range
+
+Item '3b06fc6fdd9bd981eb292f5cd4a46938', language 'id', text '"Sudah, aku kira sudah cukup. Kulitmu tidak melepuh," kata Lana.', errordetails: list index out of range
+
+Item '1335df26e5b500099b12f550ce10e1c9', language 'id', text '"Sekali lagi, aku minta maaf ya, Putra," Sasa masih merasa bersalah.', errordetails: list index out of range
+
+Item '23589b8a8d5e59c393250487538a00dd', language 'id', text '"Tidak apa apa Sasa," kata Putra.', errordetails: list index out of range
+
+Item 'fa62bc9e5eb978e9e5e3e0a2af40295f', language 'id', text '"Sama sama Putra. Lewat ini, kita jadi tahu, harus apa jika tubuh kita terkena benda panas," kata Lana.', errordetails: list index out of range
+
+Item '42f9c69b2583f93da74c0cdb16ad198d', language 'id', text '"Sali, kamu tahu kenapa boneka kakak rusak?" "Tidak tahu, Kak," kata Sali takut takut.', errordetails: list index out of range
+
+Item 'a30d19e68692e4767f502e772f98c537', language 'id', text '"Jika Sali jujur, Kakak janji tidak akan marah," kata Saliha selagi memeluk Sali.', errordetails: list index out of range
+
+Item 'ebaf3df7de6bb8a45aaa8c002cb5b088', language 'id', text '"Nanti kamu jatuh lho? Bisa bisa kepala kamu cedera," kata Bima.', errordetails: list index out of range
+
+Item '74ac2aaa429c101bf54958275fee01da', language 'id', text '"Ayo, bikin kepala Nuna lebih rendah dari badan Nuna," kata Lana.', errordetails: list index out of range
+
+Item 'c77278a72a7f673783a47449b2c16248', language 'id', text '"Nanti kalau kamu jatuh bagaimana? Bisa bisa kepala kamu cedera," kata Bima.', errordetails: list index out of range
+
+Item '74a67ef8df55c3abbd98c4ae71039156', language 'id', text '"Tenang saja," kata Nuna tidak peduli.', errordetails: list index out of range
+
+Item 'a4561353aae62eba4ba5a67af59cdfff', language 'id', text '"Kepala Nuna harus lebih rendah dari badan Nuna," saran Lana.', errordetails: list index out of range
+
+Item '393a8c3ee7722049e5a6105e17fb3d8e', language 'id', text '"Kalau begitu, aku geser pelan pelan ya," kata Ari.', errordetails: list index out of range
+
+Item '7c59ed2fb568a8df7fdbec54e4e56289', language 'id', text '"Mengkhayal apa sih kak? Kasih tahu dong!" "Aku tidak bisa kasih tahu kamu," kata kak Adi.', errordetails: list index out of range
+
+Item '02c070f5958f1fe038c627e87e4d2516', language 'id', text '"Tidak dong," jawab Kak Adi sambil memalingkan muka.', errordetails: list index out of range
+
+Item '551be55e570fdb5cf8753b51a4cba7eb', language 'id', text '"Syukurlah kita bisa makan nasi kotak enak ini," kata kak Adi sambil tertawa.', errordetails: list index out of range
+
+Item '417f60adad5c83173f4fd0e2a2cd73c5', language 'id', text '"Oh, aku pinjam buku Pulau Naga untukmu kemarin," kata Rana.', errordetails: list index out of range
+
+Item '133632c393838fd7acdb946490b753c1', language 'id', text '"Aku lagi bantu Nenek masak nasi goreng beras jagung," kata Koko.', errordetails: list index out of range
+
+Item 'e0293fac1e56ba773dd9ff5c443ab7f0', language 'id', text '"Sini, aku lagi bantu nenek masak nasi goreng beras jagung," kata Abdul.', errordetails: list index out of range
+
+Item '2d6959ecf8cdda262d9e56e10813d6a9', language 'id', text '"Coba untuk bersih bersih, Ru," kata Jeje.', errordetails: list index out of range
+
+Item '2738a55df28c1bb54f856c407fddac97', language 'id', text '"Mudah, kok. Kita meronce manik besar," hibur Uyul.', errordetails: list index out of range
+
+Item 'e6fd0bd9343daf19deb64739852a5727', language 'id', text '"Kalau kamu tekun, pasti bisa," kata mamak Uyul.', errordetails: list index out of range
+
+Item 'a004f67f52a10ecc9210be73dc0e7a24', language 'id', text '"Bagus," puji Uyul.', errordetails: list index out of range
+
+Item 'cee2937d9cad586817dffbdc309a2891', language 'id', text '"Berikan ini untuk Menik," kata mamak Uyul.', errordetails: list index out of range
+
+Item 'b529c12f8d520a0c5a54b31629ebbba0', language 'id', text '"Selamat jalan, Menik," bisik Uyul.', errordetails: list index out of range
+
+Item 'd260fb1ff7615ebd8f127b54216042d8', language 'id', text '"Aku akan merindukan kalian," jawab Menik.', errordetails: list index out of range
+
+Item '184e92911fc460b969fa355e805fea21', language 'id', text '"Mudah, kok. Kita meronce manik besar saja dulu," hibur Uyul.', errordetails: list index out of range
+
+Item 'e7297e501a1e309810a95662dcad3655', language 'id', text '"Mamakku yang bikin," kata Uyul.', errordetails: list index out of range
+
+Item 'b49aa8d743ab9bd84df05551424881e0', language 'id', text '"Tiwul makanan dari desa kita," kata nenek.', errordetails: list index out of range
+
+Item '8dcd15a99b5cb261b13774321e6bf2ac', language 'id', text '"Kamu bisa baca petunjuk itu, Tipi," kata pak Jeri.', errordetails: list index out of range
+
+Item 'fb58b680a89d1ba174024b0637d87e62', language 'id', text '"Kamu bisa baca petunjuk jalan itu, Tipi," jawab pak jeri.', errordetails: list index out of range
+
+Item '2bb7097347b38fefbecc3e22c77d90fa', language 'id', text '"Dah Tipi, sampai nanti," kata Ibu sambil melambai dari kejauhan.', errordetails: list index out of range
+
+Item '380c45eded9935108d69e9099626dec1', language 'id', text '"Ayah, Ibu, jangan lama lama pergi," kata Tipi.', errordetails: list index out of range
+
+Item '20c9019cc0111dc1fee7b3b61568d52a', language 'id', text '"Bi, boleh aku pergi ke rumah Robi? Aku tak bisa bermain lompat tali sendiri," kata Tipi.', errordetails: list index out of range
+
+Item '7ad891c518cbe6f4bd64512f5fd1c5d8', language 'id', text '"Terima kasih," kata induk kucing.', errordetails: list index out of range
+
+Item 'f0418ce0db361cf38a0ecccf78e94b90', language 'id', text '"Aku juga akan membaca," seru Jodi.', errordetails: list index out of range
+
+Item 'dfd8b5745a577f4b45825e92e638f99f', language 'id', text '"Ini perpustakaan. Di perpustakaan tidak boleh bersuara keras," kata Moli.', errordetails: list index out of range
+
+Item '23322f418c81bfc8c12b6a9a4dcf65d5', language 'id', text '"Ibu akan masak gado gado dan bikin es buah," kata Ibu.', errordetails: list index out of range
+
+Item '7b022560f7d506f1734c55aa0e6bafa8', language 'id', text '"Sayur dan buah warna warni sudah jadi gado gado dan es buah," kata Ibu.', errordetails: list index out of range
+
+Item '95f0e67084f4a7fe3a55114d26685ade', language 'id', text '"Enak saja! Botol ini milik aku," kata Keni.', errordetails: list index out of range
+
+Item '453741ff7b55998818ff005e966c85b7', language 'id', text '"Syukurlah mereka sudah pergi," Tukik merasa lega.', errordetails: list index out of range
+
+Item '1140b129ccfda4a34c4b26fadfadb9c2', language 'id', text '"Aku harus segera ke laut," katanya sambil bergegas menuju laut.', errordetails: list index out of range
+
+Item 'b1a5bf4b4d071206b05b5159c527cb6e', language 'id', text '"Hari ini, Bu Lupita sakit," kata bapak kepala sekolah.', errordetails: list index out of range
+
+Item '19e2a29fb72f777db626aa47d1d028aa', language 'id', text '"Betul sekali Pak," kata pak Pino.', errordetails: list index out of range
+
+Item 'e884f491e8d704458ebae51d87a68e1d', language 'id', text '"Hari ini, ayo kita belajar musik. Kita latihan vokal ya," ajak pak Pino.', errordetails: list index out of range
+
+Item 'e9e65711c829b3c61e6267c14cfd51e2', language 'id', text '"Ayo, kita bawa bekal, dan ke bukit sama sama," ajak pak Pino.', errordetails: list index out of range
+
+Item '00d5f34cdd6681663a88f1ade5527ad7', language 'id', text '"Terima kasih pak Pino," kata anak anak.', errordetails: list index out of range
+
+Item '33e6c787c3ab23881bdc03e0ae3ae0b9', language 'id', text '"Sssttt, jangan berisik, ya! Aku punya tempat untukmu," bisik Mimi sambil menggendong si Loreng.', errordetails: list index out of range
+
+Item '576f0696e0210d013a1dd57ba030b216', language 'id', text '"Aku meminjam buku Pulau Naga untukmu kemarin," kata Rana.', errordetails: list index out of range
+
+Item 'c1f46e66aadbab49e571ebd727a027b2', language 'id', text '"Coba, kamu beri titik titik di sini dulu yang mudah. Pelan pelan saja supaya hasilnya rapi," pesan Mbak Jani.', errordetails: list index out of range
+
+Item '95fce13241d4fbc19170e2ef54b35c83', language 'id', text '"Terima kasih Titi, sudah ikut membantu," kata Bapak.', errordetails: list index out of range
+
+Item '14ee911638665cedf2177d6bdc50f82e', language 'id', text '"Hari ini kita mulai berlatih tari bondan, ya," kata Bu Nesya kepada muridnya.', errordetails: list index out of range
+
+Item 'a31b8a4d621d3b9deae98ba6970d90df', language 'id', text '"Kamu tidak boleh di sini karena tidak ikut les," kata anak berambut ikal.', errordetails: list index out of range
+
+Item '3958f4891e4737c1104832f23d99802b', language 'id', text '"Tapi, aku mau menari, Bu," sahut Cempluk.', errordetails: list index out of range
+
+Item '7964a38e58a9faa495b9ffed4c42d972', language 'id', text '"Aku tak pernah merasa repot kok," timpal Ulil.', errordetails: list index out of range
+
+Item '4041ce664f1b42f3154019a106d7c2df', language 'id', text '"Makanlah aku saja. Kau boleh makan aku sesuka hati," kata Bulan.', errordetails: list index out of range
+
+Item '1ff3cabbb1d0bf00eddca05974f67d01', language 'id', text '"Betul! Magnet bisa menempel ke jenis logam tertentu, tapi tidak ke benda lain," kata Tante San.', errordetails: list index out of range
+
+Item '3101cc078b732417b58e141fef9b2a57', language 'id', text '"Ketika kami arahkan mobil kecil dan kunci ke logam itu, mereka bisa menempel," jawab Nari.', errordetails: list index out of range
+
+Item 'aeef3cc98c95320eeabefb60446cadd1', language 'id', text '"Tapi, tidak terjadi apa apa dengan buku dan benang," kata Soka.', errordetails: list index out of range
+
+Item 'b8fd8b32c2c25c61d467045cab1d0cdb', language 'id', text '"Tolong bawakan bunga arumdalu, Kolibri," pinta ibu Kolibri.', errordetails: list index out of range
+
+Item '83db7cdb0f5192375d3eda76093cba5f', language 'id', text '"Teman, ini bunga apa, ya?" "Ini bunga lotus putih, Kolibri," jawab Kumbang.', errordetails: list index out of range
+
+Item 'f9103789a546ea50052de920d7acc43a', language 'id', text '"Teman, ini bunga apa, ya?" "Oh, ini dahlia, Kolibri," jawab Kupu Kupu.', errordetails: list index out of range
+
+Item 'f22af144ef4fbcffa640d11ccdf7e396', language 'id', text '"Nah, ini bunga apa?" "Ini bunga matahari, Kolibri," ujar Ulat.', errordetails: list index out of range
+
+Item '5e2a866b53ab39b2ba464b20d91db684', language 'id', text '"Nah, yang ini bunga apa?" "Ini bunga kastuba, Kolibri," jawab Laba Laba.', errordetails: list index out of range
+
+Item 'a95f504a4c454a83d390822cffa88c55', language 'id', text '"Yang ini bunga apa, ya?" "Ini bunga arumdalu, Kolibri," sahut Kunang Kunang.', errordetails: list index out of range
+
+Item '77cd499661510f84abd343d1bc397289', language 'id', text '"Bagus, Kolibri! Sekarang, sarang kita terlihat sangat indah," kata Ibu.', errordetails: list index out of range
+
+Item '37849301b0120bdd9e2c3c06541456c6', language 'id', text '"Bagus, Nak! Rumah kita jadi indah," kata Ibu.', errordetails: list index out of range
+
+Item '60ab812083e116dd44d7596ac2a3623b', language 'id', text '"Bayi bayi di sini ada yang tidak memiliki ayah dan ibu," jelas Bu Mawar.', errordetails: list index out of range
+
+Item '628834b2f52290b9874843a7f7d6bcea', language 'id', text '"Di Hari Raya Idul Fitri, mama memasak ketupat," kata Dinda.', errordetails: list index out of range
+
+Item '8c6227da49d28e5e755cdfd08c4ed9d0', language 'id', text '"Kami Hari Raya Galungan di pura. Ibu memasak lawar dan sate babi," jelas Made.', errordetails: list index out of range
+
+Item '2b8768a41a1cec64a68666246cdba801', language 'id', text '"Kami Hari Raya Waisak di vihara," cerita Deni.', errordetails: list index out of range
+
+Item '124b3e6fb303ae560e303fd3775adaf6', language 'id', text '"Mamaku ada kejutan untuk teman teman," kata Ester.', errordetails: list index out of range
+
+Item '444be68e1d5107c8173f765ececb4239', language 'id', text '"Gulai ayam yang nikmat," kata Dinda.', errordetails: list index out of range
+
+Item '7f825e1938f6e7c1a6239e7d65fec172', language 'id', text '"Saya suka sekali rendang sapi ini," balas Beto.', errordetails: list index out of range
+
+Item 'dccbf4de3b742bc1c30e68a29a7cf23c', language 'id', text '"Hari rayaku adalah Idul Fitri," kata Dinda.', errordetails: list index out of range
+
+Item '56e3ee13431d160f020b7d1e8654e041', language 'id', text '"Mamaku memasak gulai ayam dan ketupat," jelas Dinda.', errordetails: list index out of range
+
+Item 'bfee174b6686466bf3ef6496dbb33f03', language 'id', text '"Hari Raya saya Galungan," kata Made.', errordetails: list index out of range
+
+Item '3c4bb5afb3da93f980a77ad69c6e0e9b', language 'id', text '"Kami ibadah di pura," sambung Made lagi.', errordetails: list index out of range
+
+Item '1e6b7c139e7211c4ff0e39397c90989c', language 'id', text '"Di Hari Raya Waisak, kami ke vihara," cerita Deni.', errordetails: list index out of range
+
+Item '747c7ee6385681982aa1f04aa8876848', language 'id', text '"Itu hari lahir Sang Buddha," lanjut Deni.', errordetails: list index out of range
+
+Item '92dd6dfd8d811559cd3b93f0fe2a70dd', language 'id', text '"Ibu juga memasak menu hari raya," jelas Deni lagi.', errordetails: list index out of range
+
+Item '9a2b2184e54dcc5943edf9835dd27931', language 'id', text '"Saya jadi tahu macam macam hari raya," lanjut Beto.', errordetails: list index out of range
+
+Item 'c20c27ec106f7cec8afcb1d6ccd7884a', language 'id', text '"Maaf ya, Putra. Aku tak sengaja," ujar Sasa panik.', errordetails: list index out of range
+
+Item '3f7dc087534091406c160535ecedd7b7', language 'id', text '"Sekali lagi aku minta maaf ya, Putra," Sasa masih tampak merasa bersalah.', errordetails: list index out of range
+
+Item 'bfb98bea215b86ea40e84ee40aa21003', language 'id', text '"Tidak apa apa. Kamu kan tidak sengaja, Sasa," kata Putra sambil tersenyum.', errordetails: list index out of range
+
+Item '0d2d86b53990393e7f4c04360597b201', language 'id', text '"Sekarang, kita sudah tahu harus apa jika tubuh kita terkena air panas atau minyak panas," kata Lana.', errordetails: list index out of range
+
+Item 'ae52fb05bc1356b8ebbd1419d982daa7', language 'id', text '"Sebentar ya, Sali. Kakak ambilkan obat," kata Saliha sambil bergegas mencari obat.', errordetails: list index out of range
+
+Item '0da39e40be1f3f1914180f5ab615673c', language 'id', text '"Cepat sembuh, ya, Sali," kata Saliha.', errordetails: list index out of range
+
+Item '21706779a70eeab4af207b541c799eff', language 'id', text '"Boneka itu Sali taruh ke balik bantal saja," kata Sali gugup.', errordetails: list index out of range
+
+Item 'f06ecea55cd2655cd66b900acd13124b', language 'id', text '"Oh, tidak! Boneka Saliha rusak," kata Saliha sedih dan galau.', errordetails: list index out of range
+
+Item 'b784f239beeb32e430ec1c6bf663e22f', language 'id', text '"Tidak tahu, Kak," jawab Sali pelan.', errordetails: list index out of range
+
+Item '5bbe5e98cedf6b15450fff9ddd199ee6', language 'id', text '"Kalau Sali jujur, Kakak janji tidak akan marah," Saliha coba ajak Sali bicara perlahan.', errordetails: list index out of range
+
+Item '9a877b8d3bc1435e48d0bcee6327d3f9', language 'id', text '"Aku marah karena aku taruh topiku di pohon," kata Bu Sapi.', errordetails: list index out of range
+
+Item 'cf9e817c99c2b9abc21622b43f6acb1e', language 'id', text '"Sabtu depan ketika David libur sekolah saja," jawab kakek.', errordetails: list index out of range
+
+Item 'da301342101104f5b00492576e5187d7', language 'id', text '"Kakek sudah tidak bisa jalan kaki lama. Jadi, kita ke kota sambil duduk di bendi, ya," ujar kakek.', errordetails: list index out of range
+
+Item '71977befb73a4f3b979212ad2631a617', language 'id', text '"David, kita jalan jalan ke Pasar Atas, yuk," ajak kakek.', errordetails: list index out of range
+
+Item '35b99ae5d587b1d524f912963044d99c', language 'id', text '"Ayo, ikut ke rumahku," ajak si Kenari.', errordetails: list index out of range
+
+Item 'ce13ef7d3e20238ee77f9a78aeefe9c4', language 'id', text '"Ini rumahku. Ayah ibuku bikin rumah ini lama sekali. Karena itu, aku perlu merawat rumah ini," cerita Kenari.', errordetails: list index out of range
+
+Item 'c5bcb14a4f40fbf829ee2dd708940425', language 'id', text '"Ibu ajar aku bikin rumah ini. Rumah ini dari kayu. Kayu disusun satu demi satu," kata si Pipit.', errordetails: list index out of range
+
+Item 'a05e9211a10ca6197627c6c514c565dc', language 'id', text '"Ini rumahku. Ini bukan bikinan burung," kata si Merpati.', errordetails: list index out of range
+
+Item '887f804dde8254a386b85ecb608bd834', language 'id', text '"Aku cari di sini saja," kata Ned.', errordetails: list index out of range
+
+Item '0d914efc67558686285c3faa88b9c00e', language 'id', text '"Aku butuh rumah," Kata Ned.', errordetails: list index out of range
+
+Item '10a22470f8bfcb68fe2949da58ca0d1f', language 'id', text '"Baik, tapi cari kayu dulu," kata Buku', errordetails: list index out of range
+
+Item '67ad5eda047806cd493d5110b4d99b9c', language 'id', text '"Tidak ada buku seperti aku," Jawab Buku.', errordetails: list index out of range
+
+Item '3dd6a9a01cc044baf6259df584b724e0', language 'id', text '"Masih ada satu raksasa lagi," kata Buku.', errordetails: list index out of range
+
+Item 'e5635e62235dd809257f290d504b4305', language 'id', text '"Roti ini sangat enak sekali," kata Ned terlihat senang.', errordetails: list index out of range
+
+Item '6babc456f38a1aa64b9f07e8be36d314', language 'id', text '"Di sini sangat dingin," katanya.', errordetails: list index out of range
+
+Item '2c4b47e9a800edbd3dc56c7a70b6ee1b', language 'id', text '"Saya punya trik untuk bikin hangat," kata buku sihir Ned.', errordetails: list index out of range
+
+Item 'fd409851c7d6c7f4f66050ee0d62c367', language 'id', text '"Aku sudah sangat sibuk akhir akhir ini," kata Ned.', errordetails: list index out of range
+
+Item 'c599afc7f1d1e3af138edf8845c7833d', language 'id', text '"Setelah kamu selesai, akan ada banyak waktu untuk bersantai," kata Buku itu.', errordetails: list index out of range
+
+Item '63cb0c877e8827998a2d8c18da8e5d00', language 'id', text '"Ini adalah batu kerikil," kata Buku itu.', errordetails: list index out of range
+
+Item '2108a04e62293e48c3cd01bf6e95aa27', language 'id', text '"Ini tidak terlihat seperti batu yang ada di dalam lubang ini," kata Ned.', errordetails: list index out of range
+
+Item 'cba123f171608424526fe741da064374', language 'id', text '"Itu karena kamu telah memecahkannya," kata Buku itu.', errordetails: list index out of range
+
+Item 'ede9271f4b214cdd998b0e6a68e97ae8', language 'id', text '"Kamu benar," kata Ned, yang tidak ingin merasa membeku di rumah.', errordetails: list index out of range
+
+Item '7aa763bdcb5cbda76a38c51975f4b092', language 'id', text '"Itu terlihat agak aneh," kata Ned.', errordetails: list index out of range
+
+Item 'dcd5029c5ffcd212fc1d75f05432b76d', language 'id', text '"Ini adalah tungku, dan ini adalah kunci untuk bikin rumah ini tetap hangat," kata Buku itu.', errordetails: list index out of range
+
+Item 'f9410bee0651098909426e7d30577c53', language 'id', text '"Kamu perlu banyak kayu dan bakar di tanganku itu," kata Buku.', errordetails: list index out of range
+
+Item '9cce8210bb56058709a673b1c0fca5ee', language 'id', text '"Tapi saya tidak ingin menebang pohon dengan tanganku," ungkap Ned dengan frustasi.', errordetails: list index out of range
+
+Item 'aef73f1831df97f84ba3f038b8dcda02', language 'id', text '"Jangan takut, aku akan tunjukkan cara yang lebih mudah," kata Buku itu.', errordetails: list index out of range
+
+Item 'a9a7a8432b0f5583daebcad932031517', language 'id', text '"Ini sangat membantu," kata Ned.', errordetails: list index out of range
+
+Item 'a3e78e219b0b6c0e269a961f1e90d88e', language 'id', text '"Saya perlu membawa balok balok ini kembali ke gudang," katanya.', errordetails: list index out of range
+
+Item '6879d5e10672720e7600bdbf0073b65e', language 'id', text '"Ya, kamu tidak ingin ditelan oleh predator predator jahat itu," kata Buku itu.', errordetails: list index out of range
+
+Item '2bc8b5e3468ea6ea9e3ae5b8393c5c99', language 'id', text '"Cukup masukkan kayu ke dalam lubangnya, tepat di sini," kata Buku itu.', errordetails: list index out of range
+
+Item '91152bb96a53e8c7a642c7de172a6a1f', language 'id', text '"Sekarang rumah ini akan terasa hangat," kata Buku itu.', errordetails: list index out of range
+
+Item '15d52a64f3c31e3a546e3cb555b72f80', language 'id', text '"Ini hanya langkah awal dari apa yang bisa kita ciptakan," kata Buku.', errordetails: list index out of range
+
+Item 'a9183056ebc52c7c5905382c99317dd3', language 'id', text '"Kita bisa bahas itu besok," kata Ned.', errordetails: list index out of range
+
+Item '891c0faa007cd6e783179ab095668acc', language 'id', text '"Yah, tidak termasuk jangkrik di malam hari," kata Ned.', errordetails: list index out of range
+
+Item 'c75fe3a39018fdb34d5076abe392a3c6', language 'id', text '"Di sini saya hanya makan apel yang jatuh dari pohon," kata Ned.', errordetails: list index out of range
+
+Item '6c14ddf11266c9cbac73011ca9b24936', language 'id', text '"Saya bisa mengajari kamu cara menanam tanaman tropis untuk makanan sendiri," katanya.', errordetails: list index out of range
+
+Item 'f5a66932abb4ef028d6671a14ed95c36', language 'id', text '"Mulailah memisahkannya, dan tunjukkan apa yang kamu temukan," katanya.', errordetails: list index out of range
+
+Item 'd9f56f7e1fdfbfa393f6268b68192a1c', language 'id', text '"Kamu akan butuh alat baru untuk menanam biji biji ini," katanya.', errordetails: list index out of range
+
+Item '2ae6969743b68a17bb27a08f14a2e36b', language 'id', text '"Tanahnya terlihat sangat kering" "Pengamatan bagus," kata Buku itu.', errordetails: list index out of range
+
+Item '146ff451506ab9033faa2bbc7461bec9', language 'id', text '"Biji bijian butuh tanah yang lembab sebelum mereka mulai tumbuh," tambahnya.', errordetails: list index out of range
+
+Item '2496c61c97a622ec5b356e10110d028a', language 'id', text '"Waktunya bikin satu alat lagi," kata Buku itu.', errordetails: list index out of range
+
+Item '716bb4cdf5aab242bc62bdee34178402', language 'id', text '"Dengan ini, kamu bisa mengambil dan membawa air," kata Buku itu.', errordetails: list index out of range
+
+Item 'f3d01ed03bae5365006f71847af17e2d', language 'id', text '"Air ini berat sekali," kata Ned.', errordetails: list index out of range
+
+Item 'e5199ef210452768ffa3d5c3d2ecd820', language 'id', text '"Kita tidak perlu membawanya dari jauh," kata Buku itu.', errordetails: list index out of range
+
+Item '4e9570c28a113e64e45741939ad3d354', language 'id', text '"Taruh air ke dalamnya, dan tanah sekitarnya akan menjadi basah," kata Buku itu.', errordetails: list index out of range
+
+Item '542a355dc70869162428a81d1db92a6c', language 'id', text '"Aku harap ini berhasil," kata Ned.', errordetails: list index out of range
+
+Item '2e62ba42bd5f61ed72a224bd7a2764c4', language 'id', text '"Ada satu hal lagi yang perlu kamu lakukan," jawabnya.', errordetails: list index out of range
+
+Item '97fe243d707e6cce72406e245622069a', language 'id', text '"Tunggu sebentar," kata Buku itu.', errordetails: list index out of range
+
+Item '72f39ec7a89c01575a8a6af45d3e04ec', language 'id', text '"Hingga kira kira setengah tinggi badanmu," kata Buku itu.', errordetails: list index out of range
+
+Item 'eb446acb81e88d5f4052694a76e16e0c', language 'id', text '"Tempat ini sepertinya bagus untuk tinggal. Saya eksplorasi dulu," kata Ned.', errordetails: list index out of range
+
+Item '04e42f98df82fe74e317d00e5beca180', language 'id', text '"Tunggu sebentar," pikir Ned.', errordetails: list index out of range
+
+Item 'a0a98a29a666dda2c702bc44aecb3f8b', language 'id', text '"Halo," kata buku itu.', errordetails: list index out of range
+
+Item '9692cf55588b70080ee8bd4a96e268f9', language 'id', text '"Buku tidak bisa bicara," kata Ned terkejut.', errordetails: list index out of range
+
+Item 'd4629ab6956fcf21a8086ec6a7589254', language 'id', text '"Aku adalah Buku Sihir," kata Buku itu.', errordetails: list index out of range
+
+Item '00b93116cbd013aae9b43e01ed83df56', language 'id', text '"Bukan," kata Buku itu.', errordetails: list index out of range
+
+Item '282c2c151efc017ac7083284f90d536e', language 'id', text '"Sekarang pukul pohonnya," kata Buku itu.', errordetails: list index out of range
+
+Item '391b71097e1a74d7d1a76eb0914493b4', language 'id', text '"Lain kali, carilah pohon yang tidak ada sarang lebahnya," kata Buku itu.', errordetails: list index out of range
+
+Item 'e1d7440a356f99c87793101a142a478b', language 'id', text '"Ya. Coba pukul pohon itu," kata Buku itu.', errordetails: list index out of range
+
+Item '0050f5721b4384b8073c138fd10c30d9', language 'id', text '"Sulit kalau memukulnya hanya dengan tangan kosong," kata Ned.', errordetails: list index out of range
+
+Item 'd90f8582eaac27357e443c885d006124', language 'id', text '"Terus pukul," kata Buku itu.', errordetails: list index out of range
+
+Item '833f6b986fdf950165876794acdda66d', language 'id', text '"Namaku adalah Kitab Sihir." "Aku bisa bantu apa saja," kata Kitab.', errordetails: list index out of range
+
+Item '6283e26bb0771937d4a7db40f1a1991f', language 'id', text '"Pukul pohon itu,".', errordetails: list index out of range
+
+Item 'e0dd9cd9c037995772b0d833ebe33bfd', language 'id', text '"Aku tidak punya batu bara lagi di rumah," kata Ned.', errordetails: list index out of range
+
+Item '5687ab59e910ea1683a71467f47ba30e', language 'id', text '"Ya. Ayo masuk, dan aku akan tunjukkan caranya," kata Buku itu.', errordetails: list index out of range
+
+Item 'eb238df0a7b1cacb2fb2debe015515f5', language 'id', text '"Jika sulit cari batu bara, kamu bisa gunakan Kayu Ek," kata Buku.', errordetails: list index out of range
+
+Item 'f174a48c3b142b58e77311e00886ce7e', language 'id', text '"Ini adalah arang, dan kamu bisa bikin lebih banyak lagi," kata Buku itu.', errordetails: list index out of range
+
+Item 'fb980f14a23dda42b1cf4739971c91e9', language 'id', text '"Aku tidak ingin menebang hutan yang asri jadi lahan gundul," kata Ned.', errordetails: list index out of range
+
+Item '89650f9df5fd5dc7508f94bb4a1fd3d9', language 'id', text '"Bibit bibit ini seperti benih pohon," kata Buku itu.', errordetails: list index out of range
+
+Item '928afe7f2984463979648ad4028f8068', language 'id', text '"Kamu akan butuh banyak lahan untuk menanam bibit bibit ini," kata Buku itu.', errordetails: list index out of range
+
+Item '44e906ad2dfc54c4914ed1db94f2183e', language 'id', text '"Aku akan pasang pagar untuk memprotek ladang dari monster," kata Ned.', errordetails: list index out of range
+
+Item '50dc4acdcf5f7c6a84d07f0077b9b242', language 'id', text '"Kerja bagus, Ned. Kamu pasti bisa menanam banyak pohon," kata Buku itu.', errordetails: list index out of range
+
+Item 'c7db4fedfaa4356d76b14baf26822016', language 'id', text '"Berikan jarak antara biji biji, atau mereka tidak akan tumbuh," kata Buku.', errordetails: list index out of range
+
+Item '9813be441a29da32102dad5caa8310a4', language 'id', text '"Pohon pohon muda ini butuh waktu lama untuk tumbuh," katanya.', errordetails: list index out of range
+
+Item '676b91e9a349840bf11f1457cdc2f01b', language 'id', text '"Saya ada ide agar pohon pohon ini tumbuh lebih cepat," kata Buku itu.', errordetails: list index out of range
+
+Item '36d43e2738c61f47c73c7569477545f0', language 'id', text '"Hancurkan tulang tulang sampai menjadi tepung tulang," kata Buku itu.', errordetails: list index out of range
+
+Item '9558003ab6601d66ac6b9c55cfac21c7', language 'id', text '"Jangan lupa untuk menanam bibit pohon ketika kamu selesai," kata Buku itu.', errordetails: list index out of range
+
+Item '38e81ec3c77ada0b5b1da4e7338c71f3', language 'id', text '"Sekarang aku tidak perlu ke goa," kata Ned.', errordetails: list index out of range
+
+Item 'bc52930a95150c1bf9b900d0e066bc5c', language 'id', text '"Jangan sampai aku juga dibakar jadi arang," kata Buku itu.', errordetails: list index out of range
+
+Item 'b72989cfb880cae7307c8322274fd25f', language 'id', text '"Pergilah ke kebun," kata Buku itu.', errordetails: list index out of range
+
+Item 'df15e5be90ebdaad83d21598a7c2e9ce', language 'id', text '"Ambil biji biji itu," kata Buku.', errordetails: list index out of range
+
+Item '0d42167994945beb62cfafbccad531d1', language 'id', text '"Ini adalah pacul," kata Buku itu.', errordetails: list index out of range
+
+Item 'd227debca6a873c4c2e0656fee262971', language 'id', text '"Ini jadi tempat air," kata Ned.', errordetails: list index out of range
+
+Item '4eeff759b2f2bffa40147f1e490de56a', language 'id', text '"Saya harap ini berhasil," kata Ned.', errordetails: list index out of range
+
+Item '99d8af3ee32096980b5e093ad70551d7', language 'id', text '"Kamu harus melawannya," kata Buku.', errordetails: list index out of range
+
+Item '35594c0b26a6d506d2f25fe8a7baae41', language 'id', text '"Saya tidak pandai bertarung," balas Ned.', errordetails: list index out of range
+
+Item 'a1c794b44fee67a17f7815fbcc2e013b', language 'id', text '"Kamu tidak perlu bertinju, cukup ciptakan senjata saja," jawab Buku.', errordetails: list index out of range
+
+Item '1167fb0935518e4ec06cf8b815e5e426', language 'id', text '"Tidak ada yang tahu," kata Buku.', errordetails: list index out of range
+
+Item '378d2e3223f86b98ecbf3d837db62180', language 'id', text '"Inilah senjata yang perlu kamu ciptakan, pedang," kata Buku.', errordetails: list index out of range
+
+Item 'da509ba2b63635ee958a632af96949f9', language 'id', text '"Dengan ini, kamu bisa melawan musuh musuh itu," kata Buku.', errordetails: list index out of range
+
+Item '5cb36a74b37d7a2e17c97cf58aa34fdd', language 'id', text '"Aku butuh tempat untuk menyimpan baju zirah," ungkap Ned.', errordetails: list index out of range
+
+Item 'b726d16d5958ac14c0473afff6966833', language 'id', text '"Mungkin kamu bisa ciptakan gantungan," kata Buku itu.', errordetails: list index out of range
+
+Item 'b84e44610df47adc77feaf9e4d100249', language 'id', text '"Belah batu itu, kamu akan dapat papan," kata Buku itu.', errordetails: list index out of range
+
+Item '22de0292c153c902e5f18044e4c21ff9', language 'id', text '"Baju ini bagus, tapi kadang membuatku terasa panas," kata Ned.', errordetails: list index out of range
+
+Item '4c04e26883f3b68172de2a89713668ab', language 'id', text 'Ned tampak serius, "Ada hal yang ingin aku tanya," katanya.', errordetails: list index out of range
+
+Item 'ff872edf54d4dfe445149997107d03c5', language 'id', text '"Aku suka kue yang aku buat sebelumnya." "Aku ingin membuatnya lagi, tetapi kita butuh lebih banyak susu," jelas Ned.', errordetails: list index out of range
+
+Item 'a232608be827165963372b755fbe0235', language 'id', text '"Sekarang pulang saja ke rumah," instruksi Buku itu.', errordetails: list index out of range
+
+Item 'dcca238d54a15c7afe390b909b22ef76', language 'id', text '"Pusing," ujar Ned.', errordetails: list index out of range
+
+Item '28d459a43bc4ad58f75a9ea0fcdd0d4c', language 'id', text '"Monster akan muncul," katanya dengan wajah serius.', errordetails: list index out of range
+
+Item 'a33c3d13ead5f5f819451366ea7b76b9', language 'id', text '"Aku ingin belajar mantra sihir yang lain," katanya kepada Buku.', errordetails: list index out of range
+
+Item '0f308dfdf4829da76588f8a7e7049564', language 'id', text '"Selanjutnya, kamu akan perlu banyak kertas," kata Buku itu.', errordetails: list index out of range
+
+Item '3a89a77bfadfcde881b2c1639704672d', language 'id', text '"Kamu perlu tebu, dan dalam jumlah banyak," kata Buku itu.', errordetails: list index out of range
+
+Item 'e41cde89a2d863256e996db8e3c639b5', language 'id', text '"Ini akan menghasilkan banyak kertas," kata Buku itu.', errordetails: list index out of range
+
+Item '9cff949cb26aa697ba6cc9795a197cb6', language 'id', text '"Mungkin dalam semalam," kata Buku itu.', errordetails: list index out of range
+
+Item '65b29e170a65f59e795d8de3a854615d', language 'id', text '"Para monster akan segera keluar," kata Buku itu.', errordetails: list index out of range
+
+Item 'f2afe9bc51d64a18dd56048bcca0971d', language 'id', text '"Pedang itu memotong monster monster itu seperti mentega," kata Ned.', errordetails: list index out of range
+
+Item '8f0cfe60166adc02b04364501ba3825e', language 'id', text '"Nah, sekarang kamu bisa memotong tebu," kata Buku.', errordetails: list index out of range
+
+Item 'd5cc7bd477f1f76d84aa2e755514dc34', language 'id', text '"Untuk membuat buku, kamu harus mengikat kertas dengan kulit," kata Buku itu.', errordetails: list index out of range
+
+Item '5753b0cd85d5cd14eaa1727a58b6e76b', language 'id', text '"Sekarang dengarkan dan berhati hatilah dengan cara kamu membuat ini," kata Buku itu.', errordetails: list index out of range
+
+Item '830ed063be07fcb1c9e385e4d8fb3928', language 'id', text '"Selanjutnya aku akan mengajarkanmu cara membuat benda benda ajaib," kata Buku itu.', errordetails: list index out of range
+
+Item 'f762131560f232e8174afa793ab5e0b4', language 'id', text '"Tapi saya pasti kalah," jawab Ned.', errordetails: list index out of range
+
+Item '75811b180a793240d075424fd9241a5b', language 'id', text '"Kuning terlalu mencolok seperti matahari," katanya.', errordetails: list index out of range
+
+Item '62f24eafead88efb9de23220f6840d56', language 'id', text '"Warna oranye sangat ceria," tuturnya.', errordetails: list index out of range
+
+Item 'fe291d4182423bf2063470db44feaf8f', language 'id', text '"Coba cari bunga rosela," kata Buku.', errordetails: list index out of range
+
+Item '7ccfd7689f82f4478ccd56aad7a3e058', language 'id', text '"Ini tidak begitu mewah," kata Ned.', errordetails: list index out of range
+
+Item 'bdf0b2987c5d7a91ce92ce4177615206', language 'id', text '"Coba kuning," kata Buku', errordetails: list index out of range
+
+Item '6388e49169a14178a97358c8edc27247', language 'id', text '"Ini juga sama," kata Ned.', errordetails: list index out of range
+
+Item '53d2fd80cc456baeeb7872c39fd0e617', language 'id', text '"Hati hati ada musuh, Ned," kata Buku.', errordetails: list index out of range
+
+Item 'fe7ec517f31f7162f5ae770995696e5f', language 'id', text '"Bisa, kasih mereka tulang," kata Buku.', errordetails: list index out of range
+
+Item '19cb80f0f4a37c96596d7c4838ccc0c4', language 'id', text '"Bikin pemetik dari batu," kata Buku itu.', errordetails: list index out of range
+
+Item 'cbb908270dc2e42d0e75c5aabdcb0211', language 'id', text '"Gali tanah dulu," kata Kitab itu.', errordetails: list index out of range
+
+Item '4609f61b97394a2686e1a575757c0f72', language 'id', text '"Di sini gelap sekali," kata Ned.', errordetails: list index out of range
+
+Item '765994fca703f51d690e51f828400fd2', language 'id', text '"Di sini," kata Kitab.', errordetails: list index out of range
+
+Item 'c883aa4cecd95d6e17abc5bea37128cc', language 'id', text '"Ini adalah batu bara," kata Kitab itu.', errordetails: list index out of range
+
+Item 'e6c76557e10f65b3eec611fbd202ab7f', language 'id', text '"Letakkan di meja sihir," kata Kitab itu.', errordetails: list index out of range
+
+Item 'c59cd73a4f822ba03ac6ea02df88b6c9', language 'id', text '"Kita taruh di gua juga," kata Ned.', errordetails: list index out of range
+
+Item '99b5559cd88990d16e418b8b14defce8', language 'id', text '"Aku juga ingin hewan penjaga yang bisa menolong," kata si robot usang.', errordetails: list index out of range
+
+Item '9735c824933dff701525bee36bd1854d', language 'id', text '"Hahahihi," tiga sekawan itu tertawa.', errordetails: list index out of range
+
+Item '16d58a855e8d35e1d0a0ec02c78e4cda', language 'id', text '"Mungkin," kata Ibu.', errordetails: list index out of range
+
+Item '7b7f257e6d004c91226217402e2efd0a', language 'id', text '"Hipo, ayo menari," ajak si unik.', errordetails: list index out of range
+
+Item '1cc79f3369c064574deed5a266a1a2f9', language 'id', text '"Wah, hujan ikan," teriak Avanti.', errordetails: list index out of range
+
+Item '0c5361e3af11ec1725fd3c048333515d', language 'id', text '"Aku tidak akan pernah minta kamu untuk meniup lilin lagi," seru Avanti.', errordetails: list index out of range
+
+Item 'a87f588fbeedff9ceafeadef9fbd9b96', language 'id', text '"Siapa yang tahu? Lain kali mungkin akan hujan kodok," jawab Avanti.', errordetails: list index out of range
+
+Item '1e9afe1e137fffb6ebe15e3f63262882', language 'id', text '"Coba aku bisa lihat kamu. Kita pasti bisa jadi teman," kata Gaga.', errordetails: list index out of range
+
+Item '21b1c0e646551e65ce650209e09e99e9', language 'id', text '"Tidak! Kita harus pergi," jawab Angga sambil menyengat bunga.', errordetails: list index out of range
+
+Item '19896e9d8a55f3a20189274314c56eb7', language 'id', text '"Kenapa lebah lebah lain belum datang? Aku sudah lama menunggu," keluhnya.', errordetails: list index out of range
+
+Item '4a6efa641ca6adc19d58d61328438a59', language 'id', text 'Lebah berkepala besar menghampiri Sophy dan bertanya, "Kenapa kamu tidak terbang bersama kami?" "Kalian semua terbang sangat lambat. Seharusnya kalian belajar terbang agar bisa seperti aku," ledek Sophy.', errordetails: list index out of range
+
+Item '67ed8eb554c764356723e2f5ee4b9570', language 'id', text '"Tidak! Kita harus keluar dari sini," jawab Sophy.', errordetails: list index out of range
+
+Item '7d7fad50b1b6d47f6705125c7b08db27', language 'id', text '"Terima kasih! Maafkan semua kesalahanku, ya," kata Sophy pelan.', errordetails: list index out of range
+
+Item '7dabadc3db7195c77da256825b7f0390', language 'id', text '"Kalau warga kota tidak bekerja, kota kita bisa susah dan miskin," katanya.', errordetails: list index out of range
+
+Item '7bc031f7a04f042a0db98e56ceebd538', language 'id', text '"Pak, warga kota boleh berbagi cerita. Tapi, bagi waktunya. Jadi, mereka tetap bekerja," usul Bu Guru.', errordetails: list index out of range
+
+Item '96a1beaa2839b4411e01c5ca86cd4b1b', language 'id', text '"Aku bisa mendongeng berbagai macam kisah. Dengarkan, ya," kata kakak itu.', errordetails: list index out of range
+
+Item '0d6a1b283a85d3f1ebb8516046c15cf7', language 'id', text '"Pak, bagaimana jika warga mendongeng di pagi dan malam hari? Di tengah hari, mereka bekerja," usul Kakak.', errordetails: list index out of range
+
+Item '0dbd7926558569cbf505dfe9461973ca', language 'id', text '"Namaku Kino," jawab Kino.', errordetails: list index out of range
+
+Item 'fa156f88b2df9c7ddfb1b84f098d1df6', language 'id', text '"Hai! Senang bertemu denganmu, kawan baru," sapa burung gereja.', errordetails: list index out of range
+
+Item '857fd0781be879ae74109b2addadc66a', language 'id', text '"Aku juga senang bertemu denganmu," kata Kino.', errordetails: list index out of range
+
+Item '67c23b1e47d68e742e3a4cb6132309db', language 'id', text '"Halo, temanku! Hati hati, ya, terbang ke angkasa," kata burung elang.', errordetails: list index out of range
+
+Item '77ba40a60f288c5e93e932a0900af1b9', language 'id', text '"Tidak, terima kasih. Aku mau terbang lebih tinggi lagi," jawab Kino.', errordetails: list index out of range
+
+Item '6f67d3cf392095d0360e2d46e9bdf6ff', language 'id', text '"Halo! Tolong salam untuk temanku, kupu kupu kuning jingga, ya," seru roket itu.', errordetails: list index out of range
+
+Item 'dbe20d21edffc18f1bc1368979f98039', language 'id', text '"Aku tinggal di Bumi," jawab Kino.', errordetails: list index out of range
+
+Item 'cfcff5c8a0b9333efba4871973956a17', language 'id', text '"Baik, terima kasih," jawab Kino.', errordetails: list index out of range
+
+Item 'ce343fc5139bfab28c03765b13cd6231', language 'id', text '"Baik sekali, terima kasih," jawab Kino.', errordetails: list index out of range
+
+Item '344270f360e09952ee48d558a892c461', language 'id', text '"Aku baik," jawab Kino.', errordetails: list index out of range
+
+Item '338e4c566e0596ac05caf93ad10b8794', language 'id', text '"Baik sekali," jawab Kino tersenyum.', errordetails: list index out of range
+
+Item '15e5f0cd5ef009ae67e7fcea7507aa1b', language 'id', text '"Belilah buku untuk kalian," kata Kakek.', errordetails: list index out of range
+
+Item 'dfc3ef5df45421cb098007220ecd3219', language 'id', text '"Aku tidak mengantuk, Bu," bisik Tinku.', errordetails: list index out of range
+
+Item 'cb581922f58a1b06dbaaaec7b601f26b', language 'id', text '"Aku Rubah. Aku senang jalan jalan saat malam," kata Rubah.', errordetails: list index out of range
+
+Item '7df4344918b450f38b2d952b963fbbe9', language 'id', text '"Aku burung hantu. Aku berburu mencari makan saat malam," kata Burung Hantu.', errordetails: list index out of range
+
+Item '3e738f5614deff74d91905a0b350db1f', language 'id', text '"Aku Jangkrik. Aku mengerik ketika gelap," jawab Jangkrik.', errordetails: list index out of range
+
+Item 'd19932e0c90db46b7d82896fd38bbded', language 'id', text '"Aku Rubah. Aku senang jalan jalan di malam hari," kata Rubah.', errordetails: list index out of range
+
+Item 'dfc7f6cb1c5f49e00296075c0f663088', language 'id', text '"Aku burung hantu. Aku berburu mencari makan di malam hari," kata Burung Hantu.', errordetails: list index out of range
+
+Item '612c337b2b97512c185d9d165513a8ac', language 'id', text '"Berhentilah menari," kata Keledai yang sedang membawa ember ember.', errordetails: list index out of range
+
+Item '0d29b6d7b74d535a7555eb7ca5534ef1', language 'id', text 'Angsa adalah burung terbesar dari semua burung yang bisa terbang," kata Bu Guru. "Kau harus meluangkan waktu untuk mengunjungi perpustakaan, Sarla.', errordetails: list index out of range
+
+Item 'b0271cdc0145790b6c4a88d510c9a339', language 'id', text '"Wah! Ini bukan harimau. Ini baju hangat ibu yang bergaris kuning dan hitam. Kancingnya berkilau seperti mata harimau," kata Ibu.', errordetails: list index out of range
+
+Item '566ea9e6e0303fcc9dea3212dc39b21f', language 'id', text '"Wah! Ini bukan harimau. Ini baju hangat ibu yang bergaris kuning dan hitam. Kancing ini yang berkilau seperti mata harimau," kata ibu.', errordetails: list index out of range
+
+Item '0a55f15adabf345fb5969840c1b8b2d3', language 'id', text '"Wah! Ini bukan harimau. Ini baju ibu," kata ibu.', errordetails: list index out of range
+
+Item '943a2174ab6cfda83117ac362c151bf7', language 'id', text '"Aku ditelepon untuk masuk kerja," katanya.', errordetails: list index out of range
+
+Item '6f40f3fac82d67e7d9a0057363908b06', language 'id', text '" "Sepuluh!', errordetails: list index out of range
+
+Item 'd84c8a63be20408855e4bb6bdf77b293', language 'id', text '" teriak Sania. "Siap atau tidak, aku datang!', errordetails: list index out of range
+
+Item '568248c423c45e2c7d74e82104a62126', language 'id', text '"Debunya terlalu banyak di sini," gerutu Aman.', errordetails: list index out of range
+
+Item '7a3e1d7ae6a175916bff5e78da097132', language 'id', text '"Terima kasih," kata Priya.', errordetails: list index out of range
+
+Item 'da9e3a260c071ebf7ab3e2320e9f1077', language 'id', text 'Aku memang indah," kata Buku Mewarnai, "tapi nanti akan lebih indah jika kalian membantu Yerai untuk mewarnai gambar gambar ini!', errordetails: list index out of range
+
+Item 'b27aedf63bb1427106445082f266125d', language 'id', text '"Ayolah," ucap pensil biru, "bukankah jadi lancip lebih bagus daripada jadi tumpul?" "Aku lebih suka tetap begini," ucap pensil merah muda sambil meratap sedih.', errordetails: list index out of range
+
+Item 'b1d0280bdebc23906925c610512ae06a', language 'id', text 'Terima kasih," ucap Buku Gambar, "tapi tanpa pensil warna, gambar gambar ini tidak bisa berwarna.', errordetails: list index out of range
+
+Item '83bf6ade25932db5c410be46763a889d', language 'id', text '"Ayo minta maaf pada Paraka," kata ayah Sata.', errordetails: list index out of range
+
+Item '83429b42ab372f0737d29b15b4e6d5d7', language 'id', text '"Raja sedang berlatih memanah," kata Gorila.', errordetails: list index out of range
+
+Item '8ea270b3ce2e9ae4cfc5c67b9623ec5b', language 'id', text '"Awan, jangan terbang ke sana. Tolong turunkan hujan disini saja. Aku dan teman teman akan bersenang senang di kubangan air," kata Danang.', errordetails: list index out of range
+
+Item '8946ad6f29d7b4bf63ad64b8eeda0e77', language 'id', text '"Aku tidak tahu," jawab si Burung Biru.', errordetails: list index out of range
+
+Item '338867cb35a66b322e0e2c90f1035d8a', language 'id', text '"Aku rindu ayah dan ibuku, tapi mereka telah tiada," katanya sambil menangis tersedu.', errordetails: list index out of range
+
+Item 'bd09769e2c89a3db0a365a7980060d75', language 'id', text '"Kita bisa menjaga sungai itu," sahut ibunya.', errordetails: list index out of range
+
+Item '65dcc3249b166c6c6e89bb14e2e90b98', language 'id', text '"Aku suka lagu kamu," kata Dino tiba tiba.', errordetails: list index out of range
+
+Item '8d7e0a0dd6812d66586b6c689b42e1c9', language 'id', text '"Desa ini panas. Ayo, awan lekas, turunkan hujan deras," seru Aka dan Dino.', errordetails: list index out of range
+
+Item '21264dbefbc8cf8087cbc26e4cf873a7', language 'id', text '"Ayo, lekas kita berteduh di desa," ajak Aka kepada Dino.', errordetails: list index out of range
+
+Item '59cd8d685107d54e52c01ae6d5eb40e9', language 'id', text '"Agar ada teman tumbuh bersama, Minu," kata Kakek.', errordetails: list index out of range
+
+Item '39cfe9cf61ffb74331c395ad2d9a8078', language 'id', text '"Tanam pohon, agar kamu ada teman tumbuh bersama, Minu," ujar Kakek.', errordetails: list index out of range
+
+Item '14b41a46528a25e1b6bff98ae782957e', language 'id', text '"Kalian harus beristirahat," katanya sambil mengusap layar.', errordetails: list index out of range
+
+Item '23d5a250a7774c3ec8dc36568f358074', language 'id', text '"Nyaman sekali," kata Rika.', errordetails: list index out of range
+
+Item 'cfacc2c0346ce765d7d1db43331861b7', language 'id', text '"Kita telah tiba di planet lain," kata Alien.', errordetails: list index out of range
+
+Item 'dca40710c36594f1595bf76ca3f3ebd1', language 'id', text 'Alien berkata, "Pesawat ini kehabisan daya! Aku butuh bantuan," Tito menyerahkan baterai ponsel padanya.', errordetails: list index out of range
+
+Item 'bffaa89770b8f61aaca42cb7339ed096', language 'id', text '"Ini dari Bulan," kata Ibu.', errordetails: list index out of range
+
+Item '431153e328b12ac3e206cc63802c3dc9', language 'id', text '"Oh, Harimau Agung," katanya, "Pernahkah kau melihat kucing? Ia tinggi, tangkas, dan sewarna dengan topiku." Sang Harimau hanya mengaum dan menatap ke arah lain.', errordetails: list index out of range
+
+Item '729b1b8383b607b4b57c90651bfc41ed', language 'id', text '"Aku tidak akan pernah memintamu untuk meniup lilin lagi," seru Avanti.', errordetails: list index out of range
+
+Item 'b949483387b5dd1ae013324677819db8', language 'id', text '"Kamu jadi bantal aku, ya. Aku sambil garuk garuk kamu deh," kata Kucing.', errordetails: list index out of range
+
+Item 'c1e866882b6d747d3d9fd65169ecbaf0', language 'id', text '"Ikuti aku. Ada makanan enak," kata aroma makanan.', errordetails: list index out of range
+
+Item '467bd0d2e52a84b260e5fb68e696619c', language 'id', text '"Mama, apa itu?" "Itu perosotan," kata Mama.', errordetails: list index out of range
+
+Item '8d8789878ec4d81a6a1167f336a45680', language 'id', text '"Ayo kita foto bersama," ajak Mama.', errordetails: list index out of range
+
+Item 'c222b29952f3091c889f1288d15148d6', language 'id', text '"Sekarang sudah waktunya pulang, Tumi," kata Mama.', errordetails: list index out of range
+
+Item '2e015dec887e6e3157183e9aa2ec0da5', language 'id', text '"Aku bisa bantu ibu memasak," kataku pada ibu.', errordetails: list index out of range
+
+Item '38e24a84e03184bb90e9cd28acae86c8', language 'id', text '"Coba tebak," kata Mama sambil menaruh panci besar di atas kompor.', errordetails: list index out of range
