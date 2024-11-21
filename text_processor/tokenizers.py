@@ -38,7 +38,6 @@ class BaseTokenizer(ABC):
             self.emphasis_lookup = {}
         self.escaped_symbols = self.prepare_escaped_symbols(symbol_set.SYMBOLS)
         self.escaped_symbols_pattern = re.compile(self.escaped_symbols)
-        # logger.info(f"escaped_symbols: {self.escaped_symbols}")
         self.executor = ThreadPoolExecutor(max_workers=min(32, cpu_count() + 4))
         self.cosmos_client = None
         self.push_oov_to_cosmos = False
@@ -123,7 +122,7 @@ class BaseTokenizer(ABC):
         
     def _create_word_item(self, word: str, emphasized_phonemes: str) -> dict:
         timestamp = round(time.time() * 1000)
-        phoneme, _ = self.phonemize_text(word, True)
+        phoneme, _, _= self.phonemize_text(word, True)
         return {
             "id": str(uuid.uuid4()),
             "createdAt": timestamp,
@@ -197,13 +196,18 @@ class GruutTokenizer(BaseTokenizer):
                         phonemes.append(" ")
                         current_pos += 1
                     
-                    for emphasized_word in emphasized_words:
+                    for i, emphasized_word in enumerate(emphasized_words):
                         if emphasized_word.text in [".", "!", "?", ",", ":", ";"]:
                             trailing_punct += emphasized_word.text
                         else:
-                            emphasized_phonemes = self.handle_emphasized_word([], emphasized_word)
-                            phonemes.extend(emphasized_phonemes)
-                            current_pos += sum(len(p) for p in emphasized_phonemes)
+                            emphasized_phonemes = self.handle_emphasized_word(emphasized_word)
+                            logger.debug(f"Emphasized phonemes: {emphasized_phonemes}")
+                            # Add space between each emphasized words
+                            if i > 0:
+                                phonemes.append(" ")
+                                current_pos += 1
+                            phonemes.append(emphasized_phonemes)
+                            current_pos += len(emphasized_phonemes)
                     
                     if trailing_punct:
                         phonemes.append(trailing_punct)
@@ -241,9 +245,7 @@ class GruutTokenizer(BaseTokenizer):
         phonemes.append(''.join(word.phonemes))
         return phonemes
     
-    def handle_emphasized_word(self, phonemes, word):
-        if phonemes and phonemes[-1] != ' ':
-            phonemes.append(' ')
+    def handle_emphasized_word(self, word):
         lookup_result = self.emphasis_lookup.get(word.text)
         emphasized_phonemes = None
         
@@ -266,10 +268,8 @@ class GruutTokenizer(BaseTokenizer):
                     future.add_done_callback(self._handle_save_result)
             else:
                 emphasized_phonemes = word.text
-                
-        phonemes.append(emphasized_phonemes)
         
-        return phonemes
+        return emphasized_phonemes
     
     def _handle_save_result(self, future):
         try:

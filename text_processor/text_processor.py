@@ -7,15 +7,19 @@ from typing import Dict, Any
 from .cosmos import Cosmos
 from .tokenizers import Tokenizer
 from .utils import TextUtils
+from .prompt import PROMPT
+from .gpt import GPT
+from .claude import Claude
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class TextProcessor:
-    def __init__(self, emphasis_model_path: str, db_path: str, language: str = "en", use_cosmos: bool = False, cosmos_config: Dict[str, Any] = None, animation_tags_path: str = None):
+    def __init__(self, emphasis_model_path: str, db_path: str, language: str = "en", use_cosmos: bool = False, cosmos_config: Dict[str, Any] = None, animation_tags_path: str = None, emphasize_text: str = None):
         self.language = language
         self.emphasis_lookup = dict()
         self.cosmos_lookup = dict()
+        self.emphasize_text = emphasize_text
         
         # Initialize custom tags
         TextUtils.initialize_custom_tags(animation_tags_path)
@@ -76,6 +80,14 @@ class TextProcessor:
             self.tokenizer.set_push_oov_to_cosmos(True)
         else:
             self.tokenizer.set_push_oov_to_cosmos(False)
+            
+        if self.emphasize_text:
+            if self.emphasize_text == "Claude":
+                input_str = Claude().emphasize(PROMPT, input_str)
+            elif self.emphasize_text == "GPT":
+                input_str = GPT().emphasize(PROMPT, input_str)
+                
+            logger.info(f"Emphasized text: {input_str}")
 
         if not phonemes:
             phonemes_str, normalized_text, word_boundaries = self.tokenizer.phonemize_text(input_str, normalize=normalize)

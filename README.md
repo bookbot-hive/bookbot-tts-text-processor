@@ -63,16 +63,6 @@ model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmo
 result = model.get_input_ids("Hello <wave> world <listen> how are you? <headLean>", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
 print(f"Result: {result}")
 
-result = model.get_input_ids("<handOverHeart> Together, they built a [magical boy] fort in the living room.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
-print(f"Result: {result}")
-
-result = model.get_input_ids("<handOverHeart> Together, they built a [459] fort in the living [room].", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
-print(f"Result: {result}")
-
-# English Word input
-result = model.get_input_ids("Hello! my name is [ladidadid]....!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
-print(f"Result: {result}")
-
 # English Phoneme input
 phoneme = "hɛlˈoʊ mˈaɪ nˈeɪm ˈɪz"
 result = model.get_input_ids(phoneme, phonemes=True, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
