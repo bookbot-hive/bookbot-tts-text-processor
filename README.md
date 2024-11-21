@@ -59,7 +59,7 @@ cosmos_config = {
 }
 
 # English
-model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config)
+model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config, emphasize_text='Claude')
 result = model.get_input_ids("Hello <wave> world <listen> how are you? <headLean>", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
 print(f"Result: {result}")
 
@@ -93,11 +93,13 @@ Be aware that turning on use_cosmos=True will use cosmos DB as your lookup table
 
 ### TextProcessor Initialization
 
-- `emphasis_model_path`: Path to the emphasis model directory.
+- `emphasis_model_path`: Path to the emphasis model directory, the model will handle phoneme emphasis.
 - `db_path`: Path to the database file for word emphasis lookup.
 - `language`: The language to use (default is "en" for English).
 - `use_cosmos`: Boolean flag to use emphasisIPA from Azure Cosmos DB (default is False).
 - `cosmos_config`: Configuration dictionary for Azure Cosmos DB connection.
+- `animation_tags_path`: Path to the animation tags CSV file.
+- `emphasize_text`: The LLM you want to use to add emphasis to the text, can be 'Claude' or 'GPT' (default is None).
 
 ### get_input_ids Method
 
