@@ -44,7 +44,10 @@ class TextProcessor:
         self.tokenizer = self.tokenizer_manager.get_tokenizer()
         if use_cosmos:
             self.tokenizer.set_cosmos_client(self.cosmos_client)
-        
+            
+        if self.language == "en":
+            self.tokenizer.set_accent("en-us")
+
     def load_emphasis_lookup_from_file(self, db_path: str):
         with open(db_path, 'r') as f:
             emphasis_lookup = json.load(f)
@@ -60,7 +63,7 @@ class TextProcessor:
         return wu_emphasis_dict
         
     
-    def get_input_ids(self, input_str: str, phonemes: bool = False, return_phonemes: bool = False, push_oov_to_cosmos: bool = False, add_blank_token: bool = False, normalize: bool = False) -> dict:
+    def get_input_ids(self, input_str: str, phonemes: bool = False, return_phonemes: bool = False, push_oov_to_cosmos: bool = False, add_blank_token: bool = False, normalize: bool = False, accent: str = None) -> dict:
         """
         Given a string of text or phonemes, return the input ids.
 
@@ -82,13 +85,21 @@ class TextProcessor:
             self.tokenizer.set_push_oov_to_cosmos(False)
             
         if self.emphasize_text:
-            if self.emphasize_text == "Claude":
-                input_str = Claude().emphasize(PROMPT, input_str)
-            elif self.emphasize_text == "GPT":
-                input_str = GPT().emphasize(PROMPT, input_str)
+            # Check if input_str is a single word (no spaces)
+            if ' ' not in input_str.strip():
+                input_str = f"[{input_str.strip()}]"
+            else:
+                if self.emphasize_text == "Claude":
+                    input_str = Claude().emphasize(PROMPT, input_str)
+                elif self.emphasize_text == "GPT":
+                    input_str = GPT().emphasize(PROMPT, input_str)
                 
             logger.info(f"Emphasized text: {input_str}")
 
+        # set accent if provided
+        if self.language == "en" and accent:
+            self.tokenizer.set_accent(accent)
+            
         if not phonemes:
             phonemes_str, normalized_text, word_boundaries = self.tokenizer.phonemize_text(input_str, normalize=normalize)
         else:

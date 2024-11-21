@@ -144,7 +144,14 @@ class BaseTokenizer(ABC):
 class GruutTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
         super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("en"))
+        self.accent = "en-us"  # Default accent
     
+    def set_accent(self, accent: str):
+        """Set the accent for English phonemization (en-us or en-gb)"""
+        if accent not in ["en-us", "en-gb"]:
+            raise ValueError("Accent must be either 'en-us' or 'en-gb'")
+        self.accent = accent
+
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[str, str, List[Tuple[int, int]]]:
         text = preprocess_text(text, normalize)
         phonemes = []
@@ -170,7 +177,9 @@ class GruutTokenizer(BaseTokenizer):
 
         processed_text = re.sub(pattern, replace_tag, text)
         
-        for sentence in sentences(processed_text, lang="en"):
+        # Use the specified accent for phonemization
+        print(f"Accent: {self.accent}")
+        for sentence in sentences(processed_text, lang=self.accent):
             for word in sentence:
                 if word.text.startswith('TAGPLACEHOLDER'):
                     # Handle special tags
