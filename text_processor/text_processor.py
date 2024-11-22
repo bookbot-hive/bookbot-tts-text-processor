@@ -112,50 +112,50 @@ class TextProcessor:
                 phonemes_str = input_str
                 word_boundaries = [(0, len(input_str))]
                 logger.debug(f"Using provided phonemes: {phonemes_str}")
-            
-            phoneme_list = self.tokenizer.split_phonemes(phonemes_str)
-            logger.debug(f"Split phonemes: {phoneme_list}")
-                
-            if add_blank_token:
-                phoneme_list.append(' ')
-            
             if return_phonemes:
                 result["phonemes"] = phonemes_str
+        except Exception as e:
+            logger.error(f"Error converting text to phonemes: {input_str}", exc_info=True)
+            raise ValueError(f"Failed to convert text to phonemes: {str(e)}")
+        
+        try:
+            phoneme_list = self.tokenizer.split_phonemes(phonemes_str)
+            if add_blank_token:
+                phoneme_list.append(' ')
+            logger.debug(f"Split phonemes: {phoneme_list}")
+        except Exception as e:
+            logger.error(f"Error splitting phonemes: {phonemes_str}", exc_info=True)
+            raise ValueError(f"Failed to split phonemes: {str(e)}")
+        
+        try:
+            input_ids = self.tokenizer.phonemes_to_ids(phoneme_list)
+            result["input_ids"] = input_ids
             
-            try:
-                input_ids = self.tokenizer.phonemes_to_ids(phoneme_list)
-                result["input_ids"] = input_ids
-                
-                # Generate word_idx based on word boundaries
-                word_idx = []
-                current_pos = 0
-                current_word = 0
-                
-                for phoneme in phoneme_list:
-                    # Find which word boundary this phoneme belongs to
-                    while current_word < len(word_boundaries) and current_pos >= word_boundaries[current_word][1]:
-                        current_word += 1
-                        
-                    # If this is a space, use previous word's index
-                    if phoneme == ' ':
-                        word_idx.append(max(0, current_word - 1))
-                    else:
-                        word_idx.append(current_word)
-                        
-                    current_pos += len(phoneme)
-                
-                result["word_idx"] = word_idx
-                logger.debug(f"Successfully generated input_ids and word_idx for: {input_str}")
-                
-            except Exception as e:
-                logger.error(f"Failed to convert phonemes to IDs. Input: {input_str}", exc_info=True)
-                logger.error(f"Problematic phoneme list: {phoneme_list}")
-                raise ValueError(f"Failed to process phonemes: {str(e)}")
+            # Generate word_idx based on word boundaries
+            word_idx = []
+            current_pos = 0
+            current_word = 0
+            
+            for phoneme in phoneme_list:
+                # Find which word boundary this phoneme belongs to
+                while current_word < len(word_boundaries) and current_pos >= word_boundaries[current_word][1]:
+                    current_word += 1
+                    
+                # If this is a space, use previous word's index
+                if phoneme == ' ':
+                    word_idx.append(max(0, current_word - 1))
+                else:
+                    word_idx.append(current_word)
+                    
+                current_pos += len(phoneme)
+            
+            result["word_idx"] = word_idx
+            logger.debug(f"Successfully generated input_ids and word_idx for: {input_str}")
             
         except Exception as e:
-            logger.error(f"Error processing text: {input_str}", exc_info=True)
-            logger.error(f"Current language: {self.language}, accent: {accent}")
-            raise ValueError(f"Text processing failed: {str(e)}")
+            logger.error(f"Failed to convert phonemes to IDs. Input: {input_str}", exc_info=True)
+            logger.error(f"Problematic phoneme list: {phoneme_list}")
+            raise ValueError(f"Failed to process phonemes: {str(e)}")
         
         return result
 
