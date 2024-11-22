@@ -23,9 +23,13 @@ def main():
 
     # English
     model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv", emphasize_text='Claude')
-    result = model.get_input_ids("<sound_scrolling_2> Hello world. I'm going to Melbourne <sound_escalator_sound_2 this weekend. Are you coming?", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
+    result = model.get_input_ids("<handRaiseMid> It's nice when things [sounds] better!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
+    print(f"Result: {result}\n")
+    result = model.get_input_ids("Let's practice.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
+    print(f"Result: {result}\n")
+    result = model.get_input_ids("<handOverHeart> <hapticWarning> Keep at it.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
+    print(f"Result: {result}\n")
     
-    # result = model.get_input_ids("<handRaiseMid> It's nice when things [sounds] better!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
     # print(f"Result: {result}\n")
     
     # model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv", emphasize_text='Claude')

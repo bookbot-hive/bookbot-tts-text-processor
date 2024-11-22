@@ -83,63 +83,79 @@ class TextProcessor:
             self.tokenizer.set_push_oov_to_cosmos(True)
         else:
             self.tokenizer.set_push_oov_to_cosmos(False)
-            
-        if self.emphasize_text:
-            # Check if input_str is a single word (no spaces)
-            if ' ' not in input_str.strip():
-                input_str = f"[{input_str.strip()}]"
-            else:
-                if self.emphasize_text == "Claude":
-                    input_str = Claude().emphasize(PROMPT, input_str)
-                elif self.emphasize_text == "GPT":
-                    input_str = GPT().emphasize(PROMPT, input_str)
-                
-            logger.info(f"Emphasized text: {input_str}")
+        
+        try:
+            if self.emphasize_text:
+                # Check if input_str is a single word (no spaces)
+                if ' ' not in input_str.strip():
+                    input_str = f"[{input_str.strip()}]"
+                else:
+                    if self.emphasize_text == "Claude":
+                        input_str = Claude().emphasize(PROMPT, input_str)
+                    elif self.emphasize_text == "GPT":
+                        input_str = GPT().emphasize(PROMPT, input_str)
+                    
+                logger.info(f"Emphasized text: {input_str}")
+        except Exception as e:
+            logger.error(f"Error emphasizing text: {input_str}", exc_info=True)
+            raise ValueError(f"Failed to emphasize text: {str(e)}")
 
         # set accent if provided
         if self.language == "en" and accent:
             self.tokenizer.set_accent(accent)
             
-        if not phonemes:
-            phonemes_str, normalized_text, word_boundaries = self.tokenizer.phonemize_text(input_str, normalize=normalize)
-        else:
-            phonemes_str = input_str
-            word_boundaries = [(0, len(input_str))]  # Treat entire phoneme string as one word
-        
-        phoneme_list = self.tokenizer.split_phonemes(phonemes_str)
-                
-        if add_blank_token:
-            phoneme_list.append(' ')
-        
-        if return_phonemes:
-            result["phonemes"] = phonemes_str
-        
         try:
-            input_ids = self.tokenizer.phonemes_to_ids(phoneme_list)
-            result["input_ids"] = input_ids
+            if not phonemes:
+                logger.debug(f"Converting text to phonemes: {input_str}")
+                phonemes_str, normalized_text, word_boundaries = self.tokenizer.phonemize_text(input_str, normalize=normalize)
+            else:
+                phonemes_str = input_str
+                word_boundaries = [(0, len(input_str))]
+                logger.debug(f"Using provided phonemes: {phonemes_str}")
             
-            # Generate word_idx based on word boundaries
-            word_idx = []
-            current_pos = 0
-            current_word = 0
+            phoneme_list = self.tokenizer.split_phonemes(phonemes_str)
+            logger.debug(f"Split phonemes: {phoneme_list}")
+                
+            if add_blank_token:
+                phoneme_list.append(' ')
             
-            for phoneme in phoneme_list:
-                # Find which word boundary this phoneme belongs to
-                while current_word < len(word_boundaries) and current_pos >= word_boundaries[current_word][1]:
-                    current_word += 1
-                    
-                # If this is a space, use previous word's index
-                if phoneme == ' ':
-                    word_idx.append(max(0, current_word - 1))
-                else:
-                    word_idx.append(current_word)
-                    
-                current_pos += len(phoneme)
+            if return_phonemes:
+                result["phonemes"] = phonemes_str
             
-            result["word_idx"] = word_idx
+            try:
+                input_ids = self.tokenizer.phonemes_to_ids(phoneme_list)
+                result["input_ids"] = input_ids
+                
+                # Generate word_idx based on word boundaries
+                word_idx = []
+                current_pos = 0
+                current_word = 0
+                
+                for phoneme in phoneme_list:
+                    # Find which word boundary this phoneme belongs to
+                    while current_word < len(word_boundaries) and current_pos >= word_boundaries[current_word][1]:
+                        current_word += 1
+                        
+                    # If this is a space, use previous word's index
+                    if phoneme == ' ':
+                        word_idx.append(max(0, current_word - 1))
+                    else:
+                        word_idx.append(current_word)
+                        
+                    current_pos += len(phoneme)
+                
+                result["word_idx"] = word_idx
+                logger.debug(f"Successfully generated input_ids and word_idx for: {input_str}")
+                
+            except Exception as e:
+                logger.error(f"Failed to convert phonemes to IDs. Input: {input_str}", exc_info=True)
+                logger.error(f"Problematic phoneme list: {phoneme_list}")
+                raise ValueError(f"Failed to process phonemes: {str(e)}")
             
         except Exception as e:
-            logger.error(f"Invalid phoneme found in: {phoneme_list}, error: {e}")
+            logger.error(f"Error processing text: {input_str}", exc_info=True)
+            logger.error(f"Current language: {self.language}, accent: {accent}")
+            raise ValueError(f"Text processing failed: {str(e)}")
         
         return result
 
