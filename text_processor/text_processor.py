@@ -108,6 +108,7 @@ class TextProcessor:
             if not phonemes:
                 logger.debug(f"Converting text to phonemes: {input_str}")
                 phonemes_str, normalized_text, word_boundaries = self.tokenizer.phonemize_text(input_str, normalize=normalize)
+                result["normalized_text"] = normalized_text
             else:
                 phonemes_str = input_str
                 word_boundaries = [(0, len(input_str))]
