@@ -54,10 +54,9 @@ class Claude:
             except Exception as e:
                 attempt += 1
                 logger.warning(f"Attempt {attempt}/{max_retries} failed: {str(e)}")
-                
-            if attempt == max_retries:
-                logger.error(f"Max retries ({max_retries}) exceeded. Final error: {str(e)}")
-                raise MaxRetriesExceededError(f"Request failed after {max_retries} attempts. Last error: {str(e)}")
+                if attempt == max_retries:
+                    logger.error(f"Max retries ({max_retries}) exceeded. Final error: {str(e)}")
+                    raise MaxRetriesExceededError(f"Request failed after {max_retries} attempts. Last error: {str(e)}")
 
 if __name__ == "__main__":
     claude = Claude()
