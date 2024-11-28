@@ -178,7 +178,6 @@ class GruutTokenizer(BaseTokenizer):
         processed_text = re.sub(pattern, replace_tag, text)
         
         # Use the specified accent for phonemization
-        print(f"Accent: {self.accent}")
         for sentence in sentences(processed_text, lang=self.accent):
             for word in sentence:
                 if word.text.startswith('TAGPLACEHOLDER'):
@@ -206,8 +205,9 @@ class GruutTokenizer(BaseTokenizer):
                         current_pos += 1
                     
                     for i, emphasized_word in enumerate(emphasized_words):
+                        print(f"Emphasized words: {emphasized_word.text}")
                         if emphasized_word.text in [".", "!", "?", ",", ":", ";"]:
-                            trailing_punct += emphasized_word.text
+                            trailing_punct += ' ' + emphasized_word.text
                         else:
                             emphasized_phonemes = self.handle_emphasized_word(emphasized_word)
                             logger.debug(f"Emphasized phonemes: {emphasized_phonemes}")
@@ -229,12 +229,16 @@ class GruutTokenizer(BaseTokenizer):
                 elif in_emphasis:
                     emphasized_words.append(word)
                 elif word.is_major_break or word.is_minor_break:
-                    phonemes.append(word.text)
-                    if word_boundaries:
-                        word_boundaries[-1] = (word_boundaries[-1][0], current_pos + len(word.text))
+                    if word.text in ['!', '.', '?']:
+                        punctuation  = ' ' + word.text
                     else:
-                        word_boundaries.append((current_pos, current_pos + len(word.text)))
-                    current_pos += len(word.text)
+                        punctuation = word.text
+                    phonemes.append(punctuation)
+                    if word_boundaries:
+                        word_boundaries[-1] = (word_boundaries[-1][0], current_pos + len(punctuation))
+                    else:
+                        word_boundaries.append((current_pos, current_pos + len(punctuation)))
+                    current_pos += len(punctuation)
                 elif word.phonemes:
                     start_pos = current_pos
                     # Add a single space before non-emphasized words if needed
