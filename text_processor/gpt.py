@@ -1,6 +1,8 @@
 import os
 import logging
 from openai import OpenAI
+from pydantic import BaseModel
+
 from .prompt import PROMPT
 import json
 
@@ -10,6 +12,9 @@ logger.setLevel(logging.DEBUG)
 class MaxRetriesExceededError(Exception):
     """Custom exception for when max retries are exceeded"""
     pass
+
+class EmphasizedSentence(BaseModel):
+    emphasized_sentence: str
 
 class GPT:
     def __init__(self, model: str = "gpt-4o"):
@@ -24,36 +29,14 @@ class GPT:
         
         while attempt < max_retries:
             try:
-                result = self.client.chat.completions.create(
+                result = self.client.beta.chat.completions.parse(
                     model=self.model,
                     messages=messages,
                     max_tokens=4096,
-                    tools=[{
-                        "type": "function",
-                        "function": {
-                            "name": "emphasize",
-                            "description": "Emphasize selected words in the text",
-                            "parameters": {
-                                "type": "object",
-                                "properties": {
-                                    "emphasized_sentence": {
-                                        "type": "string",
-                                        "description": "The emphasized sentence"
-                                    }
-                                },
-                                "required": ["emphasized_sentence"]
-                            }
-                        }
-                    }],
-                    tool_choice={"type": "function", "function": {"name": "emphasize"}}
+                    response_format=EmphasizedSentence
                 )
-                
-                # Extract the emphasized_sentence from the tool calls
-                tool_calls = result.choices[0].message.tool_calls
-                if tool_calls:
-                    tool_call = tool_calls[0]
-                    return json.loads(tool_call.function.arguments).get('emphasized_sentence')
-                return None
+                result = result.choices[0].message.parsed
+                return result.emphasized_sentence
                 
             except Exception as e:
                 attempt += 1

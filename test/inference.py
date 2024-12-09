@@ -22,18 +22,18 @@ def main():
     }
 
     # English
-    # model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv", emphasize_text='Claude')
-    # result = model.get_input_ids("<handRaiseMid> It's nice when things [sounds] better!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
-    # print(f"Result: {result}\n")
+    model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv", emphasize_text='GPT')
+    result = model.get_input_ids("<sound_bell_sound> <hapticMedium> Great!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
+    print(f"Result: {result}\n")
     # result = model.get_input_ids("Let's practice.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
     # print(f"Result: {result}\n")
     # result = model.get_input_ids("<handOverHeart> <hapticWarning> Keep at it.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
     # print(f"Result: {result}\n")
     
     
-    model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv", emphasize_text='GPT')
-    result = model.get_input_ids("Hello World, my name is David! I'm a software engineer, and I love to code.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
-    print(f"Result: {result}\n")
+    # model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv", emphasize_text='GPT')
+    # result = model.get_input_ids("Hello World, my name is David! I'm a software engineer, and I love to code.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
+    # print(f"Result: {result}\n")
     
     # result = model.get_input_ids("Can you [lead] the <sound_part_showing_sound_1> conversation <smile>?", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
     # print(f"Result: {result}")
@@ -44,14 +44,13 @@ def main():
     # print(f"Result: {result}\n")
     
     # # Indonesian
-    # model = TextProcessor(model_dirs["id"], db_paths["id"], language="id", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv")
+    model = TextProcessor(model_dirs["id"], db_paths["id"], language="id", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv")
     # result = model.get_input_ids("<sound_scrolling_2> Halo <handRaiseHigh> nama saya Budi siapa [nama] kamu <sound_robotic_arm_2>?", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
     # print(f"Result: {result}\n")
     
-    # # Indonesian
-    # model = TextProcessor(model_dirs["id"], db_paths["id"], language="id", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv")
-    # result = model.get_input_ids("Daftar / Masuk?", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
-    # print(f"Result: {result}\n")
+    # Indonesian
+    result = model.get_input_ids("Daftar / Masuk. Non-Fiksi", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
+    print(f"Result: {result}\n")
 
 if __name__ == "__main__":
     main()

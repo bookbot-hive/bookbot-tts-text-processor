@@ -436,6 +436,7 @@ class G2pIdTokenizer(BaseTokenizer):
 
             processed_text = re.sub(pattern, replace_tag, text)
             sentences = sent_tokenize(processed_text)
+            sentences = [sentence.replace("-", " ") for sentence in sentences]
             
             logger.debug(f"Sentences: {sentences}")
             
