@@ -15,11 +15,10 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class TextProcessor:
-    def __init__(self, emphasis_model_path: str, db_path: str, language: str = "en", use_cosmos: bool = False, cosmos_config: Dict[str, Any] = None, animation_tags_path: str = None, emphasize_text: str = None):
+    def __init__(self, emphasis_model_path: str, db_path: str, language: str = "en", use_cosmos: bool = False, cosmos_config: Dict[str, Any] = None, animation_tags_path: str = None):
         self.language = language
         self.emphasis_lookup = dict()
         self.cosmos_lookup = dict()
-        self.emphasize_text = emphasize_text
         
         # Initialize custom tags
         TextUtils.initialize_custom_tags(animation_tags_path)
@@ -63,7 +62,7 @@ class TextProcessor:
         return wu_emphasis_dict
         
     
-    def get_input_ids(self, input_str: str, phonemes: bool = False, return_phonemes: bool = False, push_oov_to_cosmos: bool = False, add_blank_token: bool = False, normalize: bool = False, accent: str = None) -> dict:
+    def get_input_ids(self, input_str: str, phonemes: bool = False, return_phonemes: bool = False, push_oov_to_cosmos: bool = False, add_blank_token: bool = False, normalize: bool = False, accent: str = None, emphasize_model: str = None) -> dict:
         """
         Given a string of text or phonemes, return the input ids.
 
@@ -85,15 +84,15 @@ class TextProcessor:
             self.tokenizer.set_push_oov_to_cosmos(False)
         
         try:
-            if self.emphasize_text:
+            if emphasize_model:
                 # Check if input_str is a single word (no spaces)
                 if ' ' not in input_str.strip():
                     input_str = f"[{input_str.strip()}]"
                 else:
-                    if self.emphasize_text == "Claude":
-                        input_str = Claude().emphasize(PROMPT, input_str)
-                    elif self.emphasize_text == "GPT":
-                        input_str = GPT().emphasize(PROMPT, input_str)
+                    if "claude" in emphasize_model.lower():
+                        input_str = Claude(model=emphasize_model).emphasize(PROMPT, input_str)
+                    elif "gpt" in emphasize_model.lower():
+                        input_str = GPT(model=emphasize_model).emphasize(PROMPT, input_str)
                     
                 logger.info(f"Emphasized text: {input_str}")
         except Exception as e:

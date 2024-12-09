@@ -22,16 +22,16 @@ def main():
     }
 
     # English
-    model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv", emphasize_text='GPT')
-    result = model.get_input_ids("<sound_bell_sound> <hapticMedium> Great!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
+    model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv")
+    result = model.get_input_ids("<sound_bell_sound> <hapticMedium> Great!", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True, emphasize_model="gpt-4o")
     print(f"Result: {result}\n")
-    # result = model.get_input_ids("Let's practice.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
-    # print(f"Result: {result}\n")
-    # result = model.get_input_ids("<handOverHeart> <hapticWarning> Keep at it.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
-    # print(f"Result: {result}\n")
+    result = model.get_input_ids("Let's practice.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True, emphasize_model="gpt-4o")
+    print(f"Result: {result}\n")
+    result = model.get_input_ids("<handOverHeart> <hapticWarning> Keep at it.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True, emphasize_model="gpt-4o")
+    print(f"Result: {result}\n")
     
     
-    # model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv", emphasize_text='GPT')
+    # model = TextProcessor(model_dirs["en"], db_paths["en"], language="en", use_cosmos=False, cosmos_config=cosmos_config, animation_tags_path="data.csv")
     # result = model.get_input_ids("Hello World, my name is David! I'm a software engineer, and I love to code.", phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True)
     # print(f"Result: {result}\n")
     
