@@ -1,0 +1,196 @@
+Name,Type,Tag name,Emoji,State machine,Input state,Notes,Number
+Hand Over Heart,body,handOverHeart,❤️,Robot Animations,Hand Over Heart,,-1
+Hand Raise Mid,body,handRaiseMid,💁‍♀️,Robot Animations,Hand Raise Mid,,-2
+Hand Raise High,body,handRaiseHigh,🙋‍♀️,Robot Animations,Hand Raise High,,-3
+Hands Behind Back 1,body,handsBehindBack1,🤚,Robot Animations,Hands Behind Back 1,,-4
+Hands Behind Back 2,body,handsBehindBack2,🫲,Robot Animations,Hands Behind Back 2,,-5
+Head Lean,body,headLean,🤪,Robot Animations,Head Lean,,-6
+Raise Right Hand,body,raiseRightHand,👉,Robot Animations,Raise Right Hand,,-7
+Raise Left Hand,body,raiseLeftHand,👈,Robot Animations,Raise Left Hand,,-8
+Poked,body,poked,👇,Robot Animations,Poked,,-9
+Idle,body,idle,✊,Robot Idle,idle1,,-10
+Wave,body,wave,👋,Robot Animations,Wave2,,-11
+Listen,body,listen,🥋,Robot Animations,Listen,,-12
+Zoom in,animation,zoomIn,🤏,Navigation Buttons,Zoom In,,-13
+Show bot,animation,showBot,🤖,Camera,Show Robot,,-14
+Zoom out,animation,zoomOut,👐,Navigation Buttons,Zoom Out,,-15
+Microphone,animation,microphone,🎤,Console,Microphone,,-16
+Tick,animation,tick,✅,Console,Tick,,-17
+Show buttons,animation,showButtons,🎦,Navigation Buttons,Show Buttons,,-18
+Library navigation,animation,libraryNavigation,📚,Navigation Buttons,Library,,-19
+Command Centre navigation,animation,commandCentreNavigation,🎛️,Navigation Buttons,Command Center,,-20
+Tutorial navigation,animation,tutorialNavigation,📔,Navigation Buttons,Tutorial,,-21
+Assembly navigation,animation,assemblyNavigation,⚙️,Navigation Buttons,Assembly,,-22
+Parent Settings navigation,animation,parentSettingsNavigation,🙆,Navigation Buttons,Settings,,-23
+Hide Intro Board,animation,consoleOut,🍀,Navigation Buttons,Console Out,,-24
+Show Intro Board,animation,consoleIn,☘️,Navigation Buttons,Console In,,-25
+Library Transport,animation,libraryTransport,🚃,Robot Animations,Library,,-26
+Command Centre Transport,animation,commandCentreTransport,🚄,Robot Animations,Command Centre,,-27
+Tutorial Transport,animation,tutorialTransport,🚅,Robot Animations,Tutorial,,-28
+Assembly Transport,animation,assemblyTransport,🚇,Robot Animations,Assembly,,-29
+Parent Settings Transport,animation,parentSettingsTransport,🚉,Robot Animations,Parent Settings,,-30
+Tap,animation,tap,🫵,Console,Tap,,-31
+Start,animation,start,🚀,,,,-32
+Parts machine vibrating,animation,partsMachineVibrating,📳,Factory Scene,Machine Flashing On,,-33
+Battery,animation,battery,🔋,,,,-34
+Hide bookbot,animation,hideBot,💹,Factory Scene,Hide Bookbot,,-35
+Personal tracker parts,animation,personalTrackerParts,👨‍🦯,,,,-36
+Words to parts,animation,wordsToParts,🔤,,,,-37
+Zoom tracker,animation,zoomTracker,🔍,,,,-38
+Machine flash off,animation,machineFlashOff,🔎,Factory Scene,Machine Flashing Off,,-39
+Words All,animation,wordAll,🔏,Factory Scene,Words All,,-40
+Bot head,animation,botHead,🔐,Factory Scene,Greenbot Head,,-41
+Construct bot,animation,constructBot,👾,Assembly Bay,Construct Bot,,-42
+Personal tracker button,animation,personalTrackerButton,🔘,Assembly Bay,Show Tracker Button,,-43
+Personal tracker,animation,personalTracker,🙅‍♀️,Assembly Bay,Press Tracker Button,,-44
+Fill personal tracker,animation,fillPersonalTracker,🙅‍♂️,Assembly Bay,Charge Personal Tracker,,-45
+Reward token,animation,rewardToken,🏆,Assembly Bay,Show Token,,-46
+Hide token,animation,hideToken,🎀,Assembly Bay,Hide Token,,-47
+Reward button,animation,rewardButton,🎁,Assembly Bay,Show Reward Button,,-48
+Hide Reward button,animation,hideRewardButton,🦠,Assembly Bay,Hide Reward Button,,-49
+Zoom out assembly,animation,zoomOutAssembly,🎂,Assembly Bay,Zoom Out,,-50
+Hide bot assembly,animation,hideBotAssembly,📉,Assembly Bay,Hide Bot,,-51
+Hide BG,animation,hideBG, ⌚️,Assembly Bay,Hide BG,,-52
+Show BG,animation,showBG,🖲️,Assembly Bay,Show BG,,-53
+Entry,animation,entry,🎃,Factory Scene,Entry,,-54
+Zoom bot,animation,zoomBot,🎄,Factory Scene,Zoom out bot,,-55
+Word Pet,animation,wordPet,🎅,Factory Scene,Word Pet,,-56
+Word Have,animation,wordHave,🎆,Factory Scene,Word Have,,-57
+Word Sahabat,animation,wordSahabat,🧚🏼‍♀️,Factory Scene,Word Sahabat,,-58
+Word Ada,animation,wordAda,🧜🏻‍♂️,Factory Scene,Word Ada,,-59
+Jump Cut Machine,animation,jumpCutMachine,🎈,Factory Scene,Jump Cut Machine,,-60
+Factory Zoom Out,animation,factoryZoomOut,🎉,Factory Scene,Zoom Out,,-61
+Jump Cut Bot,animation,jumpCutbot,🎊,Factory Scene,Jump Cut Bot,,-62
+Jump Cut Out,animation,jumpCutOut,🧤,Factory Scene,Jump Cut Out,,-63
+Many Packages,animation,manyPackages,🦾,Factory Scene,Many Packages,,-64
+Show menu,trigger,showMenu,🏢,,,,-65
+Microphone permission,trigger,microphonePermission,🎙,,,,-66
+Cover screen,trigger,coverScreen,📖,,,,-67
+Practice word,trigger,practiceWord,📗,,,,-68
+Practice word pet,trigger,practiceWordPet,📞,,,,-69
+Practice word got,trigger,practiceWordGot,📟,,,,-70
+Practice word not,trigger,practiceWordNot,📠,,,,-71
+Practice word big,trigger,practiceWordBig,📡,,,,-72
+Page 1,trigger,page1,📃,,,,-73
+Page 2,trigger,page2,📜,,,,-74
+Page finish,trigger,pageFinish,📕,,,,-75
+Bookbot read,trigger,bookbotRead,📑,,,,-76
+Practice modal,trigger,practiceModal,📘,,,,-77
+Page 3,trigger,page3,📤,,,,-78
+Page 4,trigger,page4,📙,,,,-79
+Page 5,trigger,page5,📓,,,,-80
+Tapped,trigger,tapped,👆,,,,-81
+Page 6,trigger,page6,📄,,,,-82
+Page 7,trigger,page7,📰,,,,-83
+Page 8,trigger,page8,🔖,,,,-84
+Rating screen,trigger,ratingScreen,🌟,,,,-85
+Rewards shelves,trigger,rewardsShelves,🏅,,,,-86
+Bookbot shows,trigger,bookbotShows,🤩,,,,-87
+Wait 1 seconds,trigger,wait1s,🖼️,,,,-88
+Angry,tts,angry,😠,,,,-89
+Happy,tts,happy,😄,,,,-90
+Sad,tts,sad,😢,,,,-91
+Neutral,tts,neutral,🙂,,,,-92
+Book Rating Sound,sound,sound_book_rating_sound,🕴️,,,,-93
+Bot Blue,sound,sound_bot_blue,🧗,,,,-94
+Bot Green,sound,sound_bot_green,🤺,,,,-95
+Bot Orange,sound,sound_bot_orange,🏇,,,,-96
+Bot Purple,sound,sound_bot_purple,⛷️,,,,-97
+Bot Red,sound,sound_bot_red,🏂,,,,-98
+Bot Yellow,sound,sound_bot_yellow,🏌️,,,,-99
+Button 1,sound,sound_button_1,✂️,,,,-100
+Button 2,sound,sound_button_2,🏄,,,,-101
+Button 3,sound,sound_button_3,🚣,,,,-102
+Button 4,sound,sound_button_4,🏊,,,,-103
+Button 5,sound,sound_button_5,⛹️,,,,-104
+Button 6,sound,sound_button_6,🏋️,,,,-105
+Button 7,sound,sound_button_7,🚴,,,,-106
+Button 8,sound,sound_button_8,🚵,,,,-107
+Button 9,sound,sound_button_9,🤸,,,,-108
+Button 10,sound,sound_button_10,🤼,,,,-109
+Button Pop,sound,sound_button_pop,🤽,,,,-110
+Enlarge,sound,sound_enlarge,🤾,,,,-111
+Menu Button,sound,sound_menu_button,🤹,,,,-112
+Rating 1,sound,sound_rating_1,🧘,,,,-113
+Rating 2,sound,sound_rating_2,🎪,,,,-114
+Rating 3,sound,sound_rating_3,🛹,,,,-115
+Rating 4,sound,sound_rating_4,🛼,,,,-116
+Rating 5,sound,sound_rating_5,🛶,,,,-117
+Screen Next,sound,sound_screen_next,🎗️,,,,-118
+Screen Prev,sound,sound_screen_prev,🎟️,,,,-119
+Shrink,sound,sound_shrink,🎫,,,,-120
+Swipe 1,sound,sound_swipe_1,⚽,,,,-121
+Swipe 2,sound,sound_swipe_2,⚾,,,,-122
+Swipe 3,sound,sound_swipe_3,🏐,,,,-123
+Swipe Whoosh 1,sound,sound_swipe_whoosh_1,🏈 ,,,,-124
+Swipe Whoosh 2,sound,sound_swipe_whoosh_2,🎾,,,,-125
+Swipe Whoosh 3,sound,sound_swipe_whoosh_3,🥏,,,,-126
+Splash Intro,sound,sound_splash_intro,🎳,,,,-127
+Theme,sound,sound_theme,🏏,,,,-128
+Light,haptic,hapticLight,🙉,,,,-129
+Medium,haptic,hapticMedium,🙊,,,,-130
+Heavy,haptic,hapticHeavy,🐒,,,,-131
+Selection,haptic,hapticSelection,🐶,,,,-132
+Success,haptic,hapticSuccess,🐕,,,,-133
+Warning,haptic,hapticWarning,🐺,,,,-134
+Failure,haptic,hapticFailure,🐩,,,,-135
+Soft,haptic,hapticSoft,🧸,,,,-136
+Rigid,haptic,hapticRigid,🐙,,,,-137
+Ambient Control Room,sound,sound_ambient_control_room,✏️,,,,-138
+Bell Sound,sound,sound_bell_sound,🖍️,,,,-139
+Double Click Sound,sound,sound_double_click_sound,🔂,,,,-140
+Drone Buzzing,sound,sound_drone_buzzing,🔁,,,,-141
+Escalator 1,sound,sound_escalator_sound_1,🔀,,,,-142
+Escalator 2,sound,sound_escalator_sound_2,⤵️,,,,-143
+Fast Hydraulic,sound,sound_fast_hydraulic,⤴️,,,,-144
+Grow 1,sound,sound_grow_sound_1,↩️,,,,-145
+Grow 2,sound,sound_grow_sound_2,🆓,,,,-146
+Grow 3,sound,sound_grow_sound_3,🆕,,,,-147
+Grow 4,sound,sound_grow_sound_4,↖️,,,,-148
+Hydraulic Robot Arm 7,sound,sound_hydraulic_robot_arm_7,↙️,,,,-149
+Hydraulic Robot Arm 8,sound,sound_hydraulic_robot_arm_8,↘️,,,,-150
+Hydraulic Robot Arm 9,sound,sound_hydraulic_robot_arm_9,⬇️,,,,-151
+Hydraulic Robot Arm 10,sound,sound_hydraulic_robot_arm_10,⬆️,,,,-152
+Hydraulic Robot Arm 11,sound,sound_hydraulic_robot_arm_11,⬅️,,,,-153
+Hydraulic Robot Arm 12,sound,sound_hydraulic_robot_arm_12,➡️,,,,-154
+Hydraulic Robot Arm 13,sound,sound_hydraulic_robot_arm_13,🔽,,,,-155
+Jump Whoosh Sound,sound,sound_jump_whoosh_sound,🔼,,,,-156
+Low Xylophone 1,sound,sound_low_xylophone_1,◀️,,,,-157
+Low Xylophone 2,sound,sound_low_xylophone_2,⏬️,,,,-158
+Low Xylophone 3,sound,sound_low_xylophone_3,⏫️,,,,-159
+Machine Movement Sound,sound,sound_machine_movement_sound,⏪️,,,,-160
+Part Showing 1,sound,sound_part_showing_sound_1,⏩️,,,,-161
+Part Showing 2,sound,sound_part_showing_sound_2,⏮️,,,,-162
+Part Showing 3,sound,sound_part_showing_sound_3,⏭️,,,,-163
+Part Showing 4,sound,sound_part_showing_sound_4,⏺️,,,,-164
+Percussive Tone,sound,sound_percussive_tone,⏹️,,,,-165
+Pops 1,sound,sound_pops_1,⏯️,,,,-166
+Pops 3,sound,sound_pops_3,⏸️,,,,-167
+Robot Arm Sound,sound,sound_robot_arm_sound,▶️,,,,-168
+Robot Startup,sound,sound_robot_startup,⏏️,,,,-169
+Robotic Arm 2,sound,sound_robotic_arm_2,📶,,,,-170
+Teleporter 1,sound,sound_teleporter_1,#️⃣,,,,-171
+Teleporter 2,sound,sound_teleporter_2,🔢,,,,-172
+Thud 1,sound,sound_thud_1,🔟,,,,-173
+Thud 2,sound,sound_thud_2,9️⃣,,,,-174
+Vacuum Tube Suck,sound,sound_vacuum_tube_suck,8️⃣,,,,-175
+Whoosh 1,sound,sound_whoosh_1,7️⃣,,,,-176
+Whoosh,sound,sound_whoosh,6️⃣,,,,-177
+Whoosh 2,sound,sound_whoosh_2,5️⃣,,,,-178
+Close,sound,sound_close,4️⃣,,,,-179
+Battery Charge Half,sound,sound_battery_charge_half,3️⃣,,,,-180
+Bot Reveal 2,sound,sound_bot_reveal_2,2️⃣,,,,-181
+Bot Reveal 1,sound,sound_bot_reveal_1,1️⃣,,,,-182
+Low Xylophone 4,sound,sound_low_xylophone_4,0️⃣,,,,-183
+Bot Reveal 3,sound,sound_bot_reveal_3,🆖,,,,-184
+Pops 4,sound,sound_pops_4,🔠,,,,-185
+Enlarge 2,sound,sound_enlarge_2,🔡,,,,-186
+Level Reveal,sound,sound_level_reveal,🔣,,,,-187
+Scrolling 1,sound,sound_scrolling_1,🈁,,,,-188
+Pops 2,sound,sound_pops_2,🚮,,,,-189
+Accept,sound,sound_accept,🚻,,,,-190
+Tapping,sound,sound_tapping,⚧️,,,,-191
+Tapping Gear Sound,sound,sound_tapping_gear_sound,🚼,,,,-192
+Thump,sound,sound_thump,🚹,,,,-193
+Scrolling 2,sound,sound_scrolling_2,🈸,,,,-194
+Place holder,tts,%@,🦊,,,,-195

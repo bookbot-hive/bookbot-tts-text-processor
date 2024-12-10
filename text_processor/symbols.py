@@ -23,10 +23,11 @@ class SymbolSet:
     def phonemes_to_ids(self, phonemes):
         """Converts a list of phonemes and tags to a sequence of IDs."""
         sequence = []
-        tag_pattern = re.compile(r'<(\w+)>')
+        tag_pattern = re.compile(r'<([^>]+)>')
         
         for phoneme in phonemes:
             match = tag_pattern.match(phoneme)
+            print(f"Match: {match}")
             if match:
                 tag = match.group(1)
                 custom_tags = TextUtils.get_custom_tags()
