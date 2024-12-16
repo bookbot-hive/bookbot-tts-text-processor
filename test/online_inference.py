@@ -40,7 +40,7 @@ def main():
         language="en",
         use_cosmos=False,
         cosmos_config=cosmos_config,
-        animation_tags_path="animation_data.csv",
+        animation_tags_path="../animation_data.csv",
         online_g2p=True,
     )
     result = model.get_input_ids(
@@ -57,7 +57,7 @@ def main():
         language="en",
         use_cosmos=False,
         cosmos_config=cosmos_config,
-        animation_tags_path="animation_data.csv",
+        animation_tags_path="../animation_data.csv",
         online_g2p=True,
     )
     result = model.get_input_ids(
@@ -85,7 +85,7 @@ def main():
         language="sw",
         use_cosmos=False,
         cosmos_config=cosmos_config,
-        animation_tags_path="animation_data.csv",
+        animation_tags_path="../animation_data.csv",
         online_g2p=True,
     )
     result = model.get_input_ids(
@@ -104,7 +104,7 @@ def main():
         language="id",
         use_cosmos=False,
         cosmos_config=cosmos_config,
-        animation_tags_path="animation_data.csv",
+        animation_tags_path="../animation_data.csv",
         online_g2p=True,
     )
     result = model.get_input_ids(
