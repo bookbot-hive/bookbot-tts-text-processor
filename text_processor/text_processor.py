@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class TextProcessor:
-    def __init__(self, emphasis_model_path: str, db_path: str, language: str = "en", use_cosmos: bool = False, cosmos_config: Dict[str, Any] = None, animation_tags_path: str = None):
+    def __init__(self, emphasis_model_path: str, db_path: str, language: str = "en", use_cosmos: bool = False, cosmos_config: Dict[str, Any] = None, animation_tags_path: str = None, online_g2p: bool = False):
         self.language = language
         self.emphasis_lookup = dict()
         self.cosmos_lookup = dict()
@@ -43,6 +43,8 @@ class TextProcessor:
         self.tokenizer = self.tokenizer_manager.get_tokenizer()
         if use_cosmos:
             self.tokenizer.set_cosmos_client(self.cosmos_client)
+        if online_g2p:
+            self.tokenizer.set_online_g2p(True, self.language)
             
         if self.language == "en":
             self.tokenizer.set_accent("en-us")

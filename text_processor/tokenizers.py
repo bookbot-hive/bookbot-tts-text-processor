@@ -7,21 +7,25 @@ from functools import lru_cache
 from optimum.onnxruntime import ORTModelForQuestionAnswering
 from transformers import PreTrainedTokenizerFast
 from concurrent.futures import ThreadPoolExecutor
+from multiprocessing import cpu_count
+
 
 from .symbols import SymbolSet
 from .symbols import get_symbol_set
 from .normalization import preprocess_text
+from .utils import TextUtils
+
 
 import numpy as np
 import re
 import logging
 import uuid
 import time
-from multiprocessing import cpu_count
-
-from .utils import TextUtils
-
+import os
 import string 
+
+TURSO_URL = os.getenv("TURSO_URL")
+TURSO_AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN")
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -41,6 +45,8 @@ class BaseTokenizer(ABC):
         self.executor = ThreadPoolExecutor(max_workers=min(32, cpu_count() + 4))
         self.cosmos_client = None
         self.push_oov_to_cosmos = False
+        self.online_g2p = False
+        self.turso_config = None
         
     @abstractmethod
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
@@ -63,7 +69,24 @@ class BaseTokenizer(ABC):
 
     def set_cosmos_client(self, cosmos_client):
         self.cosmos_client = cosmos_client
-    
+        
+    def set_online_g2p(self, online_g2p: bool, lang: str):
+        self.online_g2p = online_g2p
+        if lang == "en":
+            table = "en_phonemes"
+        elif lang == "id":
+            table = "id_phonemes"
+        elif lang == "sw":
+            table = "sw_phonemes"
+        else:
+            raise ValueError(f"Unsupported language: {lang}")
+        
+        self.turso_config = {
+            "url": TURSO_URL,
+            "auth_token": TURSO_AUTH_TOKEN,
+            "table": table
+        }
+            
     def set_push_oov_to_cosmos(self, push_oov_to_cosmos: bool):
         self.push_oov_to_cosmos = push_oov_to_cosmos
 
@@ -178,8 +201,7 @@ class GruutTokenizer(BaseTokenizer):
         processed_text = re.sub(pattern, replace_tag, text)
         
         # Use the specified accent for phonemization
-        print(f"Accent: {self.accent}")
-        for sentence in sentences(processed_text, lang=self.accent):
+        for sentence in sentences(processed_text, lang=self.accent, turso_config=self.turso_config):
             for word in sentence:
                 if word.text.startswith('TAGPLACEHOLDER'):
                     # Handle special tags
