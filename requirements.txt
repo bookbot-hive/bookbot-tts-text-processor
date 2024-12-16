@@ -3,5 +3,5 @@ transformers==4.45.2
 optimum[onnxruntime]
 numpy==1.26.4
 azure-cosmos
-git+https://github.com/bookbot-hive/babygruut.git@turso_db
-git+https://github.com/bookbot-kids/online_g2p_id.git
+babygruut @ git+https://github.com/bookbot-hive/babygruut.git@turso_db
+g2p_id @ git+https://github.com/bookbot-kids/online_g2p_id.git
