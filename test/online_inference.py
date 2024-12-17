@@ -115,6 +115,14 @@ def main():
         add_blank_token=True,
     )
     print(f"Result: {result}\n")
+    result = model.get_input_ids(
+        "Ensiklopedia",
+        phonemes=False,
+        return_phonemes=True,
+        push_oov_to_cosmos=False,
+        add_blank_token=True,
+    )
+    print(f"Result: {result}\n")
 
     # Indonesian
     result = model.get_input_ids(

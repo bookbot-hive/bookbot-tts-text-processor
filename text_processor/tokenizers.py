@@ -1,3 +1,8 @@
+import nltk
+nltk.download('punkt')
+nltk.download('tokenizers')
+nltk.download('punkt_tab')
+
 from abc import ABC, abstractmethod
 from typing import List, Tuple, Dict
 from gruut import sentences
@@ -341,7 +346,7 @@ class GruutSwahiliTokenizer(BaseTokenizer):
 
         processed_text = re.sub(pattern, replace_tag, text)
         
-        for sentence in sentences(processed_text, lang="sw"):
+        for sentence in sentences(processed_text, lang="sw", turso_config=self.turso_config):
             for word in sentence:
                 if word.text.startswith('TAGPLACEHOLDER'):
                     # Handle special tags
