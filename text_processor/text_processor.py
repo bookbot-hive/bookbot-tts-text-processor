@@ -39,12 +39,10 @@ class TextProcessor:
             logger.info(f"Loading emphasis lookup from file: {db_path}")
             self.emphasis_lookup = self.load_emphasis_lookup_from_file(db_path)
             
-        self.tokenizer_manager = Tokenizer(emphasis_model_path, self.emphasis_lookup, self.language)
+        self.tokenizer_manager = Tokenizer(emphasis_model_path, self.emphasis_lookup, self.language, online_g2p=online_g2p)
         self.tokenizer = self.tokenizer_manager.get_tokenizer()
         if use_cosmos:
             self.tokenizer.set_cosmos_client(self.cosmos_client)
-        if online_g2p:
-            self.tokenizer.set_online_g2p(True, self.language)
             
         if self.language == "en":
             self.tokenizer.set_accent("en-us")

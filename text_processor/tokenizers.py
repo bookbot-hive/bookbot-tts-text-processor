@@ -36,7 +36,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class BaseTokenizer(ABC):
-    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, symbol_set: SymbolSet):
+    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, symbol_set: SymbolSet, online_g2p: bool = False):
         self.symbol_set = symbol_set
         self.language = language
         if emphasis_model_path:
@@ -50,8 +50,12 @@ class BaseTokenizer(ABC):
         self.executor = ThreadPoolExecutor(max_workers=min(32, cpu_count() + 4))
         self.cosmos_client = None
         self.push_oov_to_cosmos = False
-        self.online_g2p = False
         self.turso_config = None
+        if online_g2p:
+            logger.info(f"Initializing online G2P for {language}")
+            self._init_online_g2p(language)
+            
+       
         
     @abstractmethod
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
@@ -75,8 +79,7 @@ class BaseTokenizer(ABC):
     def set_cosmos_client(self, cosmos_client):
         self.cosmos_client = cosmos_client
         
-    def set_online_g2p(self, online_g2p: bool, lang: str):
-        self.online_g2p = online_g2p
+    def _init_online_g2p(self, lang: str):
         if lang == "en":
             table = "en_phonemes"
         elif lang == "id":
@@ -170,8 +173,8 @@ class BaseTokenizer(ABC):
         }
     
 class GruutTokenizer(BaseTokenizer):
-    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
-        super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("en"))
+    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
+        super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("en"), online_g2p)
         self.accent = "en-us"  # Default accent
     
     def set_accent(self, accent: str):
@@ -318,8 +321,8 @@ class GruutTokenizer(BaseTokenizer):
         self.executor.shutdown(wait=False)
 
 class GruutSwahiliTokenizer(BaseTokenizer):
-    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
-        super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("sw"))
+    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
+        super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("sw"), online_g2p)
 
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[str, str, List[Tuple[int, int]]]:
         text = preprocess_text(text, normalize)
@@ -434,9 +437,9 @@ class GruutSwahiliTokenizer(BaseTokenizer):
         self.executor.shutdown(wait=False)
 
 class G2pIdTokenizer(BaseTokenizer):
-    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
-        super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("id"))
-        self.g2p = G2p()
+    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
+        super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("id"), online_g2p)
+        self.g2p = G2p(turso_config=self.turso_config)
         self.tokenizer = TweetTokenizer()
         self.puncts = ".,!?:"
 
@@ -531,16 +534,16 @@ class G2pIdTokenizer(BaseTokenizer):
             return ''.join(phonemes), text, word_boundaries
 
 class Tokenizer:
-    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str):
-        self.tokenizer = self._create_tokenizer(emphasis_model_path, emphasis_lookup, language)
+    def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
+        self.tokenizer = self._create_tokenizer(emphasis_model_path, emphasis_lookup, language, online_g2p)
 
-    def _create_tokenizer(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str) -> BaseTokenizer:
+    def _create_tokenizer(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False) -> BaseTokenizer:
         if language == "en":
-            return GruutTokenizer(emphasis_model_path, emphasis_lookup, language)
+            return GruutTokenizer(emphasis_model_path, emphasis_lookup, language, online_g2p)
         elif language == "sw":
-            return GruutSwahiliTokenizer(emphasis_model_path, emphasis_lookup, language)
+            return GruutSwahiliTokenizer(emphasis_model_path, emphasis_lookup, language, online_g2p)
         elif language == "id":
-            return G2pIdTokenizer(emphasis_model_path, emphasis_lookup, language)
+            return G2pIdTokenizer(emphasis_model_path, emphasis_lookup, language, online_g2p)
         else:
             raise ValueError(f"Unsupported language: {language}")
 
