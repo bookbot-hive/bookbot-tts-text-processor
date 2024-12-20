@@ -46,7 +46,6 @@ class SymbolSet:
         """Converts a sequence of IDs back to a string, including special tags"""
         result = ""
         custom_tags = TextUtils.get_custom_tags()
-        
         for symbol_id in sequence:
             if symbol_id < 0:
                 tag_name = next(tag for tag, id in custom_tags.items() if id == symbol_id)

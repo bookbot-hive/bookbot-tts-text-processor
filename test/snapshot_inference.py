@@ -24,8 +24,10 @@ cosmos_config = {
 def generate_inputids(text, language):
     # If not planning to use emphasis then you can set use_cosmos=False and push_oov_to_cosmos=False
     model = TextProcessor(model_dirs[language], db_paths[language], language=language, use_cosmos=False, cosmos_config=cosmos_config) 
-    return model.get_input_ids(text, phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
+    return model, model.get_input_ids(text, phonemes=False, return_phonemes=True, push_oov_to_cosmos=False, add_blank_token=True)
 
 if __name__ == "__main__":
-    print(generate_inputids("Hello <wave> world <listen> how are you? <headLean>", "en"))
-    print(generate_inputids("Halo nama saya Budi. Siapa [nama] kamu?", "id"))
+    model, result = generate_inputids("Bookbot uses speech recognition. Please enable the microphone while using this app.", "en")
+    print(result)
+    print(model.tokenizer.split_phonemes(model.tokenizer.ids_to_phonemes(result['input_ids'])))
+    

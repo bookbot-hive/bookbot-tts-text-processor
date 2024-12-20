@@ -132,6 +132,9 @@ class BaseTokenizer(ABC):
         return ''.join(phonemes[:start_idx] + ['"'] + phonemes[start_idx:end_idx+1] + ['"'] + phonemes[end_idx+1:])
 
     def prepare_escaped_symbols(self, symbols: List[str]):
+        if self.language == "en":
+            remove_symbols = ['a', 'aɪə', 'eə', 'iə', 'iː', 'nʲ', 'n̩', 'r', 'uː', 'x', 'ɐ', 'ɑː', 'ɑ̃', 'ɒ', 'ɔː', 'ɔ̃', 'əl', 'əʊ', 'ɜː', 'ɡʲ', 'ɬ', 'ʊə', 'ˈa', 'ˈaɪə', 'ˈeə', 'ˈiə', 'ˈiː', 'ˈiːː', 'ˈuː', 'ˈɐ', 'ˈɑː', 'ˈɑ̃', 'ˈɒ', 'ˈɔː', 'ˈə', 'ˈəl', 'ˈəʊ', 'ˈɜː', 'ˈʊə', 'ˌa', 'ˌaɪə', 'ˌeə', 'ˌiə', 'ˌiː', 'ˌuː', 'ˌɑː', 'ˌɒ', 'ˌɔː', 'ˌə', 'ˌəʊ', 'ˌɜː', 'ˌʊə']
+            symbols = [s for s in symbols if s not in remove_symbols]
         # Sort symbols by length (longest first) to ensure correct matching
         sorted_symbols = sorted(symbols, key=len, reverse=True)
         
