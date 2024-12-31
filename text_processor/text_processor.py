@@ -62,7 +62,14 @@ class TextProcessor:
         return wu_emphasis_dict
         
     
-    def get_input_ids(self, input_str: str, phonemes: bool = False, return_phonemes: bool = False, push_oov_to_cosmos: bool = False, add_blank_token: bool = False, normalize: bool = False, accent: str = None, emphasize_model: str = None) -> dict:
+    def get_input_ids(self, input_str: str,
+                      phonemes: bool = False, 
+                      return_phonemes: bool = False, 
+                      push_oov_to_cosmos: bool = False, 
+                      add_blank_token: bool = False, 
+                      normalize: bool = False, 
+                      accent: str = None, 
+                      emphasize_model: str = None) -> dict:
         """
         Given a string of text or phonemes, return the input ids.
 
