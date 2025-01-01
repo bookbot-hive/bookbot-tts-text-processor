@@ -37,8 +37,8 @@ class BaseTokenizer(ABC):
         self.symbol_set = symbol_set
         self.language = language
         self.emphasis_model_path = emphasis_model_path  # Store the path instead of model
-        if emphasis_model_path:
-            self.__model, self.__tokenizer = self.load_model_and_tokenizer(emphasis_model_path)
+        self.__model = None
+        self.__tokenizer = None
         if emphasis_lookup:
             self.emphasis_lookup = emphasis_lookup
         else:
@@ -52,7 +52,21 @@ class BaseTokenizer(ABC):
         if online_g2p:
             logger.info(f"Initializing online G2P for {language}")
             self._init_online_g2p(language)
-        
+
+    def _load_model_if_needed(self):
+        if self.__model is None and self.emphasis_model_path:
+            self.__model, self.__tokenizer = self.load_model_and_tokenizer(self.emphasis_model_path)
+
+    @property
+    def model(self):
+        self._load_model_if_needed()
+        return self.__model
+
+    @property
+    def tokenizer(self):
+        self._load_model_if_needed()
+        return self.__tokenizer
+
     @abstractmethod
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
         pass
@@ -71,14 +85,6 @@ class BaseTokenizer(ABC):
         )
         tokenizer = PreTrainedTokenizerFast.from_pretrained(model_dir)
         return model, tokenizer
-
-    @property
-    def model(self):
-        return self.__model
-
-    @property
-    def tokenizer(self):
-        return self.__tokenizer
 
     @property
     def executor(self):
