@@ -36,17 +36,17 @@ class BaseTokenizer(ABC):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, symbol_set: SymbolSet, online_g2p: bool = False):
         self.symbol_set = symbol_set
         self.language = language
-        self.emphasis_model_path = emphasis_model_path  # Store the path instead of model
+        self.emphasis_model_path = emphasis_model_path
         self.__model = None
         self.__tokenizer = None
+        self.__executor = None
+        self.__cosmos_client = None
         if emphasis_lookup:
             self.emphasis_lookup = emphasis_lookup
         else:
             self.emphasis_lookup = {}
         self.escaped_symbols = self.prepare_escaped_symbols(symbol_set.SYMBOLS)
         self.escaped_symbols_pattern = re.compile(self.escaped_symbols)
-        self.__executor = ThreadPoolExecutor(max_workers=min(32, cpu_count() + 4))
-        self.__cosmos_client = None
         self.push_oov_to_cosmos = False
         self.turso_config = None
         if online_g2p:
@@ -57,6 +57,11 @@ class BaseTokenizer(ABC):
         if self.__model is None and self.emphasis_model_path:
             self.__model, self.__tokenizer = self.load_model_and_tokenizer(self.emphasis_model_path)
 
+    def _get_executor(self):
+        if self.__executor is None:
+            self.__executor = ThreadPoolExecutor(max_workers=min(32, cpu_count() + 4))
+        return self.__executor
+
     @property
     def model(self):
         self._load_model_if_needed()
@@ -66,6 +71,10 @@ class BaseTokenizer(ABC):
     def tokenizer(self):
         self._load_model_if_needed()
         return self.__tokenizer
+
+    @property
+    def executor(self):
+        return self._get_executor()
 
     @abstractmethod
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
@@ -85,10 +94,6 @@ class BaseTokenizer(ABC):
         )
         tokenizer = PreTrainedTokenizerFast.from_pretrained(model_dir)
         return model, tokenizer
-
-    @property
-    def executor(self):
-        return self.__executor
 
     @property
     def cosmos_client(self):
@@ -223,9 +228,11 @@ class BaseTokenizer(ABC):
             logging.error(f"Error saving word to database: {e}")
             
     def __del__(self):
-        # Check for the name-mangled executor attribute
-        if hasattr(self, '_BaseTokenizer__executor'):
-            self._BaseTokenizer__executor.shutdown(wait=False)
+        try:
+            if hasattr(self, '_BaseTokenizer__executor') and self.__executor is not None:
+                self.__executor.shutdown(wait=False)
+        except:
+            pass
 
 class GruutTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
