@@ -13,12 +13,10 @@ from transformers import PreTrainedTokenizerFast
 from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import cpu_count
 
-
 from .symbols import SymbolSet
 from .symbols import get_symbol_set
 from .normalization import preprocess_text
 from .utils import TextUtils
-
 
 import numpy as np
 import re
@@ -38,23 +36,22 @@ class BaseTokenizer(ABC):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, symbol_set: SymbolSet, online_g2p: bool = False):
         self.symbol_set = symbol_set
         self.language = language
+        self.emphasis_model_path = emphasis_model_path  # Store the path instead of model
         if emphasis_model_path:
-            self.model, self.tokenizer = self.load_model_and_tokenizer(emphasis_model_path)
+            self.__model, self.__tokenizer = self.load_model_and_tokenizer(emphasis_model_path)
         if emphasis_lookup:
             self.emphasis_lookup = emphasis_lookup
         else:
             self.emphasis_lookup = {}
         self.escaped_symbols = self.prepare_escaped_symbols(symbol_set.SYMBOLS)
         self.escaped_symbols_pattern = re.compile(self.escaped_symbols)
-        self.executor = ThreadPoolExecutor(max_workers=min(32, cpu_count() + 4))
-        self.cosmos_client = None
+        self.__executor = ThreadPoolExecutor(max_workers=min(32, cpu_count() + 4))
+        self.__cosmos_client = None
         self.push_oov_to_cosmos = False
         self.turso_config = None
         if online_g2p:
             logger.info(f"Initializing online G2P for {language}")
             self._init_online_g2p(language)
-            
-       
         
     @abstractmethod
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[List[str], str]:
@@ -75,8 +72,24 @@ class BaseTokenizer(ABC):
         tokenizer = PreTrainedTokenizerFast.from_pretrained(model_dir)
         return model, tokenizer
 
+    @property
+    def model(self):
+        return self.__model
+
+    @property
+    def tokenizer(self):
+        return self.__tokenizer
+
+    @property
+    def executor(self):
+        return self.__executor
+
+    @property
+    def cosmos_client(self):
+        return self.__cosmos_client
+
     def set_cosmos_client(self, cosmos_client):
-        self.cosmos_client = cosmos_client
+        self.__cosmos_client = cosmos_client
         
     def _init_online_g2p(self, lang: str):
         if lang == "en":
@@ -171,6 +184,43 @@ class BaseTokenizer(ABC):
             "partition": "default",
         }
     
+    def handle_emphasized_word(self, word):
+        lookup_result = self.emphasis_lookup.get(word.text)
+        emphasized_phonemes = None
+        
+        if isinstance(lookup_result, dict):
+            # Handle homograph case
+            if hasattr(word, 'pos') and word.pos in lookup_result:
+                emphasized_phonemes = lookup_result[word.pos]
+            else:
+                # Default to first value if tag not found or no tag available
+                emphasized_phonemes = next(iter(lookup_result.values()))
+        else:
+            # Handle normal case
+            emphasized_phonemes = lookup_result
+            
+        if emphasized_phonemes is None:
+            if hasattr(word, 'phonemes') and word.phonemes:
+                emphasized_phonemes = self.emphasize_phonemes(''.join(word.phonemes))
+                if self.push_oov_to_cosmos:
+                    future = self.executor.submit(self._save_to_word_universal, word.text, emphasized_phonemes)
+                    future.add_done_callback(self._handle_save_result)
+            else:
+                emphasized_phonemes = word.text
+        
+        return emphasized_phonemes
+    
+    def _handle_save_result(self, future):
+        try:
+            future.result()  # This will raise any exception that occurred during execution
+        except Exception as e:
+            logging.error(f"Error saving word to database: {e}")
+            
+    def __del__(self):
+        # Check for the name-mangled executor attribute
+        if hasattr(self, '_BaseTokenizer__executor'):
+            self._BaseTokenizer__executor.shutdown(wait=False)
+
 class GruutTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
         super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("en"), online_g2p)
@@ -439,95 +489,95 @@ class G2pIdTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
         super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("id"), online_g2p)
         self.g2p = G2p(turso_config=self.turso_config)
-        self.tokenizer = TweetTokenizer()
+        self.__tweet_tokenizer = TweetTokenizer()
         self.puncts = ".,!?:"
 
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[str, str, List[Tuple[int, int]]]:
-            text = preprocess_text(text, normalize)
-            phonemes = []
-            word_boundaries = []
-            current_pos = 0 
-            
-            # Pre-process special tags with placeholders
-            special_tags = []
-            pattern = r'<[^>]+>'
-            placeholder_template = 'TAGPLACEHOLDER{}'
-            
-            # Replace tags with placeholders and store original tags
-            def replace_tag(match):
-                tag = match.group(0)
-                tag_name = tag.strip('<>')
-                if tag_name in TextUtils.get_custom_tags():
-                    placeholder = placeholder_template.format(len(special_tags))
-                    special_tags.append(f'<{tag_name}>')
-                    return placeholder
-                return tag
+        text = preprocess_text(text, normalize)
+        phonemes = []
+        word_boundaries = []
+        current_pos = 0 
+        
+        # Pre-process special tags with placeholders
+        special_tags = []
+        pattern = r'<[^>]+>'
+        placeholder_template = 'TAGPLACEHOLDER{}'
+        
+        # Replace tags with placeholders and store original tags
+        def replace_tag(match):
+            tag = match.group(0)
+            tag_name = tag.strip('<>')
+            if tag_name in TextUtils.get_custom_tags():
+                placeholder = placeholder_template.format(len(special_tags))
+                special_tags.append(f'<{tag_name}>')
+                return placeholder
+            return tag
 
-            processed_text = re.sub(pattern, replace_tag, text)
-            sentences = sent_tokenize(processed_text)
-            sentences = [sentence.replace("-", " ") for sentence in sentences]
+        processed_text = re.sub(pattern, replace_tag, text)
+        sentences = sent_tokenize(processed_text)
+        sentences = [sentence.replace("-", " ") for sentence in sentences]
+        
+        logger.debug(f"Sentences: {sentences}")
+        
+        for i, sentence in enumerate(sentences):
+            words = []
+            for word in sentence.split():
+                # Check if word ends with punctuation
+                if word and word[-1] in self.puncts:
+                    words.append(word[:-1])  # Add word without punctuation
+                    words.append(word[-1])   # Add punctuation as separate token
+                else:
+                    words.append(word)
+            logger.debug(f"Words: {words}")
+            # Create a list of words to be processed by G2p
+            g2p_words = []
+            word_mapping = []  # Maps G2p results back to original word positions
             
-            logger.debug(f"Sentences: {sentences}")
+            for idx, word in enumerate(words):
+                logger.debug(f"Word: {word}")
+                if not word.startswith('TAGPLACEHOLDER') and word not in self.puncts:
+                    g2p_words.append(word)
+                    word_mapping.append(idx)
+                
+            # Process regular words with G2p
+            logger.debug(f"G2p words: {g2p_words}")
+            sent_ph = self.g2p(' '.join(g2p_words)) if g2p_words else []
+            logger.debug(f"Sent ph: {sent_ph}")
+            # Process each word in original order
+            ph_idx = 0
             
-            for i, sentence in enumerate(sentences):
-                words = []
-                for word in sentence.split():
-                    # Check if word ends with punctuation
-                    if word and word[-1] in self.puncts:
-                        words.append(word[:-1])  # Add word without punctuation
-                        words.append(word[-1])   # Add punctuation as separate token
-                    else:
-                        words.append(word)
-                logger.debug(f"Words: {words}")
-                # Create a list of words to be processed by G2p
-                g2p_words = []
-                word_mapping = []  # Maps G2p results back to original word positions
-                
-                for idx, word in enumerate(words):
-                    logger.debug(f"Word: {word}")
-                    if not word.startswith('TAGPLACEHOLDER') and word not in self.puncts:
-                        g2p_words.append(word)
-                        word_mapping.append(idx)
-                
-                # Process regular words with G2p
-                logger.debug(f"G2p words: {g2p_words}")
-                sent_ph = self.g2p(' '.join(g2p_words)) if g2p_words else []
-                logger.debug(f"Sent ph: {sent_ph}")
-                # Process each word in original order
-                ph_idx = 0
-                
-                for idx, word in enumerate(words):
-                    if word.startswith('TAGPLACEHOLDER'):
-                        try:
-                            tag_idx = int(word.replace('TAGPLACEHOLDER', ''))
-                            tag = special_tags[tag_idx]
-                            start_pos = current_pos
-                            phonemes.append(tag)
-                            current_pos += len(tag)
-                            word_boundaries.append((start_pos, current_pos))
-                        except (IndexError, ValueError):
-                            continue
-                    elif word in self.puncts:
+            for idx, word in enumerate(words):
+                if word.startswith('TAGPLACEHOLDER'):
+                    try:
+                        tag_idx = int(word.replace('TAGPLACEHOLDER', ''))
+                        tag = special_tags[tag_idx]
                         start_pos = current_pos
-                        phonemes.append(word)
-                        current_pos += len(word)
-                        if word_boundaries:
-                            word_boundaries[-1] = (word_boundaries[-1][0], current_pos)
-                        else:
-                            word_boundaries.append((start_pos, current_pos))
-                    elif word in string.punctuation:
-                        continue
-                    else:
-                        if phonemes and phonemes[-1] != " ":
-                            phonemes.append(" ")
-                            current_pos += 1
-                        start_pos = current_pos
-                        phoneme = ''.join(sent_ph[ph_idx])
-                        phonemes.append(phoneme)
-                        current_pos += len(phoneme)
+                        phonemes.append(tag)
+                        current_pos += len(tag)
                         word_boundaries.append((start_pos, current_pos))
-                        ph_idx += 1
-                        
+                    except (IndexError, ValueError):
+                        continue
+                elif word in self.puncts:
+                    start_pos = current_pos
+                    phonemes.append(word)
+                    current_pos += len(word)
+                    if word_boundaries:
+                        word_boundaries[-1] = (word_boundaries[-1][0], current_pos)
+                    else:
+                        word_boundaries.append((start_pos, current_pos))
+                elif word in string.punctuation:
+                    continue
+                else:
+                    if phonemes and phonemes[-1] != " ":
+                        phonemes.append(" ")
+                        current_pos += 1
+                    start_pos = current_pos
+                    phoneme = ''.join(sent_ph[ph_idx])
+                    phonemes.append(phoneme)
+                    current_pos += len(phoneme)
+                    word_boundaries.append((start_pos, current_pos))
+                    ph_idx += 1
+                    
             logger.debug(f"Phonemes: {phonemes}")
             logger.debug(f"Word boundaries: {word_boundaries}")
             return ''.join(phonemes), text, word_boundaries

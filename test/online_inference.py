@@ -33,71 +33,71 @@ def main():
         "database_name": "Bookbot",
     }
 
-    # English
-    # model = TextProcessor(
-    #     model_dirs["en"],
-    #     db_paths["en"],
-    #     language="en",
-    #     use_cosmos=False,
-    #     cosmos_config=cosmos_config,
-    #     animation_tags_path="../animation_data.csv",
-    #     online_g2p=True,
-    # )
-    # result = model.get_input_ids(
-    #     "Hello",
-    #     phonemes=False,
-    #     return_phonemes=True,
-    #     push_oov_to_cosmos=False,
-    #     add_blank_token=True,
-    # )
+    ### ENGLISH
+    model = TextProcessor(
+        model_dirs["en"],
+        db_paths["en"],
+        language="en",
+        use_cosmos=False,
+        cosmos_config=cosmos_config,
+        animation_tags_path="./animation_data.csv",
+        online_g2p=True,
+    )
+    result = model.get_input_ids(
+        "Hello",
+        phonemes=False,
+        return_phonemes=True,
+        push_oov_to_cosmos=False,
+        add_blank_token=True,
+    )
 
-    # model = TextProcessor(
-    #     model_dirs["en"],
-    #     db_paths["en"],
-    #     language="en",
-    #     use_cosmos=False,
-    #     cosmos_config=cosmos_config,
-    #     animation_tags_path="./animation_data.csv",
-    #     online_g2p=True,
-    # )
-    # result = model.get_input_ids(
-    #     "Hello World, my name is David! I'm a software engineer, and I love to code.",
-    #     phonemes=False,
-    #     return_phonemes=True,
-    #     push_oov_to_cosmos=True,
-    #     add_blank_token=True,
-    # )
-    # print(f"Result: {result}\n")
+    model = TextProcessor(
+        model_dirs["en"],
+        db_paths["en"],
+        language="en",
+        use_cosmos=False,
+        cosmos_config=cosmos_config,
+        animation_tags_path="./animation_data.csv",
+        online_g2p=True,
+    )
+    result = model.get_input_ids(
+        "Hello World, my name is David! I'm a software engineer, and I love to code.",
+        phonemes=False,
+        return_phonemes=True,
+        push_oov_to_cosmos=True,
+        add_blank_token=True,
+    )
+    print(f"Result: {result}\n")
 
-    # result = model.get_input_ids(
-    #     "Can you [lead] the <sound_part_showing_sound_1> conversation <smile>?",
-    #     phonemes=False,
-    #     return_phonemes=True,
-    #     push_oov_to_cosmos=True,
-    #     add_blank_token=True,
-    # )
-    # print(f"Result: {result}")
+    result = model.get_input_ids(
+        "Can you [lead] the <sound_part_showing_sound_1> conversation <smile>?",
+        phonemes=False,
+        return_phonemes=True,
+        push_oov_to_cosmos=True,
+        add_blank_token=True,
+    )
+    print(f"Result: {result}")
 
-    # # Swahili
-    # model = TextProcessor(
-    #     model_dirs["sw"],
-    #     db_paths["sw"],
-    #     language="sw",
-    #     use_cosmos=False,
-    #     cosmos_config=cosmos_config,
-    #     animation_tags_path="./animation_data.csv",
-    #     online_g2p=True,
-    # )
-    # result = model.get_input_ids(
-    #     "Jana <handRaiseHigh> nilitembelea mji wa [Nairobi]. 4525 Niliona majengo [marefu] na magari mengi <sound_part_showing_sound_1>.",
-    #     phonemes=False,
-    #     return_phonemes=True,
-    #     push_oov_to_cosmos=False,
-    #     add_blank_token=True,
-    # )
-    # print(f"Result: {result}\n")
+    ### SWAHILI
+    model = TextProcessor(
+        model_dirs["sw"],
+        db_paths["sw"],
+        language="sw",
+        use_cosmos=False,
+        cosmos_config=cosmos_config,
+        animation_tags_path="./animation_data.csv",
+        online_g2p=True,
+    )
+    result = model.get_input_ids(
+        "Jana <handRaiseHigh> nilitembelea mji wa [Nairobi]. 4525 Niliona majengo [marefu] na magari mengi <sound_part_showing_sound_1>.",
+        phonemes=False,
+        return_phonemes=True,
+        push_oov_to_cosmos=False,
+        add_blank_token=True,
+    )
+    print(f"Result: {result}\n")
 
-    # # Indonesian
+    ### INDONESIAN
     model = TextProcessor(
         model_dirs["id"],
         db_paths["id"],
@@ -124,7 +124,6 @@ def main():
     )
     print(f"Result: {result}\n")
 
-    # Indonesian
     result = model.get_input_ids(
         "Daftar / Masuk. Non-Fiksi",
         phonemes=False,
