@@ -371,16 +371,6 @@ class GruutTokenizer(BaseTokenizer):
                 emphasized_phonemes = word.text
         
         return emphasized_phonemes
-    
-    def _handle_save_result(self, future):
-        try:
-            future.result()  # This will raise any exception that occurred during execution
-        except Exception as e:
-            logging.error(f"Error saving word to database: {e}")
-            
-    def __del__(self):
-        # Ensure the executor is shut down when the object is destroyed
-        self.executor.shutdown(wait=False)
 
 class GruutSwahiliTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
@@ -487,16 +477,6 @@ class GruutSwahiliTokenizer(BaseTokenizer):
             phonemes.append(' ')
         phonemes.append(''.join(word.phonemes))
         return phonemes
-    
-    def _handle_save_result(self, future):
-        try:
-            future.result()  # This will raise any exception that occurred during execution
-        except Exception as e:
-            logging.error(f"Error saving word to database: {e}")
-            
-    def __del__(self):
-        # Ensure the executor is shut down when the object is destroyed
-        self.executor.shutdown(wait=False)
 
 class G2pIdTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
