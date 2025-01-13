@@ -1,6 +1,9 @@
+try:
+    from .utils import TextUtils
+except ImportError:
+    from utils import TextUtils
 import re
-from .utils import TextUtils
-
+    
 class SymbolSet:
     def __init__(self, symbols):
         self.SYMBOLS = symbols
@@ -97,3 +100,24 @@ def get_symbol_set(language: str) -> SymbolSet:
     if language not in symbol_sets:
         raise ValueError(f"Unsupported language code: {language}")
     return symbol_sets[language]
+
+if __name__ == "__main__":
+    import csv
+    
+    print("English Symbol Mapping:")
+    for symbol, id in sorted(english_symbols.SYMBOL_TO_ID.items(), key=lambda x: x[1]):
+        print(f"  {symbol!r}: {id}")
+        
+    with open("english_symbols.csv", "w", newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(["Symbol", "ID"])  # Header
+        for symbol, id in sorted(english_symbols.SYMBOL_TO_ID.items(), key=lambda x: x[1]):
+            writer.writerow([symbol, id])
+    
+    print("\nIndonesian Symbol Mapping:")
+    for symbol, id in sorted(indonesian_symbols.SYMBOL_TO_ID.items(), key=lambda x: x[1]):
+        print(f"  {symbol!r}: {id}")
+    
+    print("\nSwahili Symbol Mapping:")
+    for symbol, id in sorted(swahili_symbols.SYMBOL_TO_ID.items(), key=lambda x: x[1]):
+        print(f"  {symbol!r}: {id}")

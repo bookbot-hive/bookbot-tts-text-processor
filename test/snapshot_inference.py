@@ -27,5 +27,6 @@ def generate_inputids(text, language):
     return model.get_input_ids(text, phonemes=False, return_phonemes=True, push_oov_to_cosmos=True, add_blank_token=True, normalize=True)
 
 if __name__ == "__main__":
-    print(generate_inputids("Hello <wave> [world] <listen> how are you? <headLean>", "en"))
+    print(generate_inputids("a.", "en"))
+    print(generate_inputids("What do you think, Lachlan?", "en"))
     print(generate_inputids("Halo nama saya Budi. Siapa [nama] kamu?", "id"))

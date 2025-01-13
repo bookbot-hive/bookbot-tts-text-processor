@@ -114,10 +114,19 @@ class TextProcessor:
             if not phonemes:
                 logger.debug(f"Converting text to phonemes: {input_str}")
                 phonemes_str, normalized_text, word_boundaries = self.tokenizer.phonemize_text(input_str, normalize=normalize)
+                # Add period if no end-of-sentence punctuation exists
+                if not phonemes_str.rstrip().endswith(('.', '!', '?')):
+                    phonemes_str = phonemes_str.rstrip() + '.'
+                    # Adjust word boundaries to include the added period
+                    if word_boundaries:
+                        word_boundaries[-1] = (word_boundaries[-1][0], word_boundaries[-1][1] + 1)
                 result["normalized_text"] = normalized_text
             else:
                 phonemes_str = input_str
-                word_boundaries = [(0, len(input_str))]
+                # Add period if no end-of-sentence punctuation exists
+                if not phonemes_str.rstrip().endswith(('.', '!', '?')):
+                    phonemes_str = phonemes_str.rstrip() + '.'
+                word_boundaries = [(0, len(phonemes_str))]  # Updated to use new length
                 logger.debug(f"Using provided phonemes: {phonemes_str}")
             if return_phonemes:
                 result["phonemes"] = phonemes_str
