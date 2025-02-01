@@ -52,7 +52,8 @@ class BaseTokenizer(ABC):
         if online_g2p:
             logger.info(f"Initializing online G2P for {language}")
             self._init_online_g2p(language)
-            self.warmup()
+            if not isinstance(self, G2pIdTokenizer):
+                self.warmup()
 
     def _load_model_if_needed(self):
         if self.__model is None and self.emphasis_model_path:
@@ -504,10 +505,9 @@ class GruutSwahiliTokenizer(BaseTokenizer):
 
 class G2pIdTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
+        self.puncts = ".,!?:"
         super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("id"), online_g2p)
         self.g2p = G2p(turso_config=self.turso_config)
-        self.__tweet_tokenizer = TweetTokenizer()
-        self.puncts = ".,!?:"
 
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[str, str, List[Tuple[int, int]]]:
         text = preprocess_text(text, normalize)

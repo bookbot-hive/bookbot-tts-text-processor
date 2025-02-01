@@ -22,7 +22,7 @@ def main():
         "database_name": "Bookbot",
     }
 
-    ### ENGLISH
+    # ENGLISH
     print("Initializing English model...")
     model = TextProcessor(
         model_dirs["en"],
