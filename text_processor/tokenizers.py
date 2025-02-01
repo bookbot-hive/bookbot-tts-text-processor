@@ -52,6 +52,7 @@ class BaseTokenizer(ABC):
         if online_g2p:
             logger.info(f"Initializing online G2P for {language}")
             self._init_online_g2p(language)
+            self.warmup()
 
     def _load_model_if_needed(self):
         if self.__model is None and self.emphasis_model_path:
@@ -234,10 +235,19 @@ class BaseTokenizer(ABC):
         except:
             pass
 
+    def warmup(self):
+        """Perform warmup inference to load Turso database into memory"""
+        if self.turso_config:
+            logger.info("Performing warmup inference...")
+            # Use a simple word that exists in all languages
+            self.phonemize_text("hello", normalize=True)
+            logger.info("Warmup complete")
+
 class GruutTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
-        super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("en"), online_g2p)
+        # Set accent before calling super().__init__
         self.accent = "en-us"  # Default accent
+        super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("en"), online_g2p)
     
     def set_accent(self, accent: str):
         """Set the accent for English phonemization (en-us or en-gb)"""
@@ -372,6 +382,13 @@ class GruutTokenizer(BaseTokenizer):
         
         return emphasized_phonemes
 
+    def warmup(self):
+        """Perform warmup inference specific to English"""
+        if self.turso_config:
+            logger.info("Performing warmup inference for English...")
+            self.phonemize_text("hello world", normalize=True)
+            logger.info("Warmup complete")
+
 class GruutSwahiliTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
         super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("sw"), online_g2p)
@@ -478,6 +495,13 @@ class GruutSwahiliTokenizer(BaseTokenizer):
         phonemes.append(''.join(word.phonemes))
         return phonemes
 
+    def warmup(self):
+        """Perform warmup inference specific to Swahili"""
+        if self.turso_config:
+            logger.info("Performing warmup inference for Swahili...")
+            self.phonemize_text("jambo", normalize=True)
+            logger.info("Warmup complete")
+
 class G2pIdTokenizer(BaseTokenizer):
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):
         super().__init__(emphasis_model_path, emphasis_lookup, language, get_symbol_set("id"), online_g2p)
@@ -574,6 +598,13 @@ class G2pIdTokenizer(BaseTokenizer):
             logger.debug(f"Phonemes: {phonemes}")
             logger.debug(f"Word boundaries: {word_boundaries}")
             return ''.join(phonemes), text, word_boundaries
+
+    def warmup(self):
+        """Perform warmup inference specific to Indonesian"""
+        if self.turso_config:
+            logger.info("Performing warmup inference for Indonesian...")
+            self.phonemize_text("halo", normalize=True)
+            logger.info("Warmup complete")
 
 class Tokenizer:
     def __init__(self, emphasis_model_path: str, emphasis_lookup: Dict[str, str], language: str, online_g2p: bool = False):

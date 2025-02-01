@@ -2,17 +2,6 @@ import os
 from text_processor import TextProcessor
 from pkg_resources import resource_filename
 
-TURSO_URL = os.getenv("TURSO_URL")
-TURSO_AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN")
-
-
-en_turso_config = {
-    "url": TURSO_URL,
-    "auth_token": TURSO_AUTH_TOKEN,
-    "table": "en_phonemes",
-}
-
-
 def main():
     model_dirs = {
         "en": "bookbot/roberta-base-emphasis-onnx-quantized",
@@ -34,6 +23,7 @@ def main():
     }
 
     ### ENGLISH
+    print("Initializing English model...")
     model = TextProcessor(
         model_dirs["en"],
         db_paths["en"],
@@ -43,6 +33,7 @@ def main():
         animation_tags_path="./animation_data.csv",
         online_g2p=True,
     )
+    print("Model initialized, performing inference...")
     result = model.get_input_ids(
         "Hello",
         phonemes=False,
