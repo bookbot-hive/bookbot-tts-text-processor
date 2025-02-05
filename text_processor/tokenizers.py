@@ -9,7 +9,8 @@ from gruut import sentences
 from g2p_id import G2p
 from nltk.tokenize import sent_tokenize
 from functools import lru_cache
-from optimum.onnxruntime import ORTModelForQuestionAnswering
+from huggingface_hub import hf_hub_download
+from huggingface_hub.errors import EntryNotFoundError
 from transformers import PreTrainedTokenizerFast
 from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import cpu_count
@@ -19,6 +20,7 @@ from .symbols import get_symbol_set
 from .normalization import preprocess_text
 from .utils import TextUtils
 
+import onnxruntime as ort
 import numpy as np
 import re
 import logging
@@ -99,7 +101,12 @@ class BaseTokenizer(ABC):
 
     @staticmethod
     def load_model_and_tokenizer(model_dir):
-        model = ORTModelForQuestionAnswering.from_pretrained(model_dir, providers=["CPUExecutionProvider"])
+        try:
+            model_path = hf_hub_download(repo_id=model_dir, filename="model_quantized.onnx")
+        except EntryNotFoundError:
+            model_path = hf_hub_download(repo_id=model_dir, filename="model.onnx")
+
+        model = ort.InferenceSession(model_path, providers=["CPUExecutionProvider"])
         tokenizer = PreTrainedTokenizerFast.from_pretrained(model_dir)
         return model, tokenizer
 
@@ -131,11 +138,11 @@ class BaseTokenizer(ABC):
 
     def infer(self, input_phonemes: str) -> tuple:
         splitted_phonemes = self.split_phonemes(input_phonemes)
-        inputs = self.tokenizer(" ".join(splitted_phonemes), return_tensors="pt")
-        outputs = self.model(input_ids=inputs.input_ids, attention_mask=inputs.attention_mask)
-
-        start_index = np.argmax(outputs.start_logits)
-        end_index = np.argmax(outputs.end_logits)
+        inputs = self.tokenizer(" ".join(splitted_phonemes), return_tensors="np", return_token_type_ids=False)
+        onnx_inputs = {k: v.astype(np.int64) for k, v in inputs.items()}
+        start_logits, end_logits = self.model.run(None, onnx_inputs)
+        start_index = np.argmax(start_logits)
+        end_index = np.argmax(end_logits)
 
         return start_index.item(), end_index.item(), splitted_phonemes
 

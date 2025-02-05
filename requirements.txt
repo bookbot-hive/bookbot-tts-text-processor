@@ -1,6 +1,6 @@
 num2words @ https://github.com/synesthesiam/prebuilt-apps/releases/download/v1.0/num2words-0.6.0-py3-none-any.whl
 transformers==4.45.2 
-optimum[onnxruntime]
+onnxruntime
 numpy==1.26.4
 azure-cosmos
 openai
