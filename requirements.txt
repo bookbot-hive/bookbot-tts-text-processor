@@ -5,5 +5,6 @@ numpy==1.26.4
 azure-cosmos
 openai
 anthropic
+pandas
 babygruut @ git+https://github.com/bookbot-hive/babygruut.git@turso_db
 g2p_id @ git+https://github.com/bookbot-kids/online_g2p_id.git
