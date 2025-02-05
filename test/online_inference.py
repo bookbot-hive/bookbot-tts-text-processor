@@ -2,6 +2,7 @@ import os
 from text_processor import TextProcessor
 from pkg_resources import resource_filename
 
+
 def main():
     model_dirs = {
         "en": "bookbot/roberta-base-emphasis-onnx-quantized",
