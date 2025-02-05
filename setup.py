@@ -1,23 +1,27 @@
 from setuptools import setup, find_packages
 import os
 
+
 def read_requirements():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     try:
-        with open(os.path.join(current_dir, 'requirements.txt'), 'r') as f:
-            return [line.strip() for line in f if line.strip() and not line.startswith('#')]
+        with open(os.path.join(current_dir, "requirements.txt"), "r") as f:
+            return [
+                line.strip() for line in f if line.strip() and not line.startswith("#")
+            ]
     except FileNotFoundError:
         return []
+
 
 setup(
     name="text_processor",
     packages=find_packages(),
     include_package_data=True,
     package_data={
-        'text_processor': ['data/*.json'],
+        "text_processor": ["data/*.json"],
     },
     use_scm_version=True,
-    setup_requires=['setuptools_scm'],
+    setup_requires=["setuptools_scm"],
     install_requires=read_requirements(),
     author="David Samuel Setiawan",
     author_email="davidsamuel.7878@gmail.com",
@@ -30,5 +34,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.10"
+    python_requires=">=3.10",
 )
