@@ -2,6 +2,7 @@ import pandas as pd
 
 
 class TextUtils:
+<<<<<<< HEAD
     # Static variables
     IPA_LIST = [
         "aɪ",
@@ -91,6 +92,8 @@ class TextUtils:
         ";",
         "?",
     ]
+=======
+>>>>>>> 3201e02 (Remove input_ids if input only contains punctuations)
     UNICODE_NORM_FORM = "NFKC"
     CUSTOM_TAGS = {}
 

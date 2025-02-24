@@ -15,7 +15,18 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+
 class TextProcessor:
+    def __init__(
+        self,
+        emphasis_model_path: str,
+        db_path: str,
+        language: str = "en",
+        use_cosmos: bool = False,
+        cosmos_config: Dict[str, Any] = None,
+        animation_tags_path: str = None,
+        online_g2p: bool = False,
+    ):
     def __init__(
         self,
         emphasis_model_path: str,
@@ -30,16 +41,25 @@ class TextProcessor:
         self.emphasis_lookup = dict()
         self.cosmos_lookup = dict()
 
+
         # Initialize custom tags
         TextUtils.initialize_custom_tags(animation_tags_path)
         logger.info(f"Loaded custom animation tags from: {animation_tags_path}")
+
 
         if use_cosmos:
             if not cosmos_config:
                 raise ValueError(
                     "Cosmos configuration is required when use_cosmos is True"
                 )
+                raise ValueError(
+                    "Cosmos configuration is required when use_cosmos is True"
+                )
             self.cosmos_client = Cosmos(
+                cosmos_config["url"],
+                cosmos_config["key"],
+                cosmos_config["database_name"],
+                self.language,
                 cosmos_config["url"],
                 cosmos_config["key"],
                 cosmos_config["database_name"],
@@ -57,26 +77,50 @@ class TextProcessor:
             self.language,
             online_g2p=online_g2p,
         )
+
+        self.tokenizer_manager = Tokenizer(
+            emphasis_model_path,
+            self.emphasis_lookup,
+            self.language,
+            online_g2p=online_g2p,
+        )
         self.tokenizer = self.tokenizer_manager.get_tokenizer()
         if use_cosmos:
             self.tokenizer.set_cosmos_client(self.cosmos_client)
+
 
         if self.language == "en":
             self.tokenizer.set_accent("en-us")
 
     def load_emphasis_lookup_from_file(self, db_path: str):
         with open(db_path, "r") as f:
+        with open(db_path, "r") as f:
             emphasis_lookup = json.load(f)
         return emphasis_lookup
+
 
     def load_emphasis_lookup_from_cosmos(self):
         all_records = self.cosmos_client.get_all_records()
         wu_emphasis_dict = {
             record["word"]: record["emphasisIPA"]
             for record in all_records
+            record["word"]: record["emphasisIPA"]
+            for record in all_records
             if "emphasisIPA" in record and record["emphasisIPA"].strip()
         }
         return wu_emphasis_dict
+
+    def get_input_ids(
+        self,
+        input_str: str,
+        phonemes: bool = False,
+        return_phonemes: bool = False,
+        push_oov_to_cosmos: bool = False,
+        add_blank_token: bool = False,
+        normalize: bool = False,
+        accent: str = None,
+        emphasize_model: str = None,
+    ) -> dict:
 
     def get_input_ids(
         self,
@@ -104,14 +148,17 @@ class TextProcessor:
         """
         result = {}
 
+
         if self.tokenizer.cosmos_client and push_oov_to_cosmos:
             self.tokenizer.set_push_oov_to_cosmos(True)
         else:
             self.tokenizer.set_push_oov_to_cosmos(False)
 
+
         try:
             if emphasize_model:
                 # Check if input_str is a single word (no spaces)
+                if " " not in input_str.strip():
                 if " " not in input_str.strip():
                     input_str = f"[{input_str.strip()}]"
                 else:
@@ -119,7 +166,14 @@ class TextProcessor:
                         input_str = Claude(model=emphasize_model).emphasize(
                             PROMPT, input_str
                         )
+                        input_str = Claude(model=emphasize_model).emphasize(
+                            PROMPT, input_str
+                        )
                     elif "gpt" in emphasize_model.lower():
+                        input_str = GPT(model=emphasize_model).emphasize(
+                            PROMPT, input_str
+                        )
+
                         input_str = GPT(model=emphasize_model).emphasize(
                             PROMPT, input_str
                         )
@@ -133,19 +187,24 @@ class TextProcessor:
         if self.language == "en" and accent:
             self.tokenizer.set_accent(accent)
 
+
         try:
             if not phonemes:
                 logger.debug(f"Converting text to phonemes: {input_str}")
-                (
-                    phonemes_str,
-                    normalized_text,
-                    word_boundaries,
-                ) = self.tokenizer.phonemize_text(input_str, normalize=normalize)
+                phonemes_str, normalized_text, word_boundaries = (
+                    self.tokenizer.phonemize_text(input_str, normalize=normalize)
+                )
                 # Add period if no end-of-sentence punctuation exists
+                if not phonemes_str.rstrip().endswith((".", "!", "?")):
+                    phonemes_str = phonemes_str.rstrip() + "."
                 if not phonemes_str.rstrip().endswith((".", "!", "?")):
                     phonemes_str = phonemes_str.rstrip() + "."
                     # Adjust word boundaries to include the added period
                     if word_boundaries:
+                        word_boundaries[-1] = (
+                            word_boundaries[-1][0],
+                            word_boundaries[-1][1] + 1,
+                        )
                         word_boundaries[-1] = (
                             word_boundaries[-1][0],
                             word_boundaries[-1][1] + 1,
@@ -156,6 +215,8 @@ class TextProcessor:
                 # Add period if no end-of-sentence punctuation exists
                 if not phonemes_str.rstrip().endswith((".", "!", "?")):
                     phonemes_str = phonemes_str.rstrip() + "."
+                if not phonemes_str.rstrip().endswith((".", "!", "?")):
+                    phonemes_str = phonemes_str.rstrip() + "."
                 word_boundaries = [(0, len(phonemes_str))]  # Updated to use new length
                 logger.debug(f"Using provided phonemes: {phonemes_str}")
             if return_phonemes:
@@ -164,25 +225,54 @@ class TextProcessor:
             logger.error(
                 f"Error converting text to phonemes: {input_str}", exc_info=True
             )
+            logger.error(
+                f"Error converting text to phonemes: {input_str}", exc_info=True
+            )
             raise ValueError(f"Failed to convert text to phonemes: {str(e)}")
 
+        # If only contain punctuations
         try:
             phoneme_list = self.tokenizer.split_phonemes(phonemes_str)
+
+            # Define punctuation set
+            punctuation = set([".", "!", "?", ",", ":", ";", " "])
+
             if add_blank_token:
                 phoneme_list.append(" ")
+
+            # Separate tags and non-tags
+            tags = [
+                phoneme
+                for phoneme in phoneme_list
+                if phoneme.startswith("<") and phoneme.endswith(">")
+            ]
+            non_tags = [
+                phoneme
+                for phoneme in phoneme_list
+                if not (phoneme.startswith("<") and phoneme.endswith(">"))
+            ]
+
+            # If all non-tags are punctuation
+            if all(phoneme in punctuation for phoneme in non_tags):
+                # Keep only tags
+                phoneme_list = tags
+
             logger.debug(f"Split phonemes: {phoneme_list}")
         except Exception as e:
             logger.error(f"Error splitting phonemes: {phonemes_str}", exc_info=True)
             raise ValueError(f"Failed to split phonemes: {str(e)}")
 
+
         try:
             input_ids = self.tokenizer.phonemes_to_ids(phoneme_list)
             result["input_ids"] = input_ids
+
 
             # Generate word_idx based on word boundaries
             word_idx = []
             current_pos = 0
             current_word = 0
+
 
             for phoneme in phoneme_list:
                 # Find which word boundary this phoneme belongs to
@@ -190,17 +280,29 @@ class TextProcessor:
                     current_word < len(word_boundaries)
                     and current_pos >= word_boundaries[current_word][1]
                 ):
+                while (
+                    current_word < len(word_boundaries)
+                    and current_pos >= word_boundaries[current_word][1]
+                ):
                     current_word += 1
 
+
                 # If this is a space, use previous word's index
+                if phoneme == " ":
                 if phoneme == " ":
                     word_idx.append(max(0, current_word - 1))
                 else:
                     word_idx.append(current_word)
 
+
                 current_pos += len(phoneme)
 
+
             result["word_idx"] = word_idx
+            logger.debug(
+                f"Successfully generated input_ids and word_idx for: {input_str}"
+            )
+
             logger.debug(
                 f"Successfully generated input_ids and word_idx for: {input_str}"
             )
@@ -209,7 +311,11 @@ class TextProcessor:
             logger.error(
                 f"Failed to convert phonemes to IDs. Input: {input_str}", exc_info=True
             )
+            logger.error(
+                f"Failed to convert phonemes to IDs. Input: {input_str}", exc_info=True
+            )
             logger.error(f"Problematic phoneme list: {phoneme_list}")
             raise ValueError(f"Failed to process phonemes: {str(e)}")
+
 
         return result
