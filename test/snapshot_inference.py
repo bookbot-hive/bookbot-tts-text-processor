@@ -40,10 +40,10 @@ def generate_inputids(text, language):
 
 
 if __name__ == "__main__":
-    print(generate_inputids("a.", "en"))
-    print(generate_inputids("<handRaiseMid>.", "en"))
-    print(generate_inputids(".", "en"))
-    print(generate_inputids("!", "en"))
-    print(generate_inputids("What do you think, Lachlan?", "en"))
-    print(generate_inputids("Halo nama saya Budi. Siapa [nama] kamu?", "id"))
-    print(generate_inputids("Ke.", "id"))
+    # print(generate_inputids("a.", "en"))
+    # print(generate_inputids("<handRaiseMid>.", "en"))
+    # print(generate_inputids(".", "en"))
+    # print(generate_inputids("!", "en"))
+    # print(generate_inputids("What do you think, Lachlan?", "en"))
+    print(generate_inputids("Minecraft", "id"))
+    print(generate_inputids("minecraft", "id"))
