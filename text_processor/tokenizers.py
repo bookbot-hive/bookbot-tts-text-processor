@@ -29,8 +29,8 @@ import time
 import os
 import string
 
-TURSO_URL = os.getenv("TURSO_URL")
-TURSO_AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN")
+TURSO_URL = os.getenv("TURSO_LEXICON_URL")
+TURSO_AUTH_TOKEN = os.getenv("TURSO_LEXICON_AUTH_TOKEN")
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
