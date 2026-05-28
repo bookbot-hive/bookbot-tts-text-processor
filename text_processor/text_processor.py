@@ -10,6 +10,8 @@ from .utils import TextUtils
 from .prompt import PROMPT
 from .gpt import GPT
 from .claude import Claude
+from .claude_code_cli import ClaudeCodeCLI
+from .codex_cli import CodexCLI
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -123,11 +125,27 @@ class TextProcessor:
                 if " " not in input_str.strip():
                     input_str = f"[{input_str.strip()}]"
                 else:
-                    if "claude" in emphasize_model.lower():
+                    model_lower = emphasize_model.lower()
+                    if model_lower.startswith("cli-"):
+                        cli_model = emphasize_model[4:]
+                        cli_model_lower = cli_model.lower()
+                        if "claude" in cli_model_lower or cli_model_lower in (
+                            "opus",
+                            "sonnet",
+                            "haiku",
+                        ):
+                            input_str = ClaudeCodeCLI(model=cli_model).emphasize(
+                                PROMPT, input_str
+                            )
+                        else:
+                            input_str = CodexCLI(model=cli_model).emphasize(
+                                PROMPT, input_str
+                            )
+                    elif "claude" in model_lower:
                         input_str = Claude(model=emphasize_model).emphasize(
                             PROMPT, input_str
                         )
-                    elif "gpt" in emphasize_model.lower():
+                    elif "gpt" in model_lower:
                         input_str = GPT(model=emphasize_model).emphasize(
                             PROMPT, input_str
                         )
