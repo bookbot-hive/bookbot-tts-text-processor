@@ -559,7 +559,7 @@ class G2pIdTokenizer(BaseTokenizer):
         language: str,
         online_g2p: bool = False,
     ):
-        self.puncts = ".,!?:"
+        self.puncts = ".,!?:;"
         super().__init__(
             emphasis_model_path,
             emphasis_lookup,
@@ -568,6 +568,49 @@ class G2pIdTokenizer(BaseTokenizer):
             online_g2p,
         )
         self.g2p = G2p(turso_config=self.turso_config)
+
+    def _tokenize_sentence(self, sentence: str) -> List[str]:
+        quote_chars = "\"'`“”‘’()[]{}"
+        words = []
+
+        for raw_word in sentence.split():
+            word = raw_word.strip(quote_chars)
+            if not word:
+                continue
+
+            leading_puncts = []
+            while word and word[0] in self.puncts:
+                leading_puncts.append(word[0])
+                word = word[1:]
+
+            trailing_puncts = []
+            while word and word[-1] in self.puncts:
+                trailing_puncts.append(word[-1])
+                word = word[:-1]
+
+            words.extend(leading_puncts)
+            if word and word not in string.punctuation:
+                words.append(word)
+            words.extend(reversed(trailing_puncts))
+
+        return words
+
+    def _phonemize_words(self, words: List[str]) -> List[List[str]]:
+        sent_ph = []
+
+        for word in words:
+            word_ph = self.g2p(word)
+            if not word_ph:
+                logger.warning(f"No Indonesian phonemes returned for word: {word}")
+                sent_ph.append([])
+                continue
+
+            if isinstance(word_ph[0], str):
+                sent_ph.append(word_ph)
+            else:
+                sent_ph.append(word_ph[0])
+
+        return sent_ph
 
     def phonemize_text(self, text: str, normalize: bool = False) -> Tuple[str, str, List[Tuple[int, int]]]:
         text = preprocess_text(text, normalize)
@@ -591,20 +634,30 @@ class G2pIdTokenizer(BaseTokenizer):
             return tag
 
         processed_text = re.sub(pattern, replace_tag, text)
+        processed_text = processed_text.translate(
+            str.maketrans(
+                {
+                    "“": '"',
+                    "”": '"',
+                    "„": '"',
+                    "‟": '"',
+                    "‘": "'",
+                    "’": "'",
+                    "‚": "'",
+                    "‛": "'",
+                    "–": " ",
+                    "—": " ",
+                    "…": ".",
+                }
+            )
+        )
         sentences = sent_tokenize(processed_text)
         sentences = [sentence.replace("-", " ") for sentence in sentences]
 
         logger.debug(f"Sentences: {sentences}")
 
         for i, sentence in enumerate(sentences):
-            words = []
-            for word in sentence.split():
-                # Check if word ends with punctuation
-                if word and word[-1] in self.puncts:
-                    words.append(word[:-1])  # Add word without punctuation
-                    words.append(word[-1])  # Add punctuation as separate token
-                else:
-                    words.append(word)
+            words = self._tokenize_sentence(sentence)
             logger.debug(f"Words: {words}")
             # Create a list of words to be processed by G2p
             g2p_words = []
@@ -618,7 +671,7 @@ class G2pIdTokenizer(BaseTokenizer):
 
             # Process regular words with G2p
             logger.debug(f"G2p words: {g2p_words}")
-            sent_ph = self.g2p(" ".join(g2p_words)) if g2p_words else []
+            sent_ph = self._phonemize_words(g2p_words) if g2p_words else []
             logger.debug(f"Sent ph: {sent_ph}")
             # Process each word in original order
             ph_idx = 0
@@ -649,6 +702,10 @@ class G2pIdTokenizer(BaseTokenizer):
                         phonemes.append(" ")
                         current_pos += 1
                     start_pos = current_pos
+                    if ph_idx >= len(sent_ph):
+                        raise ValueError(
+                            f"No Indonesian phonemes available for word: {word}"
+                        )
                     phoneme = "".join(sent_ph[ph_idx])
                     phonemes.append(phoneme)
                     current_pos += len(phoneme)
